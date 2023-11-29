@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1050414492138",
+    "project_id": "macidp-fd534",
+    "storage_bucket": "macidp-fd534.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1050414492138:android:f4f33cc0ea4e0ec54e6a93",
+        "android_client_info": {
+          "package_name": "com.macidp.app.macidp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBf0L0VDhM6nISAqNMjEC92puqoNjrshj8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,413 @@
+           Container(
+                          height: 1000,
+                          decoration: BoxDecoration(
+                            color: LicenseAppTheme.nearlyWhite,
+                            borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(32.0),
+                                topRight: Radius.circular(32.0)),
+                            boxShadow: <BoxShadow>[
+                              BoxShadow(
+                                  color: LicenseAppTheme.grey.withOpacity(0.2),
+                                  offset: const Offset(1.1, 1.1),
+                                  blurRadius: 10.0),
+                            ],
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 8, right: 8),
+                            child: Container(
+                              constraints: BoxConstraints(
+                                  minHeight: infoHeight,
+                                  maxHeight: tempHeight > infoHeight
+                                      ? tempHeight
+                                      : infoHeight),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        top:
+                                            MediaQuery.of(context).padding.top),
+                                    child: SizedBox(
+                                      width: AppBar().preferredSize.height,
+                                      height: AppBar().preferredSize.height,
+                                      child: Material(
+                                        color: Colors.transparent,
+                                        child: InkWell(
+                                          borderRadius: BorderRadius.circular(
+                                              AppBar().preferredSize.height),
+                                          child: Icon(
+                                            Icons.arrow_back_ios,
+                                            color: LicenseAppTheme.nearlyBlack,
+                                          ),
+                                          onTap: () {
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 18, right: 16),
+                                    child: Text(
+                                      license[widget.index].title,
+                                      textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 22,
+                                        letterSpacing: 0.27,
+                                        color: LicenseAppTheme.darkerText,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 16, right: 16, top: 16),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: <Widget>[
+                                        Text(
+                                          "${license[widget.index].price} SAR",
+                                          textAlign: TextAlign.left,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w200,
+                                            fontSize: 22,
+                                            letterSpacing: 0.27,
+                                            color: HexColor(
+                                                license[widget.index].endColor),
+                                          ),
+                                        ),
+                                        Container(
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: <Widget>[
+                                              Text(
+                                                '5.0',
+                                                textAlign: TextAlign.left,
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.w200,
+                                                  fontSize: 22,
+                                                  letterSpacing: 0.27,
+                                                  color: LicenseAppTheme.grey,
+                                                ),
+                                              ),
+                                              Icon(
+                                                Icons.star,
+                                                color: HexColor(
+                                                    license[widget.index]
+                                                        .endColor),
+                                                size: 24,
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  // Container(
+                                  //   width: double.infinity,
+                                  //   height: 300,
+                                  //   child: AnimatedOpacity(
+                                  //     duration: const Duration(milliseconds: 500),
+                                  //     opacity: opacity1,
+                                  //     child: Padding(
+                                  //       padding: const EdgeInsets.symmetric(horizontal: 8),
+                                  //       child: Expanded(
+                                  //         child: GridView.builder(
+                                  //           itemCount: license[widget.index].features!.length,
+                                  //           gridDelegate:
+                                  //           SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+                                  //           itemBuilder: (context, index) => getTimeBoxUI('${license[widget.index].features![index]}',license[widget.index].endColor),
+                                  //
+                                  //         ),
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  // ),
+                                  // Expanded(
+                                  //   child: AnimatedOpacity(
+                                  //     duration: const Duration(milliseconds: 500),
+                                  //     opacity: opacity2,
+                                  //     child: Padding(
+                                  //       padding: const EdgeInsets.only(
+                                  //           left: 16, right: 16, top: 8, bottom: 8),
+                                  //       child: Text(
+                                  //         '',
+                                  //         textAlign: TextAlign.justify,
+                                  //         style: TextStyle(
+                                  //           fontWeight: FontWeight.w200,
+                                  //           fontSize: 14,
+                                  //           letterSpacing: 0.27,
+                                  //           color: DesignCourseAppTheme.grey,
+                                  //         ),
+                                  //         maxLines: 3,
+                                  //         overflow: TextOverflow.ellipsis,
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  // ),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Form(
+                                      key: formKey,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          defaultTxtForm(
+                                              controller: nameController,
+                                              type: TextInputType.name,
+                                              validate: (value) {
+                                                if (value!.isEmpty) {
+                                                  return "";
+                                                }
+                                                return null;
+                                              },
+                                              label: "الاسم بالكامل",
+                                              prefix: Icons.person_outline),
+                                          SizedBox(
+                                            height: 15,
+                                          ),
+                                          Container(
+                                            width: double.infinity,
+                                            child: DecoratedBox(
+                                              decoration: BoxDecoration(
+                                                  color: Colors
+                                                      .white, //background color of dropdown button
+                                                  border: Border.all(
+                                                      color: buttonsColor,
+                                                      width:
+                                                          1), //border of dropdown button
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10), //border raiuds of dropdown button
+                                                  boxShadow: <BoxShadow>[
+                                                    //apply shadow on Dropdown button
+                                                    BoxShadow(
+                                                        color: Color.fromRGBO(
+                                                            0,
+                                                            0,
+                                                            0,
+                                                            0.57), //shadow for button
+                                                        blurRadius:
+                                                            5) //blur radius of shadow
+                                                  ]),
+                                              child: Center(
+                                                child: DropdownButton(
+                                                    value: AppCubit.get(context)
+                                                        .dropdCountry,
+                                                    items: AppCubit.get(context)
+                                                        .country
+                                                        .map((e) {
+                                                      return DropdownMenuItem(
+                                                        value: e,
+                                                        child: Text(e),
+                                                      );
+                                                    }).toList(),
+                                                    onChanged:
+                                                        (String? newValue) {
+                                                      AppCubit.get(context)
+                                                          .changeDropdownCountry(
+                                                              newValue);
+                                                    }),
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 15,
+                                          ),
+                                          Container(
+                                            width: double.infinity,
+                                            child: DecoratedBox(
+                                              decoration: BoxDecoration(
+                                                  color: Colors
+                                                      .white, //background color of dropdown button
+                                                  border: Border.all(
+                                                      color: buttonsColor,
+                                                      width:
+                                                          1), //border of dropdown button
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10), //border raiuds of dropdown button
+                                                  boxShadow: <BoxShadow>[
+                                                    //apply shadow on Dropdown button
+                                                    BoxShadow(
+                                                        color: Color.fromRGBO(
+                                                            0,
+                                                            0,
+                                                            0,
+                                                            0.57), //shadow for button
+                                                        blurRadius:
+                                                            5) //blur radius of shadow
+                                                  ]),
+                                              child: Center(
+                                                child: DropdownButton(
+                                                    value: AppCubit.get(context)
+                                                        .dropdNationality,
+                                                    items: AppCubit.get(context)
+                                                        .nationality
+                                                        .map((e) {
+                                                      return DropdownMenuItem(
+                                                        value: e,
+                                                        child: Text(e),
+                                                      );
+                                                    }).toList(),
+                                                    onChanged:
+                                                        (String? newValue) {
+                                                      AppCubit.get(context)
+                                                          .changeDropdownNationality(
+                                                              newValue);
+                                                    }),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 15,
+                                          ),
+                                          defaultTxtForm(
+                                              controller: idController,
+                                              type: TextInputType.text,
+                                              validate: (value) {
+                                                if (value!.isEmpty) {
+                                                  return "";
+                                                }
+                                                return null;
+                                              },
+                                              label: "رقم الهوية",
+                                              prefix: Icons.book_outlined),
+                                          SizedBox(
+                                            height: 15,
+                                          ),
+                                          defaultTxtForm(
+                                              controller: idController,
+                                              type: TextInputType.text,
+                                              validate: (value) {
+                                                if (value!.isEmpty) {
+                                                  return "";
+                                                }
+                                                return null;
+                                              },
+                                              label: "رقم جواز السفر",
+                                              prefix: Icons.book_outlined),
+                                          SizedBox(
+                                            height: 15,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Expanded(
+                                                child: RadioListTile(
+                                                    activeColor: buttonsColor,
+                                                    title: Text("دولار"),
+                                                    value: "USD",
+                                                    groupValue: currency,
+                                                    onChanged: (value) {
+                                                      currency =
+                                                          value.toString();
+                                                      print(currency);
+                                                      AppCubit.get(context)
+                                                          .changeRadio();
+                                                    }),
+                                              ),
+                                              Expanded(
+                                                child: RadioListTile(
+                                                    activeColor: buttonsColor,
+                                                    title: Text("ريال"),
+                                                    value: "SAR",
+                                                    groupValue: currency,
+                                                    onChanged: (value) {
+                                                      currency =
+                                                          value.toString();
+                                                      print(currency);
+                                                      AppCubit.get(context)
+                                                          .changeRadio();
+                                                    }),
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 15,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Expanded(
+                                                  child: Card(
+                                                child: Column(
+                                                  children: [
+                                                    Text("نسخة تسجيل المركبة"),
+                                                    IconButton(
+                                                      icon: Icon(AppCubit.get(
+                                                                      context)
+                                                                  .profileImage ==
+                                                              null
+                                                          ? Icons.upload
+                                                          : Icons.check),
+                                                      onPressed: () {
+                                                        AppCubit.get(context)
+                                                            .getProfileImage();
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                              )),
+                                              Expanded(
+                                                  child: Card(
+                                                child: Column(
+                                                  children: [
+                                                    Text("صورة جواز السفر"),
+                                                    IconButton(
+                                                      icon: Icon(AppCubit.get(
+                                                                      context)
+                                                                  .licenceImage ==
+                                                              null
+                                                          ? Icons.upload
+                                                          : Icons.check),
+                                                      onPressed: () {
+                                                        AppCubit.get(context)
+                                                            .getLicenceImage();
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                              )),
+                                              Expanded(
+                                                  child: Card(
+                                                child: Column(
+                                                  children: [
+                                                    Text("صورة الهوية المحلية"),
+                                                    IconButton(
+                                                      icon: Icon(AppCubit.get(
+                                                                      context)
+                                                                  .passportImage ==
+                                                              null
+                                                          ? Icons.upload
+                                                          : Icons.check),
+                                                      onPressed: () {
+                                                        AppCubit.get(context)
+                                                            .getPassportImage();
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                              )),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 15,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      
