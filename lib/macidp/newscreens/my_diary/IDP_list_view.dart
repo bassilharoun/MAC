@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:macidp/macidp/app_cubit/app_cubit.dart';
 import 'package:macidp/macidp/app_cubit/app_states.dart';
+import 'package:macidp/macidp/models/products_model.dart';
 import 'package:macidp/macidp/newscreens/app_theme.dart';
 import 'package:macidp/macidp/models/IDP_list_data.dart';
 import 'package:macidp/macidp/newscreens/license%20details/license_details_screen.dart';
 import 'package:macidp/macidp/shared/components/components.dart';
 import 'package:macidp/main.dart';
+import 'package:simple_html_css/simple_html_css.dart';
 
 class IDPListView extends StatefulWidget {
   @override
@@ -44,49 +46,16 @@ class _IDPListViewState extends State<IDPListView>
       builder: (context, state) {
         List<IdpListData> idpListData = <IdpListData>[
           IdpListData(
-            imagePath: 'assets/images/200.png',
-            titleTxt: '${AppCubit.get(context).products[4].name}',
-            kacl: "${AppCubit.get(context).products[4].price}",
-            Idp: <String>[
-              'استلام فورى,',
-              "عرض لفترة محدودة",
-              'استلام نسخة الكترونية فى الحال',
-              'استلام الرخصة كارت و دفتر',
-              'سارية حتى : 2024-11-15'
-            ],
-            startColor: '#0A296D',
-            endColor: '#C0C0C0',
-            product: AppCubit.get(context).products[4],
-          ),
-          IdpListData(
-            imagePath: 'assets/images/250.png',
-            titleTxt: '${AppCubit.get(context).products[2].name}',
-            kacl: '${AppCubit.get(context).products[2].price}',
-            Idp: <String>[
-              'خصم 35%,',
-              "عرض لفترة محدودة",
-              'استلام نسخة الكترونية فى الحال',
-              'استلام الرخصة كارت و دفتر',
-              'سارية حتى : 2025-11-15'
-            ],
             startColor: '#FE95B6',
             endColor: '#8201E9',
-            product: AppCubit.get(context).products[2],
           ),
           IdpListData(
-            imagePath: 'assets/images/300.png',
-            titleTxt: '${AppCubit.get(context).products[3].name}',
-            kacl: '${AppCubit.get(context).products[3].price}',
-            Idp: <String>[
-              'خصم 50%',
-              "عرض لفترة محدودة",
-              'استلام نسخة الكترونية فى الحال',
-              'استلام الرخصة كارت و دفتر',
-              'سارية حتى : 2026-11-15'
-            ],
             startColor: '#D89501',
             endColor: '#FFD700',
-            product: AppCubit.get(context).products[3],
+          ),
+          IdpListData(
+            startColor: '#0A296D',
+            endColor: '#C0C0C0',
           ),
         ];
 
@@ -111,17 +80,19 @@ class _IDPListViewState extends State<IDPListView>
               return GestureDetector(
                 onTap: () {
                   AppCubit.get(context)
-                      .getOneProduct(context, idpListData[index].product!)
+                      .getOneProduct(
+                          context, AppCubit.get(context).idpProducts[index])
                       .then((value) {
                     Navigator.pop(context);
                     navigateTo(
                         context,
-                        CourseInfoScreen(index, idpListData[index].product!,
-                            idpListData[index].startColor));
+                        CourseInfoScreen(
+                            index, AppCubit.get(context).idpProducts[index]));
                   });
                 },
                 child: CarsView(
-                  IDPListData: idpListData[index],
+                  AppCubit.get(context).idpProducts[index],
+                  idpListData: idpListData[index],
                   animation: animation,
                   animationController: animationController!,
                 ),
@@ -135,11 +106,11 @@ class _IDPListViewState extends State<IDPListView>
 }
 
 class CarsView extends StatelessWidget {
-  const CarsView(
-      {Key? key, this.IDPListData, this.animationController, this.animation})
-      : super(key: key);
+  const CarsView(this.product,
+      {this.idpListData, this.animationController, this.animation});
 
-  final IdpListData? IDPListData;
+  final Products product;
+  final IdpListData? idpListData;
   final AnimationController? animationController;
   final Animation<double>? animation;
 
@@ -164,15 +135,15 @@ class CarsView extends StatelessWidget {
                       decoration: BoxDecoration(
                         boxShadow: <BoxShadow>[
                           BoxShadow(
-                              color: HexColor(IDPListData!.endColor)
+                              color: HexColor(idpListData!.endColor)
                                   .withOpacity(0.6),
                               offset: const Offset(1.1, 4.0),
                               blurRadius: 8.0),
                         ],
                         gradient: LinearGradient(
                           colors: <HexColor>[
-                            HexColor(IDPListData!.startColor),
-                            HexColor(IDPListData!.endColor),
+                            HexColor(idpListData!.startColor),
+                            HexColor(idpListData!.endColor),
                           ],
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
@@ -192,7 +163,7 @@ class CarsView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              IDPListData!.titleTxt,
+                              product.name!,
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
@@ -206,8 +177,19 @@ class CarsView extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
+                                  // RichText(
+                                  //   text: HTML.toTextSpan(
+                                  //       context, product.shortDescription!),
+                                  //   maxLines: 4,
+                                  // ),
+                                  // Html(
+                                  //   data: product.description!,
+                                  // ),
                                   Text(
-                                    IDPListData!.Idp!.join('\n'),
+                                    AppCubit.get(context)
+                                        .extractTextFromLiElements(
+                                            product.shortDescription!)
+                                        .join('\n'),
                                     style: TextStyle(
                                       fontFamily: AppTheme.fontName,
                                       fontWeight: FontWeight.w500,
@@ -225,7 +207,7 @@ class CarsView extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: <Widget>[
                                   Text(
-                                    IDPListData!.kacl.toString(),
+                                    product.price.toString(),
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontFamily: AppTheme.fontName,

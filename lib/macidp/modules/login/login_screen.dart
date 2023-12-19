@@ -8,6 +8,7 @@ import 'package:macidp/macidp/modules/login/cubit/cubit.dart';
 import 'package:macidp/macidp/modules/login/cubit/states.dart';
 import 'package:macidp/macidp/modules/signup/signup_screen.dart';
 import 'package:macidp/macidp/shared/colors.dart';
+import 'package:macidp/macidp/shared/components/applocale.dart';
 import 'package:macidp/macidp/shared/components/components.dart';
 import 'package:macidp/macidp/shared/network/local/cache_helper.dart';
 
@@ -50,7 +51,7 @@ class LoginScreen extends StatelessWidget {
                           height: 30,
                         ),
                         Text(
-                          'تسجيل الدخول',
+                          '${getLang(context, "LOGIN")}',
                           style: Theme.of(context)
                               .textTheme
                               .headline3!
@@ -67,7 +68,7 @@ class LoginScreen extends StatelessWidget {
                                 return "Your email can't be empty !";
                               }
                             },
-                            label: 'البريد الالكتروني',
+                            label: '${getLang(context, "LOGIN_EMAIL")}',
                             prefix: Icons.email_outlined),
                         SizedBox(
                           height: 15,
@@ -83,7 +84,7 @@ class LoginScreen extends StatelessWidget {
                             onSubmit: (value) {
                               if (formKey.currentState!.validate()) {}
                             },
-                            label: 'كلمة المرور',
+                            label: '${getLang(context, "LOGIN_PASSWORD")}',
                             isPassword: AppLoginCubit.get(context).isPassword,
                             prefix: Icons.lock_open_outlined,
                             suffix: AppLoginCubit.get(context).suffix,
@@ -104,7 +105,7 @@ class LoginScreen extends StatelessWidget {
                                       password: passwordController.text);
                                 }
                               },
-                              text: 'تسجيل الدخول'),
+                              text: '${getLang(context, "LOGIN")}'),
                           fallback: (context) => Center(
                               child: CircularProgressIndicator(
                             color: defaultColor,
@@ -117,14 +118,14 @@ class LoginScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Don't have an account ?",
+                              "${getLang(context, "LOGIN_DONOT_HAVE_ACCOUNT")}",
                               style: TextStyle(fontSize: 16),
                             ),
                             defaultTextButton(
                                 function: () {
                                   navigateTo(context, SignupScreen());
                                 },
-                                text: 'Signup'),
+                                text: '${getLang(context, "LOGIN_REGISTER")}'),
                           ],
                         )
                       ],

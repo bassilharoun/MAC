@@ -27,14 +27,49 @@ Widget defaultTxtForm({
       obscureText: isPassword,
       controller: controller,
       decoration: InputDecoration(
-          labelText: label,
-          prefixIcon: Icon(prefix),
-          labelStyle: TextStyle(fontSize: 16),
-          suffixIcon: GestureDetector(
-            child: Icon(suffix),
-            onTap: onSuffixPressed,
+        labelText: label,
+        prefixIcon: Icon(prefix),
+        labelStyle: TextStyle(fontSize: 16),
+        suffixIcon: GestureDetector(
+          child: Icon(suffix),
+          onTap: onSuffixPressed,
+        ),
+        border: OutlineInputBorder(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(8.0),
+            bottomLeft: Radius.circular(8.0),
+            bottomRight: Radius.circular(8.0),
+            topRight: Radius.circular(50.0),
           ),
-          border: OutlineInputBorder()),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: buttonsColor),
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(8.0),
+            bottomLeft: Radius.circular(8.0),
+            bottomRight: Radius.circular(8.0),
+            topRight: Radius.circular(50.0),
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: buttonsColor),
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(8.0),
+            bottomLeft: Radius.circular(8.0),
+            bottomRight: Radius.circular(8.0),
+            topRight: Radius.circular(50.0),
+          ),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.red),
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(8.0),
+            bottomLeft: Radius.circular(8.0),
+            bottomRight: Radius.circular(8.0),
+            topRight: Radius.circular(50.0),
+          ),
+        ),
+      ),
       keyboardType: type,
       enabled: isClickable,
       onFieldSubmitted: onSubmit,
@@ -74,7 +109,8 @@ Widget defaultTextButton({
         onPressed: function,
         child: Text(
           text.toUpperCase(),
-          style: TextStyle(color: color, fontSize: 16),
+          style: TextStyle(
+              color: color, fontSize: 16, fontWeight: FontWeight.bold),
         ));
 
 void showToast({

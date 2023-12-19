@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:macidp/macidp/shared/components/applocale.dart';
 import 'package:macidp/main.dart';
 import '../app_theme.dart';
 
@@ -32,7 +33,7 @@ class WorkoutView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                'دفتر التريبتيك',
+                '${getLang(context, "TRIPTICK_ABOUTUS")}',
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   fontFamily: AppTheme.fontName,
@@ -45,7 +46,7 @@ class WorkoutView extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Text(
-                  'دفتر التربتيك هو وثيقة ضرورية للسفر بسيارتك إلى دولة أُخرى دون مواجهة المشاكل الجمركية ؛ يعد دفتر التربتيك بالنسبة للسلطات الجمركية جواز سفر للمركبة ، حيث يجب عليك حمله معك عند السفر ، بالإضافة إلى جواز سفرك الخاص.',
+                  '${getLang(context, "TRIPTICK_ABOUTUS_BODY")}',
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     fontFamily: AppTheme.fontName,

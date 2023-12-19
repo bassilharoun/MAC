@@ -27,3 +27,5 @@ class AppUserUpdateLoadingState extends AppSignupStates {}
 class AppUploadProfileImageErrorState extends AppSignupStates {}
 
 class AppProfileImagePickedSuccessState extends AppSignupStates {}
+
+class AppSignupChangeDropdown extends AppSignupStates {}

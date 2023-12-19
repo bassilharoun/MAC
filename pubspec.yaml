@@ -50,6 +50,9 @@ dependencies:
   dot_navigation_bar: ^1.0.2
   u_credit_card: ^1.1.0
   easy_stepper: ^0.8.2
+  simple_html_css: ^4.0.0
+  html: ^0.15.4
+  flutter_zoom_drawer: ^3.1.1
 #  flutter_launcher_icons: ^0.13.1
 
 #flutter_icons:
@@ -65,6 +68,8 @@ dependencies:
 
   http: ^1.1.0
   flutter:
+    sdk: flutter
+  flutter_localizations:
     sdk: flutter
 
 
@@ -97,6 +102,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/lang/
     - assets/fitness_app/
     - assets/lotties/
     - assets/

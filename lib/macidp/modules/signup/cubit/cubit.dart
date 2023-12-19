@@ -33,7 +33,8 @@ class AppSignupCubit extends Cubit<AppSignupStates> {
             name: name,
             phone: phone,
             uId: value.user!.uid,
-            profImg: val);
+            profImg: val,
+            country: dropdCountry!);
         uId = value.user!.uid;
       });
     }).catchError((error) {
@@ -47,6 +48,7 @@ class AppSignupCubit extends Cubit<AppSignupStates> {
     required String phone,
     required String uId,
     required String profImg,
+    required String country,
   }) async {
     UserModel model = UserModel(
       name: name,
@@ -54,6 +56,7 @@ class AppSignupCubit extends Cubit<AppSignupStates> {
       phone: phone,
       uId: uId,
       image: profImg,
+      country: country,
     );
 
     FirebaseFirestore.instance
@@ -106,5 +109,66 @@ class AppSignupCubit extends Cubit<AppSignupStates> {
     suffix =
         isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
     emit(AppChangePasswordVisibilitySignupState());
+  }
+
+  String? dropdCountry = "اختر دولة الاقامة";
+
+  var country = [
+    "اختر دولة الاقامة",
+    "الجزائر",
+    "مصر",
+    "المغرب",
+    "تونس",
+    "ليبيا",
+    "السودان",
+    "العراق",
+    "الأردن",
+    "لبنان",
+    "فلسطين",
+    "سوريا",
+    "اليمن",
+    "السعودية",
+    "الإمارات العربية المتحدة",
+    "قطر",
+    "البحرين",
+    "عمان",
+    "الكويت",
+    "الجزر القمر",
+    "جيبوتي",
+    "موريتانيا",
+    "الصومال",
+    "الصحراء الغربية",
+    "السلطنة",
+    "العمق",
+    "البلقان",
+    "الأندلس",
+    "الصين",
+    "الهند",
+    "روسيا",
+    "البرازيل",
+    "كندا",
+    "أستراليا",
+    "اليابان",
+    "كوريا الجنوبية",
+    "كوريا الشمالية",
+    "إنجلترا",
+    "فرنسا",
+    "ألمانيا",
+    "إيطاليا",
+    "إسبانيا",
+    "البرتغال",
+    "هولندا",
+    "بلجيكا",
+    "النمسا",
+    "سويسرا",
+    "السويد",
+    "النرويج",
+    "دنمارك",
+    "فنلندا",
+  ];
+
+  changeDropdownCountry(String? newValue) {
+    dropdCountry = newValue;
+    emit(AppSignupChangeDropdown());
   }
 }

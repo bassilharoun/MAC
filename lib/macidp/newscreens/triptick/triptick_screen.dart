@@ -7,6 +7,7 @@ import 'package:macidp/macidp/newscreens/ui_view/area_list_view.dart';
 import 'package:macidp/macidp/newscreens/ui_view/running_view.dart';
 import 'package:macidp/macidp/newscreens/ui_view/title_view.dart';
 import 'package:macidp/macidp/newscreens/ui_view/workout_view.dart';
+import 'package:macidp/macidp/shared/components/applocale.dart';
 
 import '../app_theme.dart';
 
@@ -21,32 +22,27 @@ class _TriptickScreenState extends State<TriptickScreen>
 
   @override
   void initState() {
-    addAllListData();
     super.initState();
   }
 
-  void addAllListData() {
-    listViews.add(getAppBarUI());
-
-    listViews.add(
-      TitleView(
-        titleTxt: "! استخراج دفتر التربتيك",
-        subTxt: 'more',
-      ),
-    );
-
-    listViews.add(
-      WorkoutView(),
-    );
-
-    listViews.add(
-      AreaListView(),
-    );
-
-    listViews.add(SizedBox(
-      height: 80,
-    ));
-  }
+  // void addAllListData() {
+  //   listViews.add(getAppBarUI());
+  //   listViews.add(
+  //     TitleView(
+  //       titleTxt: "${getLang(context, "TRIPTICK_TITLE")}",
+  //       subTxt: 'more',
+  //     ),
+  //   );
+  //   listViews.add(
+  //     WorkoutView(),
+  //   );
+  //   listViews.add(
+  //     AreaListView(),
+  //   );
+  //   listViews.add(SizedBox(
+  //     height: 80,
+  //   ));
+  // }
 
   Future<bool> getData() async {
     await Future<dynamic>.delayed(const Duration(milliseconds: 50));
@@ -66,17 +62,19 @@ class _TriptickScreenState extends State<TriptickScreen>
   }
 
   Widget getMainListViewUI() {
-    return ListView.builder(
-      // padding: EdgeInsets.only(
-      //   top: AppBar().preferredSize.height +
-      //       MediaQuery.of(context).padding.top +
-      //       24,
-      //   bottom: 62 + MediaQuery.of(context).padding.bottom,
-      // ),
-      itemCount: listViews.length,
-      itemBuilder: (BuildContext context, int index) {
-        return listViews[index];
-      },
+    return ListView(
+      children: [
+        getAppBarUI(context),
+        TitleView(
+          titleTxt: "${getLang(context, "TRIPTICK_TITLE")}",
+          subTxt: 'more',
+        ),
+        WorkoutView(),
+        AreaListView(),
+        SizedBox(
+          height: 80,
+        )
+      ],
     );
   }
 }

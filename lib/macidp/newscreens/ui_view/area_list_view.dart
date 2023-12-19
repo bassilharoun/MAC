@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:macidp/macidp/app_cubit/app_cubit.dart';
 import 'package:macidp/macidp/newscreens/triptick/triptick_info_screen.dart';
 import 'package:macidp/macidp/shared/colors.dart';
+import 'package:macidp/macidp/shared/components/applocale.dart';
 import 'package:macidp/macidp/shared/components/components.dart';
 
 import '../app_theme.dart';
@@ -34,17 +37,18 @@ class _AreaListViewState extends State<AreaListView>
             areaListData.length,
             (int index) {
               if (index == 0 || index == 1) {
-                return AreaView(
+                return TriptickCard(
                   imagepath: areaListData[index],
-                  name: AppCubit.get(context).products[index].name,
-                  price: "${AppCubit.get(context).products[index].price}",
+                  name: AppCubit.get(context).triptickProducts[index].name,
+                  price:
+                      "${AppCubit.get(context).triptickProducts[index].price}",
                   index: index,
                 );
               } else {
-                return AreaView(
+                return TriptickCard(
                   imagepath: areaListData[index],
-                  name: "دفتر تريبتيك مصر",
-                  price: "قريبا",
+                  name: "${getLang(context, "TRIPTICK_EGYPT")}",
+                  price: "${getLang(context, "TRIPTICK_SOON")}",
                   index: index,
                 );
               }
@@ -62,8 +66,8 @@ class _AreaListViewState extends State<AreaListView>
   }
 }
 
-class AreaView extends StatelessWidget {
-  const AreaView(
+class TriptickCard extends StatelessWidget {
+  const TriptickCard(
       {Key? key,
       this.imagepath,
       this.name,
@@ -86,10 +90,11 @@ class AreaView extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppTheme.white,
         borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(8.0),
-            bottomLeft: Radius.circular(8.0),
-            bottomRight: Radius.circular(8.0),
-            topRight: Radius.circular(8.0)),
+          topLeft: Radius.circular(8.0),
+          bottomLeft: Radius.circular(8.0),
+          bottomRight: Radius.circular(8.0),
+          topRight: Radius.circular(50.0),
+        ),
         boxShadow: <BoxShadow>[
           BoxShadow(
               color: AppTheme.grey.withOpacity(0.4),
@@ -111,7 +116,7 @@ class AreaView extends StatelessWidget {
               navigateTo(
                   context,
                   TriptickInfoScreen(
-                      index!, AppCubit.get(context).products[index!]));
+                      index!, AppCubit.get(context).triptickProducts[index!]));
             } else {
               showToast(text: "قريبا", state: ToastStates.WARNING);
             }
@@ -119,29 +124,40 @@ class AreaView extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Image.asset(imagepath!),
-                Text(
-                  name!,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      "${price}",
-                      style: TextStyle(
-                          color: buttonsColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18),
+                ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(8.0),
+                      bottomLeft: Radius.circular(8.0),
+                      bottomRight: Radius.circular(8.0),
+                      topRight: Radius.circular(50.0),
                     ),
-                    if (price != "قريبا")
+                    child: Image.asset(imagepath!)),
+                Expanded(
+                  child: Text(
+                    name!,
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                ),
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
                       Text(
-                        "SAR",
-                        style: TextStyle(fontSize: 12),
-                      )
-                  ],
+                        "${price}",
+                        style: TextStyle(
+                            color: buttonsColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18),
+                      ),
+                      if (price != getLang(context, "TRIPTICK_SOON"))
+                        Text(
+                          "SAR",
+                          style: TextStyle(fontSize: 12),
+                        )
+                    ],
+                  ),
                 )
               ],
             ),

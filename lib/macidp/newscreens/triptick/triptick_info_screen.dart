@@ -8,7 +8,7 @@ import 'package:macidp/macidp/newscreens/license%20details/license_app_theme.dar
 import 'package:macidp/macidp/newscreens/license%20details/license_data.dart';
 import 'package:macidp/macidp/newscreens/triptick/stepper_screen.dart';
 import 'package:macidp/macidp/shared/colors.dart';
-import 'package:macidp/macidp/shared/components/components.dart';
+import 'package:macidp/macidp/shared/components/applocale.dart';
 import 'package:macidp/main.dart';
 import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,57 +25,10 @@ class _TriptickInfoScreenState extends State<TriptickInfoScreen> {
   int activeStep = 0;
   int activeStep2 = 0;
   double progress = 0.2;
+  var couponController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    List<LicenseData> license = <LicenseData>[
-      LicenseData(
-        imagePath: 'assets/images/europe.png',
-        title: '${AppCubit.get(context).products[0].name}',
-        price: "${AppCubit.get(context).products[0].price}",
-        oldPrice: 0,
-        features: <String>[
-          '53% Discount,',
-          'Limited Time Offer',
-          'Instant PDF Delivery',
-          'License Card & Book',
-          'EXP : 2024-10-19'
-        ],
-        startColor: '#013299',
-        endColor: '#013299',
-      ),
-      LicenseData(
-        imagePath: 'assets/images/yemen.png',
-        title: '${AppCubit.get(context).products[1].name}',
-        price: "${AppCubit.get(context).products[1].price}",
-        oldPrice: 600,
-        features: <String>[
-          '57% Discount',
-          'Limited Time Offer',
-          'Instant PDF Delivery',
-          'License Card & Book',
-          'EXP : 2026-10-19'
-        ],
-        startColor: '#CE1027',
-        endColor: '#CE1027',
-      ),
-      LicenseData(
-        imagePath: 'assets/images/Egypt.png',
-        title: 'دفتر تريبتيك مصر',
-        price: "قريبا",
-        oldPrice: 400,
-        features: <String>[
-          '55% Discount,',
-          'Limited Time Offer',
-          'Instant PDF Delivery',
-          'License Card & Book',
-          'EXP : 2025-10-19'
-        ],
-        startColor: '#CE1027',
-        endColor: '#CE1027',
-      ),
-    ];
-
     var cubit = AppCubit.get(context);
     bool validateToOrder() {
       var cubit = AppCubit.get(context);
@@ -126,7 +79,7 @@ class _TriptickInfoScreenState extends State<TriptickInfoScreen> {
                                   borderRadius: BorderRadius.circular(15)),
                             ),
                             child: Text(
-                              "التالي",
+                              "${getLang(context, "NEXT")}",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18,
@@ -257,7 +210,7 @@ class _TriptickInfoScreenState extends State<TriptickInfoScreen> {
                                   borderRadius: BorderRadius.circular(15)),
                             ),
                             child: Text(
-                              "اطلب الدفتر الان",
+                              "${getLang(context, "TRIPTICK_INFO_ORDER_TRIPTICK")}",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18,
@@ -295,7 +248,9 @@ class _TriptickInfoScreenState extends State<TriptickInfoScreen> {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  license[widget.index].title,
+                                  AppCubit.get(context)
+                                      .triptickProducts[widget.index]
+                                      .name!,
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     fontWeight: FontWeight.w600,
@@ -304,16 +259,82 @@ class _TriptickInfoScreenState extends State<TriptickInfoScreen> {
                                     color: LicenseAppTheme.darkerText,
                                   ),
                                 ),
-                                Text(
-                                  "${license[widget.index].price} ر.س",
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w200,
-                                    fontSize: 18,
-                                    letterSpacing: 0.27,
-                                    color: HexColor(
-                                        license[widget.index].endColor),
-                                  ),
+                                Row(
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title: Text(
+                                                  '${getLang(context, "ENTER_COUPON")}'),
+                                              content: TextField(
+                                                controller: couponController,
+                                                onChanged: (value) {
+                                                  // Store your value here
+                                                },
+                                                decoration: InputDecoration(
+                                                    hintText:
+                                                        "${getLang(context, "COUPON")}"),
+                                              ),
+                                              actions: [
+                                                TextButton(
+                                                  child: Text(
+                                                      '${getLang(context, "SUBMIT")}'),
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop();
+                                                    AppCubit.get(context)
+                                                        .getCoupon(
+                                                            couponController
+                                                                .text);
+                                                    // Add your submission logic here
+                                                  },
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        );
+                                      },
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Container(
+                                            color: Colors.green,
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(4.0),
+                                              child: Row(
+                                                children: [
+                                                  Text(
+                                                    "${getLang(context, "COUPON")}",
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 12),
+                                                  ),
+                                                  Icon(
+                                                    Icons.add,
+                                                    color: Colors.white,
+                                                  )
+                                                ],
+                                              ),
+                                            )),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(
+                                      "${int.parse(AppCubit.get(context).triptickProducts[widget.index].price) - (int.parse(AppCubit.get(context).triptickProducts[widget.index].price) * AppCubit.get(context).dis) / 100} ${getLang(context, "SAR")}",
+                                      textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w200,
+                                        fontSize: 18,
+                                        letterSpacing: 0.27,
+                                        color: AppTheme.nearlyDarkBlue,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
@@ -365,17 +386,22 @@ class _TriptickInfoScreenState extends State<TriptickInfoScreen> {
                               steps: [
                                 EasyStep(
                                   icon: Icon(CupertinoIcons.person),
-                                  title: 'الشخصية',
-                                  lineText: 'المعلومات الشخصية',
+                                  title:
+                                      '${getLang(context, "TRIPTICK_INFO_STEPPER_PERSONAL")}',
+                                  lineText:
+                                      '${getLang(context, "TRIPTICK_INFO_STEPPER_PERSONAL_INFO")}',
                                 ),
                                 EasyStep(
                                   icon: Icon(CupertinoIcons.car_detailed),
-                                  title: 'المركبة',
-                                  lineText: 'بيانات المركبة',
+                                  title:
+                                      '${getLang(context, "TRIPTICK_INFO_STEPPER_CAR")}',
+                                  lineText:
+                                      '${getLang(context, "TRIPTICK_INFO_STEPPER_CAR_INFO")}',
                                 ),
                                 EasyStep(
                                   icon: Icon(CupertinoIcons.doc),
-                                  title: 'اضافات',
+                                  title:
+                                      '${getLang(context, "TRIPTICK_INFO_STEPPER_ADDITIONAL")}',
                                   lineText: '',
                                 ),
                               ],

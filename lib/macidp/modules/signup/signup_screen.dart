@@ -7,6 +7,7 @@ import 'package:macidp/macidp/layout/shop_layout.dart';
 import 'package:macidp/macidp/modules/signup/cubit/cubit.dart';
 import 'package:macidp/macidp/modules/signup/cubit/states.dart';
 import 'package:macidp/macidp/shared/colors.dart';
+import 'package:macidp/macidp/shared/components/applocale.dart';
 import 'package:macidp/macidp/shared/components/components.dart';
 import 'package:macidp/macidp/shared/network/local/cache_helper.dart';
 
@@ -23,13 +24,12 @@ class SignupScreen extends StatelessWidget {
       create: (context) => AppSignupCubit(),
       child: BlocConsumer<AppSignupCubit, AppSignupStates>(
         listener: (context, state) {
-          if(state is AppCreateUserSuccessState){
+          if (state is AppCreateUserSuccessState) {
             AppCubit.get(context).getUserData();
-            CacheHelper.saveData(
-                key: 'uId',
-                value: uId).then((value) {
+            CacheHelper.saveData(key: 'uId', value: uId).then((value) {
               navigateAndFinish(context, ShopLayout());
-            });          }
+            });
+          }
         },
         builder: (context, state) {
           return Scaffold(
@@ -44,7 +44,7 @@ class SignupScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'انشاء حساب',
+                          '${getLang(context, "SIGNUP")}',
                           style: Theme.of(context)
                               .textTheme
                               .headline3!
@@ -54,7 +54,7 @@ class SignupScreen extends StatelessWidget {
                           height: 15,
                         ),
                         Text(
-                          'عند انشاء حساب فأنت توافق على الشروط والاحكام',
+                          '${getLang(context, "SIGNUP_AGRRE_TERMS")}',
                           style:
                               Theme.of(context).textTheme.bodyLarge!.copyWith(
                                     color: Colors.grey[500],
@@ -71,7 +71,7 @@ class SignupScreen extends StatelessWidget {
                                 return "What\'s your name !";
                               }
                             },
-                            label: 'الاسم بالكامل',
+                            label: '${getLang(context, "SIGNUP_FULLNAME")}',
                             prefix: Icons.person),
                         SizedBox(
                           height: 15,
@@ -84,7 +84,7 @@ class SignupScreen extends StatelessWidget {
                                 return "We need your phone !";
                               }
                             },
-                            label: 'رقم الهاتف',
+                            label: '${getLang(context, "SIGNUP_PHONE")}',
                             prefix: Icons.phone_iphone_outlined),
                         SizedBox(
                           height: 15,
@@ -97,8 +97,48 @@ class SignupScreen extends StatelessWidget {
                                 return "Your email can't be empty !";
                               }
                             },
-                            label: 'البريد الالكتروني',
+                            label: '${getLang(context, "SIGNUP_EMAIL")}',
                             prefix: Icons.email_outlined),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Container(
+                          width: double.infinity,
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                                color: Colors
+                                    .white, //background color of dropdown button
+                                border: Border.all(
+                                    color: buttonsColor,
+                                    width: 1), //border of dropdown button
+                                borderRadius: BorderRadius.circular(
+                                    10), //border raiuds of dropdown button
+                                boxShadow: <BoxShadow>[
+                                  //apply shadow on Dropdown button
+                                  BoxShadow(
+                                      color: Color.fromRGBO(
+                                          0, 0, 0, 0.57), //shadow for button
+                                      blurRadius: 5) //blur radius of shadow
+                                ]),
+                            child: Center(
+                              child: DropdownButton(
+                                  value:
+                                      AppSignupCubit.get(context).dropdCountry,
+                                  items: AppSignupCubit.get(context)
+                                      .country
+                                      .map((e) {
+                                    return DropdownMenuItem(
+                                      value: e,
+                                      child: Text(e),
+                                    );
+                                  }).toList(),
+                                  onChanged: (String? newValue) {
+                                    AppSignupCubit.get(context)
+                                        .changeDropdownCountry(newValue);
+                                  }),
+                            ),
+                          ),
+                        ),
                         SizedBox(
                           height: 15,
                         ),
@@ -111,7 +151,7 @@ class SignupScreen extends StatelessWidget {
                               }
                             },
                             onSubmit: (value) {},
-                            label: 'كلمة المرور',
+                            label: '${getLang(context, "SIGNUP_PASSWORD")}',
                             isPassword: AppSignupCubit.get(context).isPassword,
                             prefix: Icons.lock_open_outlined,
                             suffix: AppSignupCubit.get(context).suffix,
@@ -136,9 +176,17 @@ class SignupScreen extends StatelessWidget {
                                 child:
                                     AppSignupCubit.get(context).profileImage ==
                                             null
-                                        ? Icon(
-                                            Icons.add_a_photo_outlined,
-                                            size: 50,
+                                        ? Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                  "${getLang(context, "SIGNUP_PROFILE_PICTURE")}"),
+                                              Icon(
+                                                Icons.add_a_photo_outlined,
+                                                size: 50,
+                                              ),
+                                            ],
                                           )
                                         : Image.file(AppSignupCubit.get(context)
                                             .profileImage!),
@@ -155,7 +203,9 @@ class SignupScreen extends StatelessWidget {
                             function: () {
                               if (formKey.currentState!.validate()) {
                                 if (AppSignupCubit.get(context).profileImage !=
-                                    null) {
+                                        null &&
+                                    AppSignupCubit.get(context).dropdCountry !=
+                                        "اختر دولة الاقامة") {
                                   AppSignupCubit.get(context).userSignup(
                                       name: nameController.text,
                                       phone: phoneController.text,
@@ -164,7 +214,7 @@ class SignupScreen extends StatelessWidget {
                                 }
                               }
                             },
-                            text: 'انشاء حساب',
+                            text: '${getLang(context, "SIGNUP")}',
                           ),
                           fallback: (context) => Center(
                               child: CircularProgressIndicator(

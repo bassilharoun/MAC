@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:macidp/macidp/app_cubit/app_cubit.dart';
 import 'package:macidp/macidp/app_cubit/app_states.dart';
 import 'package:macidp/macidp/shared/colors.dart';
+import 'package:macidp/macidp/shared/components/applocale.dart';
 import 'package:macidp/macidp/shared/components/components.dart';
 
 class StepperScreen extends StatelessWidget {
@@ -56,7 +57,7 @@ class StepperScreen extends StatelessWidget {
                         }
                         return null;
                       },
-                      label: "الاسم بالكامل",
+                      label: "${getLang(context, "TRIPTICK_INFO_FULLNAME")}",
                       prefix: Icons.person_outline),
                   SizedBox(
                     height: 15,
@@ -144,7 +145,7 @@ class StepperScreen extends StatelessWidget {
                         }
                         return null;
                       },
-                      label: "رقم الهوية",
+                      label: "${getLang(context, "TRIPTICK_INFO_ID_NUMBER")}",
                       prefix: CupertinoIcons.creditcard),
                   SizedBox(
                     height: 15,
@@ -158,7 +159,8 @@ class StepperScreen extends StatelessWidget {
                         }
                         return null;
                       },
-                      label: "رقم جواز السفر",
+                      label:
+                          "${getLang(context, "TRIPTICK_INFO_PASSPORT_NUMBER")}",
                       prefix: CupertinoIcons.book),
                   SizedBox(
                     height: 15,
@@ -172,7 +174,8 @@ class StepperScreen extends StatelessWidget {
                         }
                         return null;
                       },
-                      label: "العنوان بالسعودية",
+                      label:
+                          "${getLang(context, "TRIPTICK_INFO_SAUDI_ADDRESS")}",
                       prefix: CupertinoIcons.home),
                   SizedBox(
                     height: 15,
@@ -186,7 +189,8 @@ class StepperScreen extends StatelessWidget {
                         }
                         return null;
                       },
-                      label: "العنوان خارج السعودية",
+                      label:
+                          "${getLang(context, "TRIPTICK_INFO_OUTSIDE_ADDRESS")}",
                       prefix: CupertinoIcons.house_alt),
                   SizedBox(
                     height: 15,
@@ -200,7 +204,7 @@ class StepperScreen extends StatelessWidget {
                         }
                         return null;
                       },
-                      label: "الهاتف بالسعودية",
+                      label: "${getLang(context, "TRIPTICK_INFO_SAUDI_PHONE")}",
                       prefix: CupertinoIcons.phone),
                   SizedBox(
                     height: 15,
@@ -214,7 +218,8 @@ class StepperScreen extends StatelessWidget {
                         }
                         return null;
                       },
-                      label: "الهاتف خارج السعودية",
+                      label:
+                          "${getLang(context, "TRIPTICK_INFO_OUTSIDE_PHONE")}",
                       prefix: CupertinoIcons.phone_arrow_up_right),
                   SizedBox(
                     height: 15,
@@ -279,7 +284,7 @@ class StepperScreen extends StatelessWidget {
                     }
                     return null;
                   },
-                  label: "رقم لوحات السيارة",
+                  label: "${getLang(context, "TRIPTICK_INFO_CAR_NUMBER")}",
                   prefix: CupertinoIcons.car_detailed),
               SizedBox(
                 height: 15,
@@ -320,7 +325,7 @@ class StepperScreen extends StatelessWidget {
               SizedBox(
                 height: 15,
               ),
-              Text("تاريخ انتهاء تسجيل المركبة"),
+              Text("${getLang(context, "TRIPTICK_INFO_END_DATE")}"),
               SizedBox(
                 height: 5,
               ),
@@ -384,7 +389,7 @@ class StepperScreen extends StatelessWidget {
                     }
                     return null;
                   },
-                  label: "ماركة السيارة",
+                  label: "${getLang(context, "TRIPTICK_INFO_CAR_MARK")}",
                   prefix: Icons.car_repair),
               SizedBox(
                 height: 15,
@@ -398,7 +403,7 @@ class StepperScreen extends StatelessWidget {
                     }
                     return null;
                   },
-                  label: "موديل السيارة",
+                  label: "${getLang(context, "TRIPTICK_INFO_CAR_MODEL")}",
                   prefix: Icons.numbers),
               SizedBox(
                 height: 15,
@@ -447,12 +452,12 @@ class StepperScreen extends StatelessWidget {
                     }
                     return null;
                   },
-                  label: "عدد المقاعد",
+                  label: "${getLang(context, "TRIPTICK_INFO_SEATS_NUMBER")}",
                   prefix: Icons.chair_alt_outlined),
               SizedBox(
                 height: 15,
               ),
-              Text("سنة الصنع"),
+              Text("${getLang(context, "TRIPTICK_INFO_CREATED_DATE")}"),
               SizedBox(
                 height: 5,
               ),
@@ -516,7 +521,7 @@ class StepperScreen extends StatelessWidget {
                     }
                     return null;
                   },
-                  label: "الوزن",
+                  label: "${getLang(context, "TRIPTICK_INFO_CAR_WEIGHT")}",
                   prefix: Icons.balance),
               SizedBox(
                 height: 15,
@@ -530,7 +535,7 @@ class StepperScreen extends StatelessWidget {
                     }
                     return null;
                   },
-                  label: "عدد السليندر",
+                  label: "${getLang(context, "TRIPTICK_INFO_CYLINDER_NUMBER")}",
                   prefix: Icons.factory_outlined),
               SizedBox(
                 height: 15,
@@ -544,7 +549,7 @@ class StepperScreen extends StatelessWidget {
                     }
                     return null;
                   },
-                  label: "عدد الاحصنة",
+                  label: "${getLang(context, "TRIPTICK_INFO_HORSE_POWER")}",
                   prefix: Icons.run_circle_outlined),
               SizedBox(
                 height: 15,
@@ -590,7 +595,8 @@ class StepperScreen extends StatelessWidget {
                   Expanded(
                     child: RadioListTile(
                         activeColor: buttonsColor,
-                        title: Text("قماش"),
+                        title:
+                            Text("${getLang(context, "TRIPTICK_INFO_FABRIC")}"),
                         value: "fabric",
                         groupValue: AppCubit.get(context).material,
                         onChanged: (value) {
@@ -602,7 +608,8 @@ class StepperScreen extends StatelessWidget {
                   Expanded(
                     child: RadioListTile(
                         activeColor: buttonsColor,
-                        title: Text("جلد"),
+                        title: Text(
+                            "${getLang(context, "TRIPTICK_INFO_LEATHER")}"),
                         value: "leather",
                         groupValue: AppCubit.get(context).material,
                         onChanged: (value) {
@@ -622,7 +629,7 @@ class StepperScreen extends StatelessWidget {
                     }
                     return null;
                   },
-                  label: "رقم المحرك",
+                  label: "${getLang(context, "TRIPTICK_ENGINE_NUMBER")}",
                   prefix: CupertinoIcons.number),
               SizedBox(
                 height: 15,
@@ -636,7 +643,7 @@ class StepperScreen extends StatelessWidget {
                     }
                     return null;
                   },
-                  label: "رقم الشاسية",
+                  label: "${getLang(context, "TRIPTICK_CHASSIS_NUMBER")}",
                   prefix: CupertinoIcons.car),
               SizedBox(
                 height: 15,
@@ -660,7 +667,8 @@ class StepperScreen extends StatelessWidget {
                     children: [
                       Expanded(
                         child: CheckboxListTile(
-                            title: Text("تكييف"),
+                            title: Text(
+                                "${getLang(context, "TRIPTICK_INFO_AIR_CONDITION")}"),
                             value: AppCubit.get(context).isAir,
                             onChanged: (newValue) {
                               AppCubit.get(context).changeAirRadioCheckBox();
@@ -669,7 +677,8 @@ class StepperScreen extends StatelessWidget {
                       ),
                       Expanded(
                         child: CheckboxListTile(
-                            title: Text("راديو"),
+                            title: Text(
+                                "${getLang(context, "TRIPTICK_INFO_RADIO")}"),
                             value: AppCubit.get(context).isRadio,
                             onChanged: (newValue) {
                               AppCubit.get(context).isRadio = newValue!;
@@ -683,14 +692,15 @@ class StepperScreen extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 16.0),
-                    child: Text("عدد الاطارات الاحتياطية"),
+                    child: Text(
+                        "${getLang(context, "TRIPTICK_INFO_ADDITIONAL_WHEELS_NUMBER")}"),
                   ),
                   Row(
                     children: [
                       Expanded(
                         child: RadioListTile(
                             activeColor: buttonsColor,
-                            title: Text("لا"),
+                            title: Text("${getLang(context, "NO")}"),
                             value: "0",
                             groupValue: AppCubit.get(context).wheels,
                             onChanged: (value) {
@@ -737,7 +747,7 @@ class StepperScreen extends StatelessWidget {
                         }
                         return null;
                       },
-                      label: "المعدات",
+                      label: "${getLang(context, "TRIPTICK_INFO_EQUIPMENT")}",
                       prefix: CupertinoIcons.wrench),
                   SizedBox(
                     height: 15,
@@ -751,7 +761,8 @@ class StepperScreen extends StatelessWidget {
                         }
                         return null;
                       },
-                      label: "اضافات اخرى",
+                      label:
+                          "${getLang(context, "TRIPTICK_INFO_ADDITIONAL_THINGS")}",
                       prefix: CupertinoIcons.add_circled),
                   SizedBox(
                     height: 15,
@@ -765,7 +776,7 @@ class StepperScreen extends StatelessWidget {
                         }
                         return null;
                       },
-                      label: "قيمة السيارة",
+                      label: "${getLang(context, "TRIPTICK_INFO_CAR_PRICE")}",
                       prefix: CupertinoIcons.money_dollar),
                   SizedBox(
                     height: 15,
@@ -776,7 +787,8 @@ class StepperScreen extends StatelessWidget {
                           child: Card(
                         child: Column(
                           children: [
-                            Text("نسخة تسجيل المركبة"),
+                            Text(
+                                "${getLang(context, "TRIPTICK_INFO_VEHICLE_REGISTRATION_COPY")}"),
                             IconButton(
                               icon: Icon(
                                   AppCubit.get(context).carCopyImage == null
@@ -793,7 +805,8 @@ class StepperScreen extends StatelessWidget {
                           child: Card(
                         child: Column(
                           children: [
-                            Text("صورة جواز السفر"),
+                            Text(
+                                "${getLang(context, "TRIPTICK_INFO_PASSPORT_IMAGE")}"),
                             IconButton(
                               icon: Icon(
                                   AppCubit.get(context).passportImage == null
@@ -810,7 +823,8 @@ class StepperScreen extends StatelessWidget {
                           child: Card(
                         child: Column(
                           children: [
-                            Text("صورة الهوية المحلية"),
+                            Text(
+                                "${getLang(context, "TRIPTICK_INFO_ID_IMAGE")}"),
                             IconButton(
                               icon: Icon(
                                   AppCubit.get(context).localIdImage == null

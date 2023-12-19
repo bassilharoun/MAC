@@ -1,4 +1,3 @@
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:macidp/macidp/app_cubit/app_cubit.dart';
@@ -9,8 +8,8 @@ import 'package:macidp/macidp/newscreens/my_diary/IDP_list_view.dart';
 import 'package:macidp/macidp/newscreens/my_diary/water_view.dart';
 import 'package:macidp/macidp/newscreens/ui_view/body_measurement.dart';
 import 'package:macidp/macidp/newscreens/ui_view/glass_view.dart';
-import 'package:macidp/macidp/newscreens/ui_view/mediterranean_diet_view.dart';
 import 'package:macidp/macidp/newscreens/ui_view/title_view.dart';
+import 'package:macidp/macidp/shared/components/applocale.dart';
 
 class IDPScreen extends StatefulWidget {
   @override
@@ -23,52 +22,56 @@ class _IDPScreenState extends State<IDPScreen> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    addAllListData();
     super.initState();
+    // addAllListData();
   }
 
-  void addAllListData() {
-    const int count = 9;
+  // void addAllListData() {
+  //   listViews.add(getAppBarUI());
 
-    listViews.add(getAppBarUI());
+  //   listViews.add(
+  //     TitleView(
+  //       titleTxt: '{getLang(context, "LICENCE_TITLE")}',
+  //       subTxt: 'Details',
+  //     ),
+  //   );
+  //   // listViews.add(
+  //   //   MediterranesnDietView(),
+  //   // );
+  //   // listViews.add(
+  //   //   TitleView(
+  //   //     titleTxt: 'Our offers',
+  //   //     subTxt: 'Order Now',
+  //   //   ),
+  //   // );
 
-    listViews.add(
-      TitleView(
-        titleTxt: '! استخراج رخصة قيادة دولية',
-        subTxt: 'Details',
-      ),
-    );
-    // listViews.add(
-    //   MediterranesnDietView(),
-    // );
-    // listViews.add(
-    //   TitleView(
-    //     titleTxt: 'Our offers',
-    //     subTxt: 'Order Now',
-    //   ),
-    // );
+  //   listViews.add(
+  //     IDPListView(),
+  //   );
 
-    listViews.add(
-      IDPListView(),
-    );
+  //   listViews.add(
+  //     BodyMeasurementView(),
+  //   );
+  //   listViews.add(
+  //     TitleView(
+  //       titleTxt: 'اراء العملاء',
+  //       subTxt: '',
+  //     ),
+  //   );
 
-    listViews.add(
-      BodyMeasurementView(),
-    );
-    listViews.add(
-      TitleView(
-        titleTxt: 'Customer Review',
-        subTxt: '',
-      ),
-    );
+  //   listViews.add(
+  //     WaterView(),
+  //   );
+  //   listViews.add(
+  //     GlassView(),
+  //   );
 
-    listViews.add(
-      WaterView(),
-    );
-    listViews.add(
-      GlassView(),
-    );
-  }
+  //   listViews.add(
+  //     SizedBox(
+  //       height: 80,
+  //     ),
+  //   );
+  // }
 
   Future<bool> getData() async {
     await Future<dynamic>.delayed(const Duration(milliseconds: 50));
@@ -88,17 +91,27 @@ class _IDPScreenState extends State<IDPScreen> with TickerProviderStateMixin {
   }
 
   Widget getMainListViewUI() {
-    return ListView.builder(
-      // padding: EdgeInsets.only(
-      //   top: AppBar().preferredSize.height +
-      //       MediaQuery.of(context).padding.top +
-      //       24,
-      //   bottom: 62 + MediaQuery.of(context).padding.bottom,
-      // ),
-      itemCount: listViews.length,
-      itemBuilder: (BuildContext context, int index) {
-        return listViews[index];
-      },
+    return ListView(
+      // controller: scrollController,
+      padding: EdgeInsets.zero,
+      children: [
+        getAppBarUI(context),
+        TitleView(
+          titleTxt: '${getLang(context, "LICENCE_TITLE")}',
+          subTxt: 'Details',
+        ),
+        IDPListView(),
+        BodyMeasurementView(),
+        TitleView(
+          titleTxt: '${getLang(context, "LICENCE_COUSTMER")}',
+          subTxt: '',
+        ),
+        WaterView(),
+        GlassView(),
+        SizedBox(
+          height: 80,
+        ),
+      ],
     );
   }
 }

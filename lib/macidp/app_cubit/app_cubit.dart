@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +21,8 @@ import 'package:macidp/macidp/payment/conf.dart';
 import 'package:http/http.dart' as http;
 import 'package:macidp/macidp/shared/components/components.dart';
 import 'package:macidp/macidp/shared/network/local/cache_helper.dart';
+import 'package:html/parser.dart' show parse;
+import 'package:macidp/main.dart';
 
 import 'app_states.dart';
 
@@ -36,16 +37,21 @@ class AppCubit extends Cubit<AppStates> {
     IDPScreen(),
     TriptickScreen(),
     CartScreen(),
-    UserScreen(),
+    NewUserScreen(),
   ];
 
   UserModel? userModel;
 
   void getUserData() {
     emit(AppGetUserLoadingState());
-    FirebaseFirestore.instance.collection('users').doc(uId).get().then((value) {
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(uId)
+        .get()
+        .then((value) async {
       print(value.data());
       userModel = UserModel.fromJson(value.data());
+      await getMyLicenses();
       emit(AppGetUserSuccessState());
     }).catchError((error) {
       print(error.toString());
@@ -69,25 +75,69 @@ class AppCubit extends Cubit<AppStates> {
 
   List<Products> products = [];
   Future<List<Products>> getProducts(context) async {
+    products = [];
+    idpProducts = [];
+    triptickProducts = [];
     emit(AppLoadingHomeDataState());
-    try {
-      String url = Config.url +
-          Config.productsUrl +
-          "?consumer_key=${Config.key}&consumer_secret=${Config.secret}";
-      var response = await Dio().get(url,
-          options: Options(
-              headers: {HttpHeaders.contentTypeHeader: "application/json"}));
-      if (response.statusCode == 200) {
-        products =
-            (response.data as List).map((e) => Products.fromJson(e)).toList();
-        print(response.data);
-        emit(AppSuccessHomeDataState());
+    if (MyApp.of(context)!.getLocale().languageCode == "ar") {
+      try {
+        String url = Config.url +
+            Config.productsUrl +
+            "?consumer_key=${Config.key}&consumer_secret=${Config.secret}";
+        var response = await Dio().get(url,
+            options: Options(
+                headers: {HttpHeaders.contentTypeHeader: "application/json"}));
+        if (response.statusCode == 200) {
+          products =
+              (response.data as List).map((e) => Products.fromJson(e)).toList();
+          seperateProducts(context);
+          print(response.data);
+          emit(AppSuccessHomeDataState());
+        }
+      } on DioError catch (e) {
+        print(e.response);
       }
-    } on DioError catch (e) {
-      print(e.response);
+    } else {
+      try {
+        String url = Config.englishUrl +
+            Config.productsUrl +
+            "?consumer_key=${Config.key}&consumer_secret=${Config.secret}";
+        var response = await Dio().get(url,
+            options: Options(
+                headers: {HttpHeaders.contentTypeHeader: "application/json"}));
+        if (response.statusCode == 200) {
+          products =
+              (response.data as List).map((e) => Products.fromJson(e)).toList();
+          seperateProducts(context);
+          print(response.data);
+          emit(AppSuccessHomeDataState());
+        }
+      } on DioError catch (e) {
+        print(e.response);
+      }
     }
+
     // print(data[4].images[0].src);
     return products;
+  }
+
+  List<Products> idpProducts = [];
+  List<Products> triptickProducts = [];
+
+  void seperateProducts(context) {
+    products.forEach((element) {
+      if (element.categories[0].name == 'idl') {
+        idpProducts.add(element);
+        print("idpProducts++++++++++++++++++++++++++");
+        print(element.price);
+      } else if (element.categories[0].name == 'triptik') {
+        triptickProducts.add(element);
+      }
+    });
+  }
+
+  void sortIdpProducts(context) {
+    idpProducts.sort((a, b) => 200.compareTo(b.price!));
   }
 
   String? dropdNationality = "اختر الجنسية";
@@ -709,14 +759,7 @@ class AppCubit extends Cubit<AppStates> {
     PaymentResultData paymentResultData;
     paymentResultData = await flutterHyperPay.readyUICards(
       readyUI: ReadyUI(
-          brandsName: [
-            "VISA",
-            "MASTER",
-            "MADA",
-            "PAYPAL",
-            "STC_PAY",
-            "APPLEPAY"
-          ],
+          brandsName: ["VISA", "MASTER", "MADA", "STC_PAY", "APPLEPAY"],
           checkoutId: checkoutId,
           merchantIdApplePayIOS: InAppPaymentSetting.merchantId, // applepay
           countryCodeApplePayIOS: InAppPaymentSetting.countryCode, // applePay
@@ -929,7 +972,8 @@ class AppCubit extends Cubit<AppStates> {
 
     Map<String, String> body = {
       'entityId': '8acda4c8833b2ce901833b877605070a',
-      'amount': product.price!,
+      'amount':
+          "${int.parse(product.price) - (int.parse(product.price) * dis) / 100}",
       'currency': 'SAR',
       'paymentType': 'DB',
     };
@@ -1026,7 +1070,8 @@ class AppCubit extends Cubit<AppStates> {
 
     Map<String, String> body = {
       'entityId': '8acda4c8833b2ce901833b877605070a',
-      'amount': product.price!,
+      'amount':
+          "${int.parse(product.price) - (int.parse(product.price) * dis) / 100}",
       'currency': 'SAR',
       'paymentType': 'DB',
     };
@@ -1039,14 +1084,7 @@ class AppCubit extends Cubit<AppStates> {
         print('Request successful: ${response.body}');
         payRequestNowReadyUI(
           checkoutId: json.decode(response.body)['id'],
-          brandsName: [
-            "VISA",
-            "MASTER",
-            "MADA",
-            "PAYPAL",
-            "STC_PAY",
-            "APPLEPAY"
-          ],
+          brandsName: ["VISA", "MASTER", "MADA", "STC_PAY", "APPLEPAY"],
           context: context,
           product: product,
           productType: "triptick",
@@ -1403,6 +1441,70 @@ class AppCubit extends Cubit<AppStates> {
     } on DioError catch (e) {
       print(e);
       emit(AppErrorOrderTriptick());
+    }
+  }
+
+  List<String> extractTextFromLiElements(String html) {
+    List<String> textList = [];
+    var document = parse(html);
+    var liElements = document.querySelectorAll('li');
+
+    liElements.forEach((li) {
+      textList.add(li.text.trim());
+    });
+
+    return textList;
+  }
+
+// coupons
+  List coupons = [];
+  int dis = 0;
+  bool copExist = false;
+  getCoupon(String coupon) {
+    copExist = false;
+    coupons = [];
+    emit(AppCouponLoadingState());
+    FirebaseFirestore.instance.collection("coupons").get().then((value) {
+      value.docs.forEach((element) {
+        if (element.id == coupon) {
+          emit(AppCouponDoneState());
+          showToast(text: "Coupon Done", state: ToastStates.SUCCESS);
+          dis = int.parse(element.data()["discount"]);
+          copExist = true;
+        } else {
+          emit(AppCouponErrorState());
+          showToast(text: "not exist", state: ToastStates.ERROR);
+        }
+      });
+    });
+    print(dis);
+    print("==========================================================");
+  }
+
+  // get issued lisences from firebase
+  List<String> myLicenses = [];
+  Future getMyLicenses() async {
+    myLicenses = [];
+    emit(AppGetMyLicensesLoadingState());
+    try {
+      FirebaseFirestore.instance
+          .collection("issued")
+          .doc("${userModel!.uId}")
+          .get()
+          .then((value) {
+        if (value.data() != null) {
+          value.data()!.forEach((key, value) {
+            myLicenses.add("$value");
+            print(key);
+            print(value);
+            emit(AppGetMyLicensesDoneState());
+          });
+        } else {
+          emit(AppGetMyLicensesErrorState());
+        }
+      });
+    } catch (e) {
+      emit(AppGetMyLicensesErrorState());
     }
   }
 }

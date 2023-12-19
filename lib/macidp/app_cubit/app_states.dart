@@ -35,3 +35,11 @@ class AppErrorOrderLicense extends AppStates{}
 class AppLoadingOrderTriptick extends AppStates{}
 class AppSuccessOrderTriptick extends AppStates{}
 class AppErrorOrderTriptick extends AppStates{}
+
+class AppCouponLoadingState extends AppStates{}
+class AppCouponDoneState extends AppStates{}
+class AppCouponErrorState extends AppStates{}
+
+class AppGetMyLicensesLoadingState extends AppStates{}
+class AppGetMyLicensesDoneState extends AppStates{}
+class AppGetMyLicensesErrorState extends AppStates{}

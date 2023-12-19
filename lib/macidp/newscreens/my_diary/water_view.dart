@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:lottie/lottie.dart';
 import 'package:macidp/macidp/newscreens/app_theme.dart';
 
 class WaterView extends StatefulWidget {
-
-
   @override
   _WaterViewState createState() => _WaterViewState();
 }
@@ -18,8 +17,7 @@ class _WaterViewState extends State<WaterView> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-          left: 24, right: 24, top: 16, bottom: 18),
+      padding: const EdgeInsets.only(left: 24, right: 24, top: 16, bottom: 18),
       child: Container(
         decoration: BoxDecoration(
           color: AppTheme.white,
@@ -37,7 +35,8 @@ class _WaterViewState extends State<WaterView> with TickerProviderStateMixin {
         ),
         child: Padding(
           padding: const EdgeInsets.only(
-               left: 16,),
+            left: 16,
+          ),
           child: Row(
             children: <Widget>[
               Expanded(
@@ -53,7 +52,8 @@ class _WaterViewState extends State<WaterView> with TickerProviderStateMixin {
                           children: <Widget>[
                             Padding(
                               padding: const EdgeInsets.only(
-                                  left: 4,),
+                                left: 4,
+                              ),
                               child: Text(
                                 '4.9+',
                                 textAlign: TextAlign.center,
@@ -69,9 +69,10 @@ class _WaterViewState extends State<WaterView> with TickerProviderStateMixin {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(
-                              left: 4, ),
-                          child: Lottie.asset('assets/lotties/stars.json',width: 200),
-
+                            left: 4,
+                          ),
+                          child: Lottie.asset('assets/lotties/stars.json',
+                              width: 200),
                         ),
                       ],
                     ),
@@ -82,15 +83,16 @@ class _WaterViewState extends State<WaterView> with TickerProviderStateMixin {
                         height: 2,
                         decoration: BoxDecoration(
                           color: AppTheme.background,
-                          borderRadius: const BorderRadius.all(
-                              Radius.circular(4.0)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(4.0)),
                         ),
                       ),
                     ),
                   ],
                 ),
               ),
-              Lottie.asset('assets/lotties/rate.json',width: 200),
+              Expanded(
+                  child: Lottie.asset('assets/lotties/rate.json', width: 200)),
             ],
           ),
         ),

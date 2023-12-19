@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:macidp/macidp/app_cubit/app_cubit.dart';
 import 'package:macidp/macidp/app_cubit/app_states.dart';
 import 'package:macidp/macidp/models/products_model.dart';
+import 'package:macidp/macidp/newscreens/app_theme.dart';
 import 'package:macidp/macidp/shared/colors.dart';
+import 'package:macidp/macidp/shared/components/applocale.dart';
 import 'package:macidp/macidp/shared/components/components.dart';
 import 'package:macidp/main.dart';
 // import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -13,8 +16,7 @@ import 'license_app_theme.dart';
 class CourseInfoScreen extends StatefulWidget {
   final index;
   final Products product;
-  final String color;
-  CourseInfoScreen(this.index, this.product, this.color);
+  CourseInfoScreen(this.index, this.product);
   @override
   _CourseInfoScreenState createState() => _CourseInfoScreenState();
 }
@@ -29,6 +31,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
   var fourController = TextEditingController();
   var fiveController = TextEditingController();
   var passportController = TextEditingController();
+  var couponController = TextEditingController();
   bool isChecked = false;
   bool agreeTerms = false;
   String gender = 'male';
@@ -176,14 +179,14 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                                                             60,
                                                                         child: Card(
                                                                             elevation: 5,
-                                                                            shadowColor: HexColor(widget.color),
+                                                                            shadowColor: AppTheme.nearlyDarkBlue,
                                                                             child: Center(
                                                                               child: Text(
-                                                                                "Shipping",
+                                                                                "${getLang(context, "LICENCE_INFO_SHIPPING")}",
                                                                                 style: TextStyle(fontSize: 12, color: initShipping == 0 ? Colors.white : Colors.black),
                                                                               ),
                                                                             ),
-                                                                            color: initShipping == 0 ? HexColor(widget.color) : Colors.white),
+                                                                            color: initShipping == 0 ? AppTheme.nearlyDarkBlue : Colors.white),
                                                                       ),
                                                                     ),
                                                                     GestureDetector(
@@ -202,14 +205,14 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                                                             60,
                                                                         child: Card(
                                                                             elevation: 5,
-                                                                            shadowColor: HexColor(widget.color),
+                                                                            shadowColor: AppTheme.nearlyDarkBlue,
                                                                             child: Center(
                                                                               child: Text(
-                                                                                "Branch",
+                                                                                "${getLang(context, "LICENCE_INFO_BRANCH")}",
                                                                                 style: TextStyle(fontSize: 12, color: initShipping == 1 ? Colors.white : Colors.black),
                                                                               ),
                                                                             ),
-                                                                            color: initShipping == 1 ? HexColor(widget.color) : Colors.white),
+                                                                            color: initShipping == 1 ? AppTheme.nearlyDarkBlue : Colors.white),
                                                                       ),
                                                                     ),
                                                                   ],
@@ -271,7 +274,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                                                           return null;
                                                                         },
                                                                         label:
-                                                                            "اسم الشارع",
+                                                                            "${getLang(context, "LICENCE_INFO_STREET_NAME")}",
                                                                         prefix:
                                                                             Icons.person_outline),
                                                                     SizedBox(
@@ -292,7 +295,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                                                           return null;
                                                                         },
                                                                         label:
-                                                                            "اسم الحي",
+                                                                            "${getLang(context, "LICENCE_INFO_NEIGHBORHOOD")}",
                                                                         prefix:
                                                                             Icons.person_outline),
                                                                     SizedBox(
@@ -313,7 +316,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                                                           return null;
                                                                         },
                                                                         label:
-                                                                            "رقم المبنى",
+                                                                            "${getLang(context, "LICENCE_INFO_BUILDING_NUMBER")}",
                                                                         prefix:
                                                                             Icons.person_outline),
                                                                     SizedBox(
@@ -334,7 +337,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                                                           return null;
                                                                         },
                                                                         label:
-                                                                            "الرمز البريدي",
+                                                                            "${getLang(context, "LICENCE_INFO_POSTAL_CODE")}",
                                                                         prefix:
                                                                             Icons.person_outline),
                                                                     SizedBox(
@@ -355,7 +358,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                                                           return null;
                                                                         },
                                                                         label:
-                                                                            "اسم المدينة",
+                                                                            "${getLang(context, "LICENCE_INFO_CITY")}",
                                                                         prefix:
                                                                             Icons.person_outline),
                                                                   ],
@@ -463,7 +466,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                                                     //     true);
                                                                   },
                                                                   text:
-                                                                      "CHECKOUT")
+                                                                      "${getLang(context, "LICENCE_INFO_CHECKOUT")}"),
                                                             ]),
                                                       ),
                                                     ),
@@ -474,12 +477,12 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                   }
                                 },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: HexColor(widget.color),
+                        backgroundColor: AppTheme.nearlyDarkBlue,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15)),
                       ),
                       child: Text(
-                        "اطلب الرخصة الان",
+                        "${getLang(context, "LICENCE_INFO_ORDER_LICENCE")}",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
@@ -494,7 +497,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
           ),
           body: SingleChildScrollView(
             child: Container(
-              color: HexColor(widget.color),
+              color: AppTheme.nearlyDarkBlue,
               child: Column(
                 children: <Widget>[
                   Container(
@@ -556,20 +559,80 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                               padding: const EdgeInsets.only(
                                   left: 16, right: 16, top: 16),
                               child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
                                   Text(
-                                    "${widget.product.price} SAR",
+                                    "${int.parse(widget.product.price) - (int.parse(widget.product.price) * AppCubit.get(context).dis) / 100} ${getLang(context, "SAR")}",
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       fontWeight: FontWeight.w200,
                                       fontSize: 22,
                                       letterSpacing: 0.27,
-                                      color: HexColor(widget.color),
+                                      color: AppTheme.nearlyDarkBlue,
                                     ),
                                   ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: Text(
+                                                '${getLang(context, "ENTER_COUPON")}'),
+                                            content: TextField(
+                                              controller: couponController,
+                                              onChanged: (value) {
+                                                // Store your value here
+                                              },
+                                              decoration: InputDecoration(
+                                                  hintText:
+                                                      "${getLang(context, "COUPON")}"),
+                                            ),
+                                            actions: [
+                                              TextButton(
+                                                child: Text(
+                                                    '${getLang(context, "SUBMIT")}'),
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                  AppCubit.get(context)
+                                                      .getCoupon(
+                                                          couponController
+                                                              .text);
+                                                  // Add your submission logic here
+                                                },
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    },
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: Container(
+                                          color: Colors.green,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(6.0),
+                                            child: Row(
+                                              children: [
+                                                Text(
+                                                  "${getLang(context, "COUPON")}",
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 12),
+                                                ),
+                                                Icon(
+                                                  Icons.add,
+                                                  color: Colors.white,
+                                                )
+                                              ],
+                                            ),
+                                          )),
+                                    ),
+                                  ),
+                                  Spacer(),
                                   Container(
                                     child: Row(
                                       mainAxisAlignment:
@@ -587,7 +650,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                         ),
                                         Icon(
                                           Icons.star,
-                                          color: HexColor(widget.color),
+                                          color: AppTheme.nearlyDarkBlue,
                                           size: 24,
                                         ),
                                       ],
@@ -615,12 +678,14 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                           }
                                           return null;
                                         },
-                                        label: "الاسم بالكامل",
+                                        label:
+                                            "${getLang(context, "LICENCE_INFO_FULLNAME")}",
                                         prefix: Icons.person_outline),
                                     SizedBox(
                                       height: 15,
                                     ),
-                                    Text("تاريخ الميلاد"),
+                                    Text(
+                                        "${getLang(context, "LICENCE_INFO_BIRTHDATE")}"),
                                     SizedBox(
                                       height: 5,
                                     ),
@@ -738,7 +803,8 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                           }
                                           return null;
                                         },
-                                        label: "رقم جواز السفر",
+                                        label:
+                                            "${getLang(context, "LICENCE_INFO_PASSPORT_NUMBER")}",
                                         prefix: Icons.book_outlined),
                                     SizedBox(
                                       height: 15,
@@ -878,8 +944,9 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                         Expanded(
                                           child: RadioListTile(
                                               activeColor:
-                                                  HexColor(widget.color),
-                                              title: Text("ذكر"),
+                                                  AppTheme.nearlyDarkBlue,
+                                              title: Text(
+                                                  "${getLang(context, "LICENCE_INFO_MALE")}"),
                                               value: "male",
                                               groupValue: gender,
                                               onChanged: (value) {
@@ -892,8 +959,9 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                         Expanded(
                                           child: RadioListTile(
                                               activeColor:
-                                                  HexColor(widget.color),
-                                              title: Text("انثى"),
+                                                  AppTheme.nearlyDarkBlue,
+                                              title: Text(
+                                                  "${getLang(context, "LICENCE_INFO_FEMALE")}"),
                                               value: "female",
                                               groupValue: gender,
                                               onChanged: (value) {
@@ -921,7 +989,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                           child: Card(
                                               elevation: 5,
                                               shadowColor:
-                                                  HexColor(widget.color),
+                                                  AppTheme.nearlyDarkBlue,
                                               child: Center(
                                                 child: Column(
                                                   mainAxisAlignment:
@@ -940,7 +1008,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                                 ),
                                               ),
                                               color: initCategory == index
-                                                  ? HexColor(widget.color)
+                                                  ? AppTheme.nearlyDarkBlue
                                                   : Colors.white),
                                         ),
                                         itemCount: 4,
@@ -955,7 +1023,8 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                             child: Card(
                                           child: Column(
                                             children: [
-                                              Text("الصورة الشخصية"),
+                                              Text(
+                                                  "${getLang(context, "LICENCE_INFO_PROFILE_PICTURE")}"),
                                               IconButton(
                                                 icon: Icon(AppCubit.get(context)
                                                             .profileImage ==
@@ -974,7 +1043,8 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                             child: Card(
                                           child: Column(
                                             children: [
-                                              Text("رخصة القيادة المحلية"),
+                                              Text(
+                                                  "${getLang(context, "LICENCE_INFO_LICENCE_PICTURE")}"),
                                               IconButton(
                                                 icon: Icon(AppCubit.get(context)
                                                             .licenceImage ==
@@ -993,7 +1063,8 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                             child: Card(
                                           child: Column(
                                             children: [
-                                              Text("صورة جواز السفر"),
+                                              Text(
+                                                  "${getLang(context, "LICENCE_INFO_PASSPORT_PICTURE")}"),
                                               IconButton(
                                                 icon: Icon(AppCubit.get(context)
                                                             .passportImage ==
@@ -1022,7 +1093,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                         children: [
                                           Checkbox(
                                               activeColor:
-                                                  HexColor(widget.color),
+                                                  AppTheme.nearlyDarkBlue,
                                               value: agreeTerms,
                                               onChanged: (value) {
                                                 agreeTerms = !agreeTerms;
@@ -1030,10 +1101,11 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                                     .changeCheckBox();
                                                 print(agreeTerms);
                                               }),
-                                          Container(
-                                              width: 300,
-                                              child: Text(
-                                                  "أنا متأكد من أن الصورة الشخصية بخلفية بيضاء و جواز السفر ساري المفعول و رخصة القيادة صالحة وأن البيانات المدخلة صحيحة وقد راجعتها بالكامل")),
+                                          Expanded(
+                                            child: Container(
+                                                child: Text(
+                                                    "${getLang(context, "LICENCE_INFO_AGREE_TERMS")}")),
+                                          ),
                                         ],
                                       ),
                                     ),

@@ -1,6 +1,7 @@
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:macidp/macidp/app_cubit/app_cubit.dart';
 import 'package:macidp/macidp/app_cubit/app_states.dart';
@@ -42,6 +43,9 @@ class _ShopLayoutState extends State<ShopLayout> {
                     child: Container(
                       height: 123,
                       child: DotNavigationBar(
+                        marginR:
+                            EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                        paddingR: const EdgeInsets.only(bottom: 5, top: 10),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.grey.withOpacity(0.5),
@@ -95,7 +99,7 @@ class _ShopLayoutState extends State<ShopLayout> {
   }
 }
 
-Widget getAppBarUI() {
+Widget getAppBarUI(context) {
   return Column(
     children: <Widget>[
       Padding(
@@ -103,28 +107,37 @@ Widget getAppBarUI() {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image.asset(
-              "assets/images/logoOne.png",
-              scale: 7,
+            Expanded(
+              flex: 1,
+              child: Image.asset(
+                "assets/images/logoOne.png",
+                scale: 7,
+              ),
             ),
-            Image.asset(
-              "assets/images/logotext.png",
-              scale: 6,
+            Expanded(
+              flex: 4,
+              child: Image.asset(
+                "assets/images/logotext.png",
+                scale: 6,
+              ),
             ),
-            Stack(
-              children: [
-                IconButton(onPressed: () {}, icon: Icon(CupertinoIcons.bell)),
-                Positioned(
-                  child: CircleAvatar(
-                    backgroundColor: Colors.red,
-                    radius: 3,
-                  ),
-                  top: 25,
-                  right: 12,
-                  left: 25,
-                  bottom: 12,
-                )
-              ],
+            Expanded(
+              flex: 1,
+              child: Stack(
+                children: [
+                  IconButton(onPressed: () {}, icon: Icon(CupertinoIcons.bell)),
+                  Positioned(
+                    child: CircleAvatar(
+                      backgroundColor: Colors.red,
+                      radius: 3,
+                    ),
+                    top: 25,
+                    right: 12,
+                    left: 25,
+                    bottom: 12,
+                  )
+                ],
+              ),
             )
           ],
         ),

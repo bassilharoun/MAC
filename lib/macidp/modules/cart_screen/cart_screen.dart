@@ -8,6 +8,7 @@ import 'package:macidp/macidp/layout/shop_layout.dart';
 import 'package:macidp/macidp/models/products_model.dart';
 import 'package:macidp/macidp/newscreens/app_theme.dart';
 import 'package:macidp/macidp/shared/colors.dart';
+import 'package:macidp/macidp/shared/components/applocale.dart';
 import 'package:macidp/macidp/shared/components/components.dart';
 import 'package:macidp/macidp/shared/network/local/cache_helper.dart';
 
@@ -31,7 +32,7 @@ class _CartScreenState extends State<CartScreen> {
             child: Column(
               children: [
                 Container(
-                  child: getAppBarUI(),
+                  child: getAppBarUI(context),
                 ),
                 if (state is AppLoadingGetCart)
                   LinearProgressIndicator(
@@ -45,15 +46,30 @@ class _CartScreenState extends State<CartScreen> {
                       Container(
                         width: MediaQuery.of(context).size.width,
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
+                            Row(
+                              children: [
+                                Text("${getLang(context, "CART_TITLE")} "),
+                                Text("${AppCubit.get(context).totalPrice}",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    )),
+                                Text(" ${getLang(context, "SAR")} ",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                    )),
+                              ],
+                            ),
                             Expanded(
                               child: TextButton(
-                                  child: Text("أدفع الان",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 16,
-                                      )),
+                                  child:
+                                      Text("${getLang(context, "CART_PAYNOW")}",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16,
+                                          )),
                                   onPressed:
                                       // AppCubit.get(context).totalPrice <= 0?
                                       null
@@ -64,21 +80,6 @@ class _CartScreenState extends State<CartScreen> {
                                   //   },
                                   ),
                             ),
-                            Row(
-                              children: [
-                                Text(",ر.س ",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16,
-                                    )),
-                                Text("${AppCubit.get(context).totalPrice}",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18,
-                                    )),
-                                Text(" السلة تحتوي على طلب بسعر"),
-                              ],
-                            )
                           ],
                         ),
                       ),
@@ -149,7 +150,7 @@ class _CartScreenState extends State<CartScreen> {
                 child: Column(
                   children: [
                     Text(
-                      "${product.price} ر.س",
+                      "${product.price} ${getLang(context, "SAR")}",
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
