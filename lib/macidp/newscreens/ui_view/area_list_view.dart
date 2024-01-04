@@ -90,10 +90,10 @@ class TriptickCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppTheme.white,
         borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(8.0),
-          bottomLeft: Radius.circular(8.0),
-          bottomRight: Radius.circular(8.0),
-          topRight: Radius.circular(50.0),
+          topLeft: Radius.circular(20.0),
+          bottomLeft: Radius.circular(20.0),
+          bottomRight: Radius.circular(20.0),
+          topRight: Radius.circular(20.0),
         ),
         boxShadow: <BoxShadow>[
           BoxShadow(
@@ -128,10 +128,10 @@ class TriptickCard extends StatelessWidget {
               children: <Widget>[
                 ClipRRect(
                     borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(8.0),
-                      bottomLeft: Radius.circular(8.0),
-                      bottomRight: Radius.circular(8.0),
-                      topRight: Radius.circular(50.0),
+                      topLeft: Radius.circular(20.0),
+                      bottomLeft: Radius.circular(20.0),
+                      bottomRight: Radius.circular(20.0),
+                      topRight: Radius.circular(20.0),
                     ),
                     child: Image.asset(imagepath!)),
                 Expanded(

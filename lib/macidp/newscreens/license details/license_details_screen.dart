@@ -1,3 +1,4 @@
+import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -53,8 +54,6 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
 
   int initCategory = 0;
 
-  int initShipping = 0;
-
   @override
   Widget build(BuildContext context) {
     var cubit = AppCubit.get(context);
@@ -90,392 +89,514 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                   child: Container(
                     height: 50,
                     child: ElevatedButton(
-                      onPressed:
-                          (agreeTerms == false ||
-                                  cubit.dropdCountry == "اختر دولة الاقامة" ||
-                                  cubit.dropdDriving ==
-                                      "اختر دولة مصدر القيادة المحلية" ||
-                                  cubit.dropdNationality == "اختر الجنسية" ||
-                                  cubit.profileImage == null ||
-                                  cubit.passportImage == null ||
-                                  cubit.licenceImage == null)
-                              ? null
-                              : () {
-                                  if (formKey.currentState!.validate()) {
-                                    // AppCubit.get(context).getCheckOut(context, AppCubit.get(context).products[widget.index]);
-                                    // scaffoldKey.currentState?.showBottomSheet((context) => Container(
-                                    //   height: 500,
-                                    //       child: Column(
-                                    //         mainAxisAlignment: MainAxisAlignment.center,
-                                    //           crossAxisAlignment: CrossAxisAlignment.center,
-                                    //           children: [
-                                    //         Container(
-                                    //       height: 130,
-                                    //       child: Expanded(
-                                    //         child: GridView.builder(
-                                    //           gridDelegate:
-                                    //           SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
-                                    //           itemBuilder: (context, index) => GestureDetector(
-                                    //             onTap: (){
-                                    //               initShipping = index ;
-                                    //               AppCubit.get(context).changeRadio();
-                                    //               setState(() {});
-                                    //             },
-                                    //             child: Card(
-                                    //                 elevation: 5,
-                                    //                 shadowColor: HexColor(license[widget.index].startColor),
-                                    //                 child: Center(
-                                    //                   child: Text(
-                                    //                     "${shipping[index]}",
-                                    //                     style: TextStyle(fontSize: 16,color: initShipping == index ? Colors.white : Colors.black),
-                                    //                   ),
-                                    //                 ),
-                                    //                 color: initShipping == index ? HexColor(license[widget.index].endColor) : Colors.white
-                                    //             ),
-                                    //           ),
-                                    //           itemCount: 2,
-                                    //         ),
-                                    //       ),
-                                    //         ),
-                                    //           ]),
-                                    //     ));
+                      onPressed: (agreeTerms == false ||
+                              cubit.dropdCountry == "اختر دولة الاقامة" ||
+                              cubit.dropdDriving ==
+                                  "اختر دولة مصدر القيادة المحلية" ||
+                              cubit.dropdNationality == "اختر الجنسية" ||
+                              cubit.profileImage == null ||
+                              cubit.passportImage == null ||
+                              cubit.licenceImage == null)
+                          ? null
+                          : () {
+                              if (formKey.currentState!.validate()) {
+                                // AppCubit.get(context).getCheckOut(context, AppCubit.get(context).products[widget.index]);
+                                // scaffoldKey.currentState?.showBottomSheet((context) => Container(
+                                //   height: 500,
+                                //       child: Column(
+                                //         mainAxisAlignment: MainAxisAlignment.center,
+                                //           crossAxisAlignment: CrossAxisAlignment.center,
+                                //           children: [
+                                //         Container(
+                                //       height: 130,
+                                //       child: Expanded(
+                                //         child: GridView.builder(
+                                //           gridDelegate:
+                                //           SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
+                                //           itemBuilder: (context, index) => GestureDetector(
+                                //             onTap: (){
+                                //               initShipping = index ;
+                                //               AppCubit.get(context).changeRadio();
+                                //               setState(() {});
+                                //             },
+                                //             child: Card(
+                                //                 elevation: 5,
+                                //                 shadowColor: HexColor(license[widget.index].startColor),
+                                //                 child: Center(
+                                //                   child: Text(
+                                //                     "${shipping[index]}",
+                                //                     style: TextStyle(fontSize: 16,color: initShipping == index ? Colors.white : Colors.black),
+                                //                   ),
+                                //                 ),
+                                //                 color: initShipping == index ? HexColor(license[widget.index].endColor) : Colors.white
+                                //             ),
+                                //           ),
+                                //           itemCount: 2,
+                                //         ),
+                                //       ),
+                                //         ),
+                                //           ]),
+                                //     ));
 
-                                    showDialog(
-                                        context: context,
-                                        builder: (context) => StatefulBuilder(
-                                              builder: (context, setState) {
-                                                return Container(
-                                                  child: Center(
-                                                    child: AlertDialog(
-                                                      content:
-                                                          SingleChildScrollView(
-                                                        child: Column(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              Container(
-                                                                child: Row(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .center,
-                                                                  children: [
-                                                                    GestureDetector(
-                                                                      onTap:
-                                                                          () {
-                                                                        initShipping =
-                                                                            0;
-                                                                        setState(
-                                                                            () {});
-                                                                      },
-                                                                      child:
-                                                                          Container(
-                                                                        height:
-                                                                            60,
-                                                                        width:
-                                                                            60,
-                                                                        child: Card(
-                                                                            elevation: 5,
-                                                                            shadowColor: AppTheme.nearlyDarkBlue,
-                                                                            child: Center(
-                                                                              child: Text(
-                                                                                "${getLang(context, "LICENCE_INFO_SHIPPING")}",
-                                                                                style: TextStyle(fontSize: 12, color: initShipping == 0 ? Colors.white : Colors.black),
-                                                                              ),
-                                                                            ),
-                                                                            color: initShipping == 0 ? AppTheme.nearlyDarkBlue : Colors.white),
-                                                                      ),
-                                                                    ),
-                                                                    GestureDetector(
-                                                                      onTap:
-                                                                          () {
-                                                                        initShipping =
-                                                                            1;
-                                                                        setState(
-                                                                            () {});
-                                                                      },
-                                                                      child:
-                                                                          Container(
-                                                                        height:
-                                                                            60,
-                                                                        width:
-                                                                            60,
-                                                                        child: Card(
-                                                                            elevation: 5,
-                                                                            shadowColor: AppTheme.nearlyDarkBlue,
-                                                                            child: Center(
-                                                                              child: Text(
-                                                                                "${getLang(context, "LICENCE_INFO_BRANCH")}",
-                                                                                style: TextStyle(fontSize: 12, color: initShipping == 1 ? Colors.white : Colors.black),
-                                                                              ),
-                                                                            ),
-                                                                            color: initShipping == 1 ? AppTheme.nearlyDarkBlue : Colors.white),
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
+                                showModalBottomSheet(
+                                    isScrollControlled: true,
+                                    context: context,
+                                    builder: (context) {
+                                      return Padding(
+                                        padding: const EdgeInsets.all(16.0),
+                                        child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    GestureDetector(
+                                                      onTap: () {
+                                                        AppCubit.get(context)
+                                                            .changeInitShipping(
+                                                                0);
+                                                      },
+                                                      child: Container(
+                                                        height: 60,
+                                                        width: 60,
+                                                        child: Card(
+                                                            elevation: 5,
+                                                            shadowColor: AppTheme
+                                                                .nearlyDarkBlue,
+                                                            child: Center(
+                                                              child: Text(
+                                                                "${getLang(context, "LICENCE_INFO_SHIPPING")}",
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        12,
+                                                                    color: AppCubit.get(context).initShipping ==
+                                                                            0
+                                                                        ? Colors
+                                                                            .white
+                                                                        : Colors
+                                                                            .black),
                                                               ),
-                                                              SizedBox(
-                                                                height: 15,
+                                                            ),
+                                                            color: AppCubit.get(
+                                                                            context)
+                                                                        .initShipping ==
+                                                                    0
+                                                                ? AppTheme
+                                                                    .nearlyDarkBlue
+                                                                : Colors.white),
+                                                      ),
+                                                    ),
+                                                    GestureDetector(
+                                                      onTap: () {
+                                                        AppCubit.get(context)
+                                                            .changeInitShipping(
+                                                                1);
+                                                      },
+                                                      child: Container(
+                                                        height: 60,
+                                                        width: 60,
+                                                        child: Card(
+                                                            elevation: 5,
+                                                            shadowColor: AppTheme
+                                                                .nearlyDarkBlue,
+                                                            child: Center(
+                                                              child: Text(
+                                                                "${getLang(context, "LICENCE_INFO_BRANCH")}",
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        12,
+                                                                    color: AppCubit.get(context).initShipping ==
+                                                                            1
+                                                                        ? Colors
+                                                                            .white
+                                                                        : Colors
+                                                                            .black),
                                                               ),
-                                                              if (initShipping ==
-                                                                  0) ...[
-                                                                Column(
-                                                                  children: [
-                                                                    Container(
-                                                                      width: double
-                                                                          .infinity,
-                                                                      child:
-                                                                          DecoratedBox(
-                                                                        decoration: BoxDecoration(
-                                                                            color: Colors.white, //background color of dropdown button
-                                                                            border: Border.all(color: buttonsColor, width: 1), //border of dropdown button
-                                                                            borderRadius: BorderRadius.circular(10), //border raiuds of dropdown button
-                                                                            boxShadow: <BoxShadow>[
-                                                                              //apply shadow on Dropdown button
-                                                                              BoxShadow(
-                                                                                  color: Color.fromRGBO(0, 0, 0, 0.57), //shadow for button
-                                                                                  blurRadius: 5) //blur radius of shadow
-                                                                            ]),
-                                                                        child:
-                                                                            Center(
-                                                                          child: DropdownButton(
-                                                                              value: AppCubit.get(context).dropdYourCountry,
-                                                                              items: AppCubit.get(context).yourCountry.map((e) {
-                                                                                return DropdownMenuItem(
-                                                                                  value: e,
-                                                                                  child: Text(e),
-                                                                                );
-                                                                              }).toList(),
-                                                                              onChanged: (String? newValue) {
-                                                                                AppCubit.get(context).changeDropdownYourCountry(newValue);
-                                                                              }),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                    SizedBox(
-                                                                      height:
-                                                                          15,
-                                                                    ),
-                                                                    defaultTxtForm(
-                                                                        controller:
-                                                                            oneController,
-                                                                        type: TextInputType
-                                                                            .name,
-                                                                        validate:
-                                                                            (value) {
-                                                                          if (value!
-                                                                              .isEmpty) {
-                                                                            return "";
-                                                                          }
-                                                                          return null;
-                                                                        },
-                                                                        label:
-                                                                            "${getLang(context, "LICENCE_INFO_STREET_NAME")}",
-                                                                        prefix:
-                                                                            Icons.person_outline),
-                                                                    SizedBox(
-                                                                      height:
-                                                                          15,
-                                                                    ),
-                                                                    defaultTxtForm(
-                                                                        controller:
-                                                                            towController,
-                                                                        type: TextInputType
-                                                                            .name,
-                                                                        validate:
-                                                                            (value) {
-                                                                          if (value!
-                                                                              .isEmpty) {
-                                                                            return "";
-                                                                          }
-                                                                          return null;
-                                                                        },
-                                                                        label:
-                                                                            "${getLang(context, "LICENCE_INFO_NEIGHBORHOOD")}",
-                                                                        prefix:
-                                                                            Icons.person_outline),
-                                                                    SizedBox(
-                                                                      height:
-                                                                          15,
-                                                                    ),
-                                                                    defaultTxtForm(
-                                                                        controller:
-                                                                            threeController,
-                                                                        type: TextInputType
-                                                                            .name,
-                                                                        validate:
-                                                                            (value) {
-                                                                          if (value!
-                                                                              .isEmpty) {
-                                                                            return "";
-                                                                          }
-                                                                          return null;
-                                                                        },
-                                                                        label:
-                                                                            "${getLang(context, "LICENCE_INFO_BUILDING_NUMBER")}",
-                                                                        prefix:
-                                                                            Icons.person_outline),
-                                                                    SizedBox(
-                                                                      height:
-                                                                          15,
-                                                                    ),
-                                                                    defaultTxtForm(
-                                                                        controller:
-                                                                            fourController,
-                                                                        type: TextInputType
-                                                                            .name,
-                                                                        validate:
-                                                                            (value) {
-                                                                          if (value!
-                                                                              .isEmpty) {
-                                                                            return "";
-                                                                          }
-                                                                          return null;
-                                                                        },
-                                                                        label:
-                                                                            "${getLang(context, "LICENCE_INFO_POSTAL_CODE")}",
-                                                                        prefix:
-                                                                            Icons.person_outline),
-                                                                    SizedBox(
-                                                                      height:
-                                                                          15,
-                                                                    ),
-                                                                    defaultTxtForm(
-                                                                        controller:
-                                                                            fiveController,
-                                                                        type: TextInputType
-                                                                            .name,
-                                                                        validate:
-                                                                            (value) {
-                                                                          if (value!
-                                                                              .isEmpty) {
-                                                                            return "";
-                                                                          }
-                                                                          return null;
-                                                                        },
-                                                                        label:
-                                                                            "${getLang(context, "LICENCE_INFO_CITY")}",
-                                                                        prefix:
-                                                                            Icons.person_outline),
-                                                                  ],
-                                                                ),
-                                                              ],
-                                                              if (initShipping ==
-                                                                  1) ...[
-                                                                Container(
-                                                                  width: double
-                                                                      .infinity,
-                                                                  child:
-                                                                      DecoratedBox(
-                                                                    decoration: BoxDecoration(
-                                                                        color: Colors.white, //background color of dropdown button
-                                                                        border: Border.all(color: buttonsColor, width: 1), //border of dropdown button
-                                                                        borderRadius: BorderRadius.circular(10), //border raiuds of dropdown button
-                                                                        boxShadow: <BoxShadow>[
-                                                                          //apply shadow on Dropdown button
-                                                                          BoxShadow(
-                                                                              color: Color.fromRGBO(0, 0, 0, 0.57), //shadow for button
-                                                                              blurRadius: 5) //blur radius of shadow
-                                                                        ]),
-                                                                    child:
-                                                                        Center(
-                                                                      child: DropdownButton(
-                                                                          value: AppCubit.get(context).dropBranch,
-                                                                          items: AppCubit.get(context).branch.map((e) {
-                                                                            return DropdownMenuItem(
-                                                                              value: e,
-                                                                              child: Text(e),
-                                                                            );
-                                                                          }).toList(),
-                                                                          onChanged: (String? newValue) {
-                                                                            AppCubit.get(context).changeDropdownBranch(newValue);
-                                                                          }),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                              SizedBox(
-                                                                height: 15,
+                                                            ),
+                                                            color: AppCubit.get(
+                                                                            context)
+                                                                        .initShipping ==
+                                                                    1
+                                                                ? AppTheme
+                                                                    .nearlyDarkBlue
+                                                                : Colors.white),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    "${getLang(context, "YOU_WILL_PAY")} ${(int.parse(widget.product.price) - (int.parse(widget.product.price) * AppCubit.get(context).dis) / 100)} ${getLang(context, "SAR")}",
+                                                    style: TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                  SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  InkWell(
+                                                    onTap: () {
+                                                      showDialog(
+                                                        context: context,
+                                                        builder: (BuildContext
+                                                            context) {
+                                                          return AlertDialog(
+                                                            title: Text(
+                                                                '${getLang(context, "ENTER_COUPON")}'),
+                                                            content: TextField(
+                                                              controller:
+                                                                  couponController,
+                                                              onChanged:
+                                                                  (value) {
+                                                                // Store your value here
+                                                              },
+                                                              decoration:
+                                                                  InputDecoration(
+                                                                      hintText:
+                                                                          "${getLang(context, "COUPON")}"),
+                                                            ),
+                                                            actions: [
+                                                              TextButton(
+                                                                child: Text(
+                                                                    '${getLang(context, "SUBMIT")}'),
+                                                                onPressed: () {
+                                                                  Navigator.of(
+                                                                          context)
+                                                                      .pop();
+                                                                  AppCubit.get(
+                                                                          context)
+                                                                      .getCoupon(
+                                                                          couponController
+                                                                              .text);
+                                                                  // Add your submission logic here
+                                                                },
                                                               ),
-                                                              defaultButton(
-                                                                  function: () {
-                                                                    // AppCubit.get(context).getCheckOut(
-                                                                    //     context,
-                                                                    //     AppCubit.get(context)
-                                                                    //         .products[widget.index]);
-                                                                    print(widget
-                                                                        .product
-                                                                        .name);
-                                                                    print(widget
-                                                                        .product
-                                                                        .price);
-
-                                                                    AppCubit.get(context).makeLicenseCheckoutsRequest(
-                                                                        widget
-                                                                            .product,
-                                                                        context,
-                                                                        nameController
-                                                                            .text,
-                                                                        gender ==
-                                                                                "male"
-                                                                            ? 1
-                                                                            : -1,
-                                                                        AppCubit.get(context)
-                                                                            .birthDate,
-                                                                        AppCubit.get(context)
-                                                                            .bloods
-                                                                            .indexOf(AppCubit.get(context)
-                                                                                .dropBlood!),
-                                                                        widget.index +
-                                                                            1,
-                                                                        initCategory +
-                                                                            1,
-                                                                        passportController
-                                                                            .text,
-                                                                        AppCubit.get(context)
-                                                                            .dropdNationality!,
-                                                                        AppCubit.get(context)
-                                                                            .dropdDriving!,
-                                                                        AppCubit.get(context)
-                                                                            .profileImage!,
-                                                                        AppCubit.get(context)
-                                                                            .licenceImage!,
-                                                                        AppCubit.get(context)
-                                                                            .passportImage!);
-                                                                    // AppCubit.get(context).orderLicense(
-                                                                    //     context,
-                                                                    //     "باسل هارون",
-                                                                    //     1,
-                                                                    //     "18, 6, 2002",
-                                                                    //     4,
-                                                                    //     1,
-                                                                    //     1,
-                                                                    //     "passportTextId",
-                                                                    //     "nationalityCountry",
-                                                                    //     "sourceOfLocalLicenseCountry",
-                                                                    //     AppCubit.get(context)
-                                                                    //         .profileImage,
-                                                                    //     AppCubit.get(context)
-                                                                    //         .licenceImage,
-                                                                    //     AppCubit.get(context)
-                                                                    //         .passportImage,
-                                                                    //     true);
-                                                                  },
-                                                                  text:
-                                                                      "${getLang(context, "LICENCE_INFO_CHECKOUT")}"),
-                                                            ]),
+                                                            ],
+                                                          );
+                                                        },
+                                                      );
+                                                    },
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              6.0),
+                                                      child: Row(
+                                                        children: [
+                                                          Text(
+                                                            "${getLang(context, "COUPON")}",
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .green,
+                                                                fontSize: 12),
+                                                          ),
+                                                          Icon(
+                                                            Icons.add,
+                                                            color: Colors.green,
+                                                          )
+                                                        ],
                                                       ),
                                                     ),
                                                   ),
-                                                );
-                                              },
-                                            ));
-                                  }
-                                },
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 15,
+                                              ),
+                                              if (AppCubit.get(context)
+                                                      .initShipping ==
+                                                  0) ...[
+                                                Column(
+                                                  children: [
+                                                    Container(
+                                                      width: double.infinity,
+                                                      child: DecoratedBox(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                                color: Colors
+                                                                    .white, //background color of dropdown button
+                                                                border: Border.all(
+                                                                    color:
+                                                                        buttonsColor,
+                                                                    width:
+                                                                        1), //border of dropdown button
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            10), //border raiuds of dropdown button
+                                                                boxShadow: <BoxShadow>[
+                                                              //apply shadow on Dropdown button
+                                                              BoxShadow(
+                                                                  color: Color
+                                                                      .fromRGBO(
+                                                                          0,
+                                                                          0,
+                                                                          0,
+                                                                          0.57), //shadow for button
+                                                                  blurRadius:
+                                                                      5) //blur radius of shadow
+                                                            ]),
+                                                        child: Center(
+                                                          child: DropdownButton(
+                                                              value: AppCubit.get(
+                                                                      context)
+                                                                  .dropdYourCountry,
+                                                              items: AppCubit.get(
+                                                                      context)
+                                                                  .yourCountry
+                                                                  .map((e) {
+                                                                return DropdownMenuItem(
+                                                                  value: e,
+                                                                  child:
+                                                                      Text(e),
+                                                                );
+                                                              }).toList(),
+                                                              onChanged: (String?
+                                                                  newValue) {
+                                                                AppCubit.get(
+                                                                        context)
+                                                                    .changeDropdownYourCountry(
+                                                                        newValue);
+                                                              }),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 15,
+                                                    ),
+                                                    defaultTxtForm(
+                                                        controller:
+                                                            oneController,
+                                                        type:
+                                                            TextInputType.name,
+                                                        validate: (value) {
+                                                          if (value!.isEmpty) {
+                                                            return "";
+                                                          }
+                                                          return null;
+                                                        },
+                                                        label:
+                                                            "${getLang(context, "LICENCE_INFO_STREET_NAME")}",
+                                                        prefix: Icons
+                                                            .person_outline),
+                                                    SizedBox(
+                                                      height: 15,
+                                                    ),
+                                                    defaultTxtForm(
+                                                        controller:
+                                                            towController,
+                                                        type:
+                                                            TextInputType.name,
+                                                        validate: (value) {
+                                                          if (value!.isEmpty) {
+                                                            return "";
+                                                          }
+                                                          return null;
+                                                        },
+                                                        label:
+                                                            "${getLang(context, "LICENCE_INFO_NEIGHBORHOOD")}",
+                                                        prefix: Icons
+                                                            .person_outline),
+                                                    SizedBox(
+                                                      height: 15,
+                                                    ),
+                                                    defaultTxtForm(
+                                                        controller:
+                                                            threeController,
+                                                        type:
+                                                            TextInputType.name,
+                                                        validate: (value) {
+                                                          if (value!.isEmpty) {
+                                                            return "";
+                                                          }
+                                                          return null;
+                                                        },
+                                                        label:
+                                                            "${getLang(context, "LICENCE_INFO_BUILDING_NUMBER")}",
+                                                        prefix: Icons
+                                                            .person_outline),
+                                                    SizedBox(
+                                                      height: 15,
+                                                    ),
+                                                    defaultTxtForm(
+                                                        controller:
+                                                            fourController,
+                                                        type:
+                                                            TextInputType.name,
+                                                        validate: (value) {
+                                                          if (value!.isEmpty) {
+                                                            return "";
+                                                          }
+                                                          return null;
+                                                        },
+                                                        label:
+                                                            "${getLang(context, "LICENCE_INFO_POSTAL_CODE")}",
+                                                        prefix: Icons
+                                                            .person_outline),
+                                                    SizedBox(
+                                                      height: 15,
+                                                    ),
+                                                    defaultTxtForm(
+                                                        controller:
+                                                            fiveController,
+                                                        type:
+                                                            TextInputType.name,
+                                                        validate: (value) {
+                                                          if (value!.isEmpty) {
+                                                            return "";
+                                                          }
+                                                          return null;
+                                                        },
+                                                        label:
+                                                            "${getLang(context, "LICENCE_INFO_CITY")}",
+                                                        prefix: Icons
+                                                            .person_outline),
+                                                  ],
+                                                ),
+                                              ],
+                                              if (AppCubit.get(context)
+                                                      .initShipping ==
+                                                  1) ...[
+                                                Container(
+                                                  width: double.infinity,
+                                                  child: DecoratedBox(
+                                                    decoration: BoxDecoration(
+                                                        color: Colors
+                                                            .white, //background color of dropdown button
+                                                        border: Border.all(
+                                                            color: buttonsColor,
+                                                            width:
+                                                                1), //border of dropdown button
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                                10), //border raiuds of dropdown button
+                                                        boxShadow: <BoxShadow>[
+                                                          //apply shadow on Dropdown button
+                                                          BoxShadow(
+                                                              color: Color.fromRGBO(
+                                                                  0,
+                                                                  0,
+                                                                  0,
+                                                                  0.57), //shadow for button
+                                                              blurRadius:
+                                                                  5) //blur radius of shadow
+                                                        ]),
+                                                    child: Center(
+                                                      child: DropdownButton(
+                                                          value: AppCubit.get(
+                                                                  context)
+                                                              .dropBranch,
+                                                          items: AppCubit.get(
+                                                                  context)
+                                                              .branch
+                                                              .map((e) {
+                                                            return DropdownMenuItem(
+                                                              value: e,
+                                                              child: Text(e),
+                                                            );
+                                                          }).toList(),
+                                                          onChanged: (String?
+                                                              newValue) {
+                                                            AppCubit.get(
+                                                                    context)
+                                                                .changeDropdownBranch(
+                                                                    newValue);
+                                                          }),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                              SizedBox(
+                                                height: 15,
+                                              ),
+                                              defaultButton(
+                                                  function: () {
+                                                    // AppCubit.get(context).getCheckOut(
+                                                    //     context,
+                                                    //     AppCubit.get(context)
+                                                    //         .products[widget.index]);
+                                                    print(widget.product.name);
+                                                    print(widget.product.price);
+
+                                                    AppCubit.get(context)
+                                                        .makeLicenseCheckoutsRequest(
+                                                            widget.product,
+                                                            context,
+                                                            nameController.text,
+                                                            gender == "male"
+                                                                ? 1
+                                                                : -1,
+                                                            AppCubit.get(
+                                                                    context)
+                                                                .birthDate,
+                                                            AppCubit.get(
+                                                                    context)
+                                                                .bloods
+                                                                .indexOf(AppCubit
+                                                                        .get(
+                                                                            context)
+                                                                    .dropBlood!),
+                                                            widget.index + 1,
+                                                            initCategory + 1,
+                                                            passportController
+                                                                .text,
+                                                            AppCubit.get(
+                                                                    context)
+                                                                .dropdNationality!,
+                                                            AppCubit.get(
+                                                                    context)
+                                                                .dropdDriving!,
+                                                            AppCubit.get(
+                                                                    context)
+                                                                .profileImage!,
+                                                            AppCubit.get(
+                                                                    context)
+                                                                .licenceImage!,
+                                                            AppCubit.get(
+                                                                    context)
+                                                                .passportImage!);
+                                                    // AppCubit.get(context).orderLicense(
+                                                    //     context,
+                                                    //     "باسل هارون",
+                                                    //     1,
+                                                    //     "18, 6, 2002",
+                                                    //     4,
+                                                    //     1,
+                                                    //     1,
+                                                    //     "passportTextId",
+                                                    //     "nationalityCountry",
+                                                    //     "sourceOfLocalLicenseCountry",
+                                                    //     AppCubit.get(context)
+                                                    //         .profileImage,
+                                                    //     AppCubit.get(context)
+                                                    //         .licenceImage,
+                                                    //     AppCubit.get(context)
+                                                    //         .passportImage,
+                                                    //     true);
+                                                  },
+                                                  text:
+                                                      "${getLang(context, "LICENCE_INFO_CHECKOUT")}"),
+                                            ]),
+                                      );
+                                    });
+
+                                // showBottomSheet(
+                                //     context: context,
+                                //     builder: (context) => StatefulBuilder(
+                                //           builder: (context, setState) {
+
+                                //           },
+                                //         ));
+                              }
+                            },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppTheme.nearlyDarkBlue,
                         shape: RoundedRectangleBorder(
@@ -573,64 +694,6 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                   ),
                                   SizedBox(
                                     width: 5,
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return AlertDialog(
-                                            title: Text(
-                                                '${getLang(context, "ENTER_COUPON")}'),
-                                            content: TextField(
-                                              controller: couponController,
-                                              onChanged: (value) {
-                                                // Store your value here
-                                              },
-                                              decoration: InputDecoration(
-                                                  hintText:
-                                                      "${getLang(context, "COUPON")}"),
-                                            ),
-                                            actions: [
-                                              TextButton(
-                                                child: Text(
-                                                    '${getLang(context, "SUBMIT")}'),
-                                                onPressed: () {
-                                                  Navigator.of(context).pop();
-                                                  AppCubit.get(context)
-                                                      .getCoupon(
-                                                          couponController
-                                                              .text);
-                                                  // Add your submission logic here
-                                                },
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      );
-                                    },
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      child: Container(
-                                          color: Colors.green,
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(6.0),
-                                            child: Row(
-                                              children: [
-                                                Text(
-                                                  "${getLang(context, "COUPON")}",
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 12),
-                                                ),
-                                                Icon(
-                                                  Icons.add,
-                                                  color: Colors.white,
-                                                )
-                                              ],
-                                            ),
-                                          )),
-                                    ),
                                   ),
                                   Spacer(),
                                   Container(

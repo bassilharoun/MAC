@@ -90,5 +90,10 @@
   "TRIPTICK_INFO_PASSPORT_IMAGE": "Passport Image",
   "TRIPTICK_INFO_ID_IMAGE": "ID Image",
   "TRIPTICK_INFO_ORDER_TRIPTICK": "Order Your Trip Ticket Now",
-  "CHANGE_LANGUAGE": "Convert language"
+  "CHANGE_LANGUAGE": "Convert language",
+  "ERROR_LOGIN": "Email or password is incorrect",
+  "ERROR_SIGNUP": "Email is already registered",
+  "ERROR_UPLOAD_IMAGE": "Error with attached image",
+  "ERROR_CREATE_USER": "Error creating user",
+  "YOU_WILL_PAY": "سوف تدفع"
 }

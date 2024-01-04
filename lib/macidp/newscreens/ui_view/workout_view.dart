@@ -15,10 +15,10 @@ class WorkoutView extends StatelessWidget {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight),
           borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(8.0),
-              bottomLeft: Radius.circular(8.0),
-              bottomRight: Radius.circular(8.0),
-              topRight: Radius.circular(68.0)),
+              topLeft: Radius.circular(20.0),
+              bottomLeft: Radius.circular(20.0),
+              bottomRight: Radius.circular(20.0),
+              topRight: Radius.circular(20.0)),
           boxShadow: <BoxShadow>[
             BoxShadow(
                 color: AppTheme.grey.withOpacity(0.6),

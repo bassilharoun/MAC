@@ -8,6 +8,7 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:macidp/const.dart';
 import 'package:macidp/macidp/app_cubit/app_cubit.dart';
 import 'package:macidp/macidp/newscreens/app_theme.dart';
+import 'package:macidp/macidp/newscreens/ui_view/image_dialog.dart';
 import 'package:macidp/macidp/shared/components/applocale.dart';
 import 'package:macidp/main.dart';
 import 'package:u_credit_card/u_credit_card.dart';
@@ -354,19 +355,32 @@ class _UserScreenState extends State<UserScreen> {
                                 itemCount:
                                     AppCubit.get(context).myLicenses.length,
                                 itemBuilder: (BuildContext context, int index) {
-                                  return Container(
-                                      height: 200,
-                                      width: 300,
-                                      margin:
-                                          EdgeInsets.symmetric(horizontal: 4),
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          image: DecorationImage(
-                                            fit: BoxFit.cover,
-                                            image: NetworkImage(
-                                                "${AppCubit.get(context).myLicenses[index]}"),
-                                          )));
+                                  return GestureDetector(
+                                    onTap: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return ImageDialog(
+                                            imageUrl:
+                                                "${AppCubit.get(context).myLicenses[index]}",
+                                          );
+                                        },
+                                      );
+                                    },
+                                    child: Container(
+                                        height: 200,
+                                        width: 300,
+                                        margin:
+                                            EdgeInsets.symmetric(horizontal: 4),
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            image: DecorationImage(
+                                              fit: BoxFit.cover,
+                                              image: NetworkImage(
+                                                  "${AppCubit.get(context).myLicenses[index]}"),
+                                            ))),
+                                  );
                                 }),
                             fallback: (context) => Center(
                               child: Text(

@@ -10,6 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:macidp/const.dart';
 import 'package:macidp/macidp/models/user_model.dart';
 import 'package:macidp/macidp/modules/signup/cubit/states.dart';
+import 'package:macidp/macidp/shared/components/components.dart';
 
 class AppSignupCubit extends Cubit<AppSignupStates> {
   AppSignupCubit() : super(AppSignupInitialState());
@@ -38,7 +39,7 @@ class AppSignupCubit extends Cubit<AppSignupStates> {
         uId = value.user!.uid;
       });
     }).catchError((error) {
-      emit(AppSignupErrorState(error));
+      emit(AppSignupErrorState(error.toString()));
     });
   }
 
@@ -97,6 +98,7 @@ class AppSignupCubit extends Cubit<AppSignupStates> {
       print(imgUrl);
     }).catchError((error) {
       emit(AppUploadProfileImageErrorState());
+      showToast(text: "ERROR_UPLOAD_IMAGE", state: ToastStates.ERROR);
     });
     return imgUrl;
   }

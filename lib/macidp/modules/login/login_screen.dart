@@ -25,7 +25,7 @@ class LoginScreen extends StatelessWidget {
       child: BlocConsumer<AppLoginCubit, AppLoginStates>(
         listener: (context, state) {
           if (state is AppLoginErrorState) {
-            showToast(text: state.error, state: ToastStates.ERROR);
+            showToast(text: "${getLang(context, "ERROR_LOGIN")}", state: ToastStates.ERROR);
           }
           if (state is AppLoginSuccessState) {
             AppCubit.get(context).getUserData();

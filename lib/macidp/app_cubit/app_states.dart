@@ -43,3 +43,5 @@ class AppCouponErrorState extends AppStates{}
 class AppGetMyLicensesLoadingState extends AppStates{}
 class AppGetMyLicensesDoneState extends AppStates{}
 class AppGetMyLicensesErrorState extends AppStates{}
+
+class AppchangeInitShipping extends AppStates{}

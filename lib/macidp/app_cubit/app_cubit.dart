@@ -14,7 +14,7 @@ import 'package:macidp/macidp/layout/shop_layout.dart';
 import 'package:macidp/macidp/models/products_model.dart';
 import 'package:macidp/macidp/models/user_model.dart';
 import 'package:macidp/macidp/modules/cart_screen/cart_screen.dart';
-import 'package:macidp/macidp/newscreens/my_diary/IDP_screen.dart';
+import 'package:macidp/macidp/newscreens/IDP_screen/IDP_screen.dart';
 import 'package:macidp/macidp/newscreens/triptick/triptick_screen.dart';
 import 'package:macidp/macidp/newscreens/user/user_screen.dart';
 import 'package:macidp/macidp/payment/conf.dart';
@@ -1506,5 +1506,11 @@ class AppCubit extends Cubit<AppStates> {
     } catch (e) {
       emit(AppGetMyLicensesErrorState());
     }
+  }
+
+  int initShipping = 0;
+  void changeInitShipping(int shipping) {
+    initShipping = shipping;
+    emit(AppchangeInitShipping());
   }
 }

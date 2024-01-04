@@ -296,29 +296,22 @@ class _TriptickInfoScreenState extends State<TriptickInfoScreen> {
                                           },
                                         );
                                       },
-                                      child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        child: Container(
-                                            color: Colors.green,
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(4.0),
-                                              child: Row(
-                                                children: [
-                                                  Text(
-                                                    "${getLang(context, "COUPON")}",
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 12),
-                                                  ),
-                                                  Icon(
-                                                    Icons.add,
-                                                    color: Colors.white,
-                                                  )
-                                                ],
-                                              ),
-                                            )),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(4.0),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              "${getLang(context, "COUPON")}",
+                                              style: TextStyle(
+                                                  color: Colors.green,
+                                                  fontSize: 12),
+                                            ),
+                                            Icon(
+                                              Icons.add,
+                                              color: Colors.green,
+                                            )
+                                          ],
+                                        ),
                                       ),
                                     ),
                                     SizedBox(

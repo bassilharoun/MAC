@@ -12,7 +12,7 @@ class AppLoginCubit extends Cubit<AppLoginStates>{
   static AppLoginCubit get(context) => BlocProvider.of(context);
 
   // LoginModel? loginModel ;
-  
+
   void userLogin({
     required String email ,
     required String password
@@ -41,3 +41,5 @@ class AppLoginCubit extends Cubit<AppLoginStates>{
   }
   
 }
+
+

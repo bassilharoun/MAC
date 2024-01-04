@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:macidp/macidp/app_cubit/app_cubit.dart';
 import 'package:macidp/macidp/app_cubit/app_states.dart';
 import 'package:macidp/macidp/layout/shop_layout.dart';
+import 'package:macidp/macidp/newscreens/IDP_screen/IDP_list_view.dart';
+import 'package:macidp/macidp/newscreens/IDP_screen/water_view.dart';
 import 'package:macidp/macidp/newscreens/app_theme.dart';
-import 'package:macidp/macidp/newscreens/my_diary/IDP_list_view.dart';
-import 'package:macidp/macidp/newscreens/my_diary/water_view.dart';
 import 'package:macidp/macidp/newscreens/ui_view/body_measurement.dart';
 import 'package:macidp/macidp/newscreens/ui_view/glass_view.dart';
 import 'package:macidp/macidp/newscreens/ui_view/title_view.dart';
@@ -93,7 +93,6 @@ class _IDPScreenState extends State<IDPScreen> with TickerProviderStateMixin {
   Widget getMainListViewUI() {
     return ListView(
       // controller: scrollController,
-      padding: EdgeInsets.zero,
       children: [
         getAppBarUI(context),
         TitleView(

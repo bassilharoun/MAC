@@ -90,5 +90,11 @@
   "TRIPTICK_INFO_PASSPORT_IMAGE": "صورة جواز السفر",
   "TRIPTICK_INFO_ID_IMAGE": "صورة الهوية المحلية",
   "TRIPTICK_INFO_ORDER_TRIPTICK": "اطلب دفتر التربتيك الان",
-  "CHANGE_LANGUAGE": "تبديل اللغة"
+  "CHANGE_LANGUAGE": "تبديل اللغة",
+  "ERROR_LOGIN": "البريد الالكتروني او كلمة المرور غير صحيحة",
+  "ERROR_SIGNUP": "البريد الالكتروني مستخدم مسبقا",
+  "ERROR_UPLOAD_IMAGE": "خطأ في الصورة المرفقة",
+  "ERROR_CREATE_USER": "خطأ في انشاء الحساب",
+  "YOU_WILL_PAY": "سوف تدفع"
+
 }

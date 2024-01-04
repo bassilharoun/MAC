@@ -24,6 +24,16 @@ class SignupScreen extends StatelessWidget {
       create: (context) => AppSignupCubit(),
       child: BlocConsumer<AppSignupCubit, AppSignupStates>(
         listener: (context, state) {
+          if (state is AppSignupErrorState) {
+            showToast(
+                text: "${getLang(context, "ERROR_SIGNUP")}",
+                state: ToastStates.ERROR);
+          }
+          if (state is AppCreateUserErrorState) {
+            showToast(
+                text: "${getLang(context, "ERROR_CREATE_USER")}",
+                state: ToastStates.ERROR);
+          }
           if (state is AppCreateUserSuccessState) {
             AppCubit.get(context).getUserData();
             CacheHelper.saveData(key: 'uId', value: uId).then((value) {
@@ -146,7 +156,7 @@ class SignupScreen extends StatelessWidget {
                             controller: passwordController,
                             type: TextInputType.visiblePassword,
                             validate: (value) {
-                              if (value!.isEmpty) {
+                              if (value!.isEmpty || value.length < 6) {
                                 return "Password is too short !";
                               }
                             },

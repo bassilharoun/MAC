@@ -27,73 +27,72 @@ class _ShopLayoutState extends State<ShopLayout> {
     return BlocConsumer<AppCubit, AppStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        return SafeArea(
-          child: Scaffold(
-              backgroundColor: Colors.grey[200],
-              body:
-                  // getAppBarUI(),
-                  Stack(
-                children: [
-                  cubit.screens[cubit.currentIndex],
-                  Positioned(
+        return Scaffold(
+          // appBar: AppBar(),
+            backgroundColor: Colors.grey[200],
+            body:
+                // getAppBarUI(),
+                Stack(
+              children: [
+                cubit.screens[cubit.currentIndex],
+                Positioned(
+                  height: 160,
+                  bottom: 10,
+                  right: 10,
+                  left: 10,
+                  child: Container(
                     height: 123,
-                    bottom: 10,
-                    right: 10,
-                    left: 10,
-                    child: Container(
-                      height: 123,
-                      child: DotNavigationBar(
-                        marginR:
-                            EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-                        paddingR: const EdgeInsets.only(bottom: 5, top: 10),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 5,
-                            blurRadius: 7,
-                            offset: Offset(0, 3),
+                    child: DotNavigationBar(
+                      marginR:
+                          EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                      paddingR: const EdgeInsets.only(bottom: 5, top: 10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                      onTap: (index) {
+                        cubit.changeBottom(index, context);
+                      },
+                      currentIndex: cubit.currentIndex,
+                      items: [
+                        DotNavigationBarItem(
+                          icon: Icon(
+                            CupertinoIcons.home,
                           ),
-                        ],
-                        onTap: (index) {
-                          cubit.changeBottom(index, context);
-                        },
-                        currentIndex: cubit.currentIndex,
-                        items: [
-                          DotNavigationBarItem(
-                            icon: Icon(
-                              CupertinoIcons.home,
-                            ),
-                            selectedColor: lightColor,
-                            unselectedColor: AppTheme.grey,
+                          selectedColor: lightColor,
+                          unselectedColor: AppTheme.grey,
+                        ),
+                        DotNavigationBarItem(
+                          icon: Icon(
+                            CupertinoIcons.book,
                           ),
-                          DotNavigationBarItem(
-                            icon: Icon(
-                              CupertinoIcons.book,
-                            ),
-                            selectedColor: lightColor,
-                            unselectedColor: AppTheme.grey,
+                          selectedColor: lightColor,
+                          unselectedColor: AppTheme.grey,
+                        ),
+                        DotNavigationBarItem(
+                          icon: Icon(
+                            CupertinoIcons.cart,
                           ),
-                          DotNavigationBarItem(
-                            icon: Icon(
-                              CupertinoIcons.cart,
-                            ),
-                            selectedColor: lightColor,
-                            unselectedColor: AppTheme.grey,
+                          selectedColor: lightColor,
+                          unselectedColor: AppTheme.grey,
+                        ),
+                        DotNavigationBarItem(
+                          icon: Icon(
+                            CupertinoIcons.person,
                           ),
-                          DotNavigationBarItem(
-                            icon: Icon(
-                              CupertinoIcons.person,
-                            ),
-                            selectedColor: lightColor,
-                            unselectedColor: AppTheme.grey,
-                          ),
-                        ],
-                      ),
+                          selectedColor: lightColor,
+                          unselectedColor: AppTheme.grey,
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              )),
-        );
+                ),
+              ],
+            ));
       },
     );
   }

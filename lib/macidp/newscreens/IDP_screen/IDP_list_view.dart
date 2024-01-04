@@ -149,10 +149,10 @@ class CarsView extends StatelessWidget {
                           end: Alignment.bottomRight,
                         ),
                         borderRadius: const BorderRadius.only(
-                          bottomRight: Radius.circular(8.0),
-                          bottomLeft: Radius.circular(8.0),
-                          topLeft: Radius.circular(8.0),
-                          topRight: Radius.circular(54.0),
+                          bottomRight: Radius.circular(20.0),
+                          bottomLeft: Radius.circular(20.0),
+                          topLeft: Radius.circular(20.0),
+                          topRight: Radius.circular(20.0),
                         ),
                       ),
                       child: Padding(
