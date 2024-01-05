@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:macidp/macidp/shared/colors.dart';
 import 'package:macidp/macidp/shared/components/applocale.dart';
 import 'package:macidp/main.dart';
-import '../app_theme.dart';
 
 class WorkoutView extends StatelessWidget {
   @override
@@ -11,7 +11,7 @@ class WorkoutView extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-              colors: [AppTheme.nearlyDarkBlue, HexColor("#6F56E8")],
+              colors: [buttonsColor, HexColor("#6F56E8")],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight),
           borderRadius: BorderRadius.only(
@@ -21,7 +21,7 @@ class WorkoutView extends StatelessWidget {
               topRight: Radius.circular(20.0)),
           boxShadow: <BoxShadow>[
             BoxShadow(
-                color: AppTheme.grey.withOpacity(0.6),
+                color: greyColor.withOpacity(0.6),
                 offset: Offset(1.1, 1.1),
                 blurRadius: 10.0),
           ],
@@ -36,11 +36,10 @@ class WorkoutView extends StatelessWidget {
                 '${getLang(context, "TRIPTICK_ABOUTUS")}',
                 textAlign: TextAlign.left,
                 style: TextStyle(
-                  fontFamily: AppTheme.fontName,
                   fontWeight: FontWeight.normal,
                   fontSize: 16,
                   letterSpacing: 0.0,
-                  color: AppTheme.white,
+                  color: whiteColor,
                 ),
               ),
               Padding(
@@ -49,7 +48,6 @@ class WorkoutView extends StatelessWidget {
                   '${getLang(context, "TRIPTICK_ABOUTUS_BODY")}',
                   textAlign: TextAlign.left,
                   style: TextStyle(
-                    fontFamily: AppTheme.fontName,
                     fontWeight: FontWeight.normal,
                     fontSize: 14,
                     letterSpacing: 0.0,

@@ -11,6 +11,7 @@ import 'package:lottie/lottie.dart';
 import 'package:macidp/const.dart';
 import 'package:macidp/macidp/constance/config.dart';
 import 'package:macidp/macidp/layout/shop_layout.dart';
+import 'package:macidp/macidp/models/my_external.dart';
 import 'package:macidp/macidp/models/products_model.dart';
 import 'package:macidp/macidp/models/user_model.dart';
 import 'package:macidp/macidp/modules/cart_screen/cart_screen.dart';
@@ -961,6 +962,15 @@ class AppCubit extends Cubit<AppStates> {
     File localDrivingLicense,
     File passport,
   ) async {
+    print("هلااااااااااااااااا");
+    print(
+        "هلا هلا ${int.parse(product.price) - (int.parse(product.price) * dis) / 100}");
+    print(
+        "${int.parse(product.price) - (int.parse(product.price) * dis) / 100}");
+    print(
+        "${int.parse(product.price) - (int.parse(product.price) * dis) / 100}");
+    print(
+        "${int.parse(product.price) - (int.parse(product.price) * dis) / 100}");
     String url = 'https://oppwa.com//v1/checkouts';
     String authorization =
         'Bearer OGFjZGE0Yzg4MzNiMmNlOTAxODMzYjg2YjMwMDA2Zjh8d0VOcWtKOTlTbQ==';
@@ -973,7 +983,7 @@ class AppCubit extends Cubit<AppStates> {
     Map<String, String> body = {
       'entityId': '8acda4c8833b2ce901833b877605070a',
       'amount':
-          "${int.parse(product.price) - (int.parse(product.price) * dis) / 100}",
+          "${(int.parse(product.price) - (int.parse(product.price) * dis) / 100).toInt()}",
       'currency': 'SAR',
       'paymentType': 'DB',
     };
@@ -1014,6 +1024,7 @@ class AppCubit extends Cubit<AppStates> {
         getPaymentStatus(json.decode(response.body)['id']);
       } else {
         print('Request failed with status: ${response.statusCode}');
+        print('EROOORRRR++++');
       }
     } catch (e) {
       print('Exception: $e');
@@ -1071,7 +1082,7 @@ class AppCubit extends Cubit<AppStates> {
     Map<String, String> body = {
       'entityId': '8acda4c8833b2ce901833b877605070a',
       'amount':
-          "${int.parse(product.price) - (int.parse(product.price) * dis) / 100}",
+          "${(int.parse(product.price) - (int.parse(product.price) * dis) / 100).toInt()}",
       'currency': 'SAR',
       'paymentType': 'DB',
     };
@@ -1167,70 +1178,68 @@ class AppCubit extends Cubit<AppStates> {
     emit(AppAddToCart());
   }
 
-  Future getCart(context) async {
-    try {
-      showDialog(
-          context: context,
-          builder: (_) => Container(
-                child: Center(
-                  child: Lottie.asset(
-                    'assets/lotties/loading.json',
-                  ),
-                ),
-              ));
-      cartCache = CacheHelper.getData(key: 'cart');
-      for (int i = 0; i < cartCache!.length; i++) {
-        cart!.add(cartCache![i]);
-        print(cart);
-        print("--------------------------");
-      }
-    } catch (e) {
-      print(e);
-    }
-  }
+  // Future getCart(context) async {
+  //   try {
+  //     showDialog(
+  //         context: context,
+  //         builder: (_) => Container(
+  //               child: Center(
+  //                 child: Lottie.asset(
+  //                   'assets/lotties/loading.json',
+  //                 ),
+  //               ),
+  //             ));
+  //     cartCache = CacheHelper.getData(key: 'cart');
+  //     for (int i = 0; i < cartCache!.length; i++) {
+  //       cart!.add(cartCache![i]);
+  //       print(cart);
+  //       print("--------------------------");
+  //     }
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
 
-  List<Products> cartItems = [];
+  MyExternal myExternal = MyExternal();
   Future getCartItems(context) async {
     emit(AppLoadingGetCart());
-    cartItems = [];
-    for (int i = 0; i < cart!.length; i++) {
-      try {
-        showDialog(
-            context: context,
-            builder: (_) => Container(
-                  child: Center(
-                    child: Lottie.asset(
-                      'assets/lotties/loading.json',
-                    ),
-                  ),
-                ));
-        String url = Config.url +
-            Config.productsUrl +
-            "/${cart![i]}" +
-            "?consumer_key=${Config.key}&consumer_secret=${Config.secret}";
-        var response = await Dio().get(url,
-            options: Options(
-                headers: {HttpHeaders.contentTypeHeader: "application/json"}));
-        if (response.statusCode == 200) {
-          cartItems.add(Products.fromJson(response.data));
-          print(cartItems[i].name);
-          Navigator.pop(context);
-        }
-      } on DioError catch (e) {
-        print(e.response);
+    try {
+      // showDialog(
+      //     context: context,
+      //     builder: (_) => Container(
+      //           child: Center(
+      //             child: Lottie.asset(
+      //               'assets/lotties/loading.json',
+      //             ),
+      //           ),
+      //         ));
+      String url = "https://mobile.macxbackupxdata.space/api" +
+          "/${Config.externalUrl}" +
+          "/${userModel!.uId}";
+      var response = await Dio().get(url,
+          options: Options(
+              headers: {HttpHeaders.contentTypeHeader: "application/json"}));
+      if (response.statusCode == 200) {
+        emit(AppSuccessGetCart());
+        print(response.data);
+        myExternal = MyExternal.fromJson(response.data);
+        // print(cartItems[i].fullName);
+        // Navigator.pop(context);
       }
+    } on DioError catch (e) {
+      print(e.response);
+      emit(AppErrorGetCart());
     }
-    getCartAmount();
-    emit(AppSuccessGetCart());
+    // getCartAmount();
   }
 
-  double totalPrice = 0;
-  getCartAmount() {
-    totalPrice = 0;
-    for (int i = 0; i < cartItems.length; i++) {
-      totalPrice = totalPrice + double.parse("${cartItems[i].price!}");
-    }
-  }
+  // double totalPrice = 0;
+  // getCartAmount() {
+  //   totalPrice = 0;
+  //   for (int i = 0; i < cartItems.length; i++) {
+  //     totalPrice = totalPrice + double.parse("${cartItems[i].price!}");
+  //   }
+  // }
 
   Future removeCart(Products product) async {
     print(product.id);
@@ -1328,6 +1337,7 @@ class AppCubit extends Cubit<AppStates> {
       }
     } on DioError catch (e) {
       print(e);
+      print("ERRRRRRRRRRRRRRRRRR");
       emit(AppErrorOrderLicense());
     }
   }

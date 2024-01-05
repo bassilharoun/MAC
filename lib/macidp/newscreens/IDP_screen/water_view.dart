@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:lottie/lottie.dart';
-import 'package:macidp/macidp/newscreens/app_theme.dart';
+import 'package:macidp/macidp/shared/colors.dart';
 
 class WaterView extends StatefulWidget {
   @override
@@ -20,7 +20,7 @@ class _WaterViewState extends State<WaterView> with TickerProviderStateMixin {
       padding: const EdgeInsets.only(left: 24, right: 24, top: 16, bottom: 18),
       child: Container(
         decoration: BoxDecoration(
-          color: AppTheme.white,
+          color: whiteColor,
           borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(20.0),
               bottomLeft: Radius.circular(20.0),
@@ -28,7 +28,7 @@ class _WaterViewState extends State<WaterView> with TickerProviderStateMixin {
               topRight: Radius.circular(20.0)),
           boxShadow: <BoxShadow>[
             BoxShadow(
-                color: AppTheme.grey.withOpacity(0.2),
+                color: greyColor.withOpacity(0.2),
                 offset: const Offset(1.1, 1.1),
                 blurRadius: 10.0),
           ],
@@ -58,10 +58,9 @@ class _WaterViewState extends State<WaterView> with TickerProviderStateMixin {
                                 '4.9+',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                  fontFamily: AppTheme.fontName,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 50,
-                                  color: AppTheme.nearlyDarkBlue,
+                                  color: buttonsColor,
                                 ),
                               ),
                             ),
@@ -82,7 +81,7 @@ class _WaterViewState extends State<WaterView> with TickerProviderStateMixin {
                       child: Container(
                         height: 2,
                         decoration: BoxDecoration(
-                          color: AppTheme.background,
+                          color: whiteColor,
                           borderRadius:
                               const BorderRadius.all(Radius.circular(4.0)),
                         ),

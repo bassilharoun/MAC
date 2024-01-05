@@ -5,7 +5,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:macidp/macidp/app_cubit/app_cubit.dart';
 import 'package:macidp/macidp/app_cubit/app_states.dart';
-import 'package:macidp/macidp/newscreens/app_theme.dart';
 import 'package:macidp/macidp/shared/colors.dart';
 
 class ShopLayout extends StatefulWidget {
@@ -28,7 +27,7 @@ class _ShopLayoutState extends State<ShopLayout> {
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
-          // appBar: AppBar(),
+            // appBar: AppBar(),
             backgroundColor: Colors.grey[200],
             body:
                 // getAppBarUI(),
@@ -61,31 +60,31 @@ class _ShopLayoutState extends State<ShopLayout> {
                       items: [
                         DotNavigationBarItem(
                           icon: Icon(
-                            CupertinoIcons.home,
+                            CupertinoIcons.creditcard,
                           ),
                           selectedColor: lightColor,
-                          unselectedColor: AppTheme.grey,
+                          unselectedColor: greyColor,
                         ),
                         DotNavigationBarItem(
                           icon: Icon(
                             CupertinoIcons.book,
                           ),
                           selectedColor: lightColor,
-                          unselectedColor: AppTheme.grey,
+                          unselectedColor: greyColor,
                         ),
                         DotNavigationBarItem(
                           icon: Icon(
-                            CupertinoIcons.cart,
+                            CupertinoIcons.bag,
                           ),
                           selectedColor: lightColor,
-                          unselectedColor: AppTheme.grey,
+                          unselectedColor: greyColor,
                         ),
                         DotNavigationBarItem(
                           icon: Icon(
                             CupertinoIcons.person,
                           ),
                           selectedColor: lightColor,
-                          unselectedColor: AppTheme.grey,
+                          unselectedColor: greyColor,
                         ),
                       ],
                     ),

@@ -7,9 +7,9 @@ import 'package:macidp/macidp/newscreens/ui_view/area_list_view.dart';
 import 'package:macidp/macidp/newscreens/ui_view/running_view.dart';
 import 'package:macidp/macidp/newscreens/ui_view/title_view.dart';
 import 'package:macidp/macidp/newscreens/ui_view/workout_view.dart';
+import 'package:macidp/macidp/shared/colors.dart';
 import 'package:macidp/macidp/shared/components/applocale.dart';
 
-import '../app_theme.dart';
 
 class TriptickScreen extends StatefulWidget {
   @override
@@ -55,7 +55,7 @@ class _TriptickScreenState extends State<TriptickScreen>
         listener: (context, state) {},
         builder: (context, state) {
           return Container(
-            color: AppTheme.background,
+            color: whiteColor,
             child: getMainListViewUI(),
           );
         });

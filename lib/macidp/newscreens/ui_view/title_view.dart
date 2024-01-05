@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:macidp/macidp/newscreens/app_theme.dart';
+import 'package:macidp/macidp/shared/colors.dart';
 
 class TitleView extends StatelessWidget {
   final String? titleTxt;
   final String? subTxt;
 
-  const TitleView(
-      {Key? key,
-      this.titleTxt,
-      this.subTxt ,
-      })
-      : super(key: key);
+  const TitleView({
+    Key? key,
+    this.titleTxt,
+    this.subTxt,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +23,10 @@ class TitleView extends StatelessWidget {
                 titleTxt!,
                 textAlign: TextAlign.left,
                 style: const TextStyle(
-                  fontFamily: AppTheme.fontName,
                   fontWeight: FontWeight.w500,
                   fontSize: 18,
                   letterSpacing: 0.5,
-                  color: AppTheme.lightText,
+                  color: buttonsColor,
                 ),
               ),
             ),

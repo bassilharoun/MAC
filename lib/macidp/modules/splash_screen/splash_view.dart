@@ -24,7 +24,7 @@ class _SplashViewState extends State<SplashView> {
       widget = LoginScreen();
     }
     AppCubit.get(context).getProducts(context).then((value) {
-      AppCubit.get(context).getCart(context).then((value) {
+      AppCubit.get(context).getCartItems(context).then((value) {
         _goNext(widget);
       });
     });

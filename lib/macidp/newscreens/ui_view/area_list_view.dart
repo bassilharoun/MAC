@@ -7,7 +7,6 @@ import 'package:macidp/macidp/shared/colors.dart';
 import 'package:macidp/macidp/shared/components/applocale.dart';
 import 'package:macidp/macidp/shared/components/components.dart';
 
-import '../app_theme.dart';
 
 class AreaListView extends StatefulWidget {
   @override
@@ -88,7 +87,7 @@ class TriptickCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppTheme.white,
+        color: whiteColor,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20.0),
           bottomLeft: Radius.circular(20.0),
@@ -97,7 +96,7 @@ class TriptickCard extends StatelessWidget {
         ),
         boxShadow: <BoxShadow>[
           BoxShadow(
-              color: AppTheme.grey.withOpacity(0.4),
+              color: greyColor.withOpacity(0.4),
               offset: const Offset(1.1, 1.1),
               blurRadius: 10.0),
         ],
@@ -109,7 +108,7 @@ class TriptickCard extends StatelessWidget {
           highlightColor: Colors.transparent,
           hoverColor: Colors.transparent,
           borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-          splashColor: AppTheme.nearlyDarkBlue.withOpacity(0.2),
+          splashColor: buttonsColor.withOpacity(0.2),
           onTap: () {
             print(AppCubit.get(context).products[index!].name);
             if (index == 0 || index == 1) {

@@ -5,9 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:macidp/macidp/app_cubit/app_cubit.dart';
 import 'package:macidp/macidp/app_cubit/app_states.dart';
 import 'package:macidp/macidp/models/products_model.dart';
-import 'package:macidp/macidp/newscreens/app_theme.dart';
 import 'package:macidp/macidp/models/IDP_list_data.dart';
 import 'package:macidp/macidp/newscreens/license%20details/license_details_screen.dart';
+import 'package:macidp/macidp/shared/colors.dart';
 import 'package:macidp/macidp/shared/components/components.dart';
 import 'package:macidp/main.dart';
 import 'package:simple_html_css/simple_html_css.dart';
@@ -169,7 +169,7 @@ class CarsView extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20,
                                 letterSpacing: 0.2,
-                                color: AppTheme.white,
+                                color: whiteColor,
                               ),
                             ),
                             Expanded(
@@ -191,11 +191,10 @@ class CarsView extends StatelessWidget {
                                             product.shortDescription!)
                                         .join('\n'),
                                     style: TextStyle(
-                                      fontFamily: AppTheme.fontName,
                                       fontWeight: FontWeight.w500,
                                       fontSize: 12,
                                       letterSpacing: 0.2,
-                                      color: AppTheme.white,
+                                      color: whiteColor,
                                     ),
                                   ),
                                 ],
@@ -210,11 +209,10 @@ class CarsView extends StatelessWidget {
                                     product.price.toString(),
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                      fontFamily: AppTheme.fontName,
                                       fontWeight: FontWeight.w500,
                                       fontSize: 30,
                                       letterSpacing: 0.2,
-                                      color: AppTheme.white,
+                                      color: whiteColor,
                                     ),
                                   ),
                                   Padding(
@@ -223,11 +221,10 @@ class CarsView extends StatelessWidget {
                                     child: Text(
                                       'ر.س',
                                       style: TextStyle(
-                                        fontFamily: AppTheme.fontName,
                                         fontWeight: FontWeight.w500,
                                         fontSize: 15,
                                         letterSpacing: 0.2,
-                                        color: AppTheme.white,
+                                        color: whiteColor,
                                       ),
                                     ),
                                   ),
@@ -249,7 +246,7 @@ class CarsView extends StatelessWidget {
                       width: 250,
                       height: 150,
                       decoration: BoxDecoration(
-                        color: AppTheme.nearlyWhite.withOpacity(0.2),
+                        color: whiteColor.withOpacity(0.2),
                         shape: BoxShape.circle,
                       ),
                     ),

@@ -95,5 +95,9 @@
   "ERROR_SIGNUP": "Email is already registered",
   "ERROR_UPLOAD_IMAGE": "Error with attached image",
   "ERROR_CREATE_USER": "Error creating user",
-  "YOU_WILL_PAY": "سوف تدفع"
+  "LICENSE_TYPE": "License Type:   ",
+  "ONE_YEAR": "One Year",
+  "TWO_YEARS": "Two Years",
+  "THREE_YEARS": "Three Years"
+
 }

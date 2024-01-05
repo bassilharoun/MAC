@@ -7,8 +7,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:macidp/const.dart';
 import 'package:macidp/macidp/app_cubit/app_cubit.dart';
-import 'package:macidp/macidp/newscreens/app_theme.dart';
 import 'package:macidp/macidp/newscreens/ui_view/image_dialog.dart';
+import 'package:macidp/macidp/shared/colors.dart';
 import 'package:macidp/macidp/shared/components/applocale.dart';
 import 'package:macidp/main.dart';
 import 'package:u_credit_card/u_credit_card.dart';
@@ -128,6 +128,26 @@ class _UserScreenState extends State<UserScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
+        actions: [
+          IconButton(
+              onPressed: () {
+                if (MyApp.of(context)!.getLocale().languageCode == 'ar') {
+                  MyApp.of(context)
+                      ?.setLocale(Locale.fromSubtags(languageCode: 'en'));
+
+                  AppCubit.get(context).getProducts(context);
+                } else {
+                  MyApp.of(context)
+                      ?.setLocale(Locale.fromSubtags(languageCode: 'ar'));
+
+                  AppCubit.get(context).getProducts(context);
+                }
+              },
+              icon: Icon(
+                Icons.translate,
+                color: whiteColor,
+              ))
+        ],
         leading: GestureDetector(
           onTap: () {
             // Navigator.push(
@@ -183,12 +203,12 @@ class _UserScreenState extends State<UserScreen> {
                       horizontal: 16,
                     ),
                     decoration: BoxDecoration(
-                        color: AppTheme.background,
+                        color: whiteColor,
                         borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(8.0),
+                          topLeft: Radius.circular(20.0),
                           bottomLeft: Radius.circular(8.0),
                           bottomRight: Radius.circular(8.0),
-                          topRight: Radius.circular(68.0),
+                          topRight: Radius.circular(20.0),
                         )),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -234,8 +254,32 @@ class _UserScreenState extends State<UserScreen> {
                                         ),
                                       ),
                                     ],
-                                  )
+                                  ),
                                 ],
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  signOut(context);
+                                },
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.logout,
+                                      color: Colors.red,
+                                      size: 16,
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      '${getLang(context, "LOGOUT")}',
+                                      style: TextStyle(
+                                          color: Colors.red,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.normal),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),
@@ -510,92 +554,6 @@ class YourMenuScreen extends StatelessWidget {
                 ],
               )
             ],
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(8.0),
-                bottomLeft: Radius.circular(8.0),
-                bottomRight: Radius.circular(8.0),
-                topRight: Radius.circular(30.0),
-              ),
-              child: Container(
-                  color: Colors.red.withOpacity(0.8),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        signOut(context);
-                      },
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.logout,
-                            color: Colors.white,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            '${getLang(context, "LOGOUT")}',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.normal),
-                          ),
-                        ],
-                      ),
-                    ),
-                  )),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(8.0),
-                bottomLeft: Radius.circular(8.0),
-                bottomRight: Radius.circular(8.0),
-                topRight: Radius.circular(30.0),
-              ),
-              child: Container(
-                  color: AppTheme.nearlyDarkBlue.withOpacity(0.8),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        if (MyApp.of(context)!.getLocale().languageCode ==
-                            'ar') {
-                          MyApp.of(context)?.setLocale(
-                              Locale.fromSubtags(languageCode: 'en'));
-
-                          AppCubit.get(context).getProducts(context);
-                        } else {
-                          MyApp.of(context)?.setLocale(
-                              Locale.fromSubtags(languageCode: 'ar'));
-
-                          AppCubit.get(context).getProducts(context);
-                        }
-                      },
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.translate,
-                            color: Colors.white,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            '${getLang(context, "CHANGE_LANGUAGE")}',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    ),
-                  )),
-            ),
           ),
         ],
       ),

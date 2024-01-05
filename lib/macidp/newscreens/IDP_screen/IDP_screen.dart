@@ -5,10 +5,10 @@ import 'package:macidp/macidp/app_cubit/app_states.dart';
 import 'package:macidp/macidp/layout/shop_layout.dart';
 import 'package:macidp/macidp/newscreens/IDP_screen/IDP_list_view.dart';
 import 'package:macidp/macidp/newscreens/IDP_screen/water_view.dart';
-import 'package:macidp/macidp/newscreens/app_theme.dart';
 import 'package:macidp/macidp/newscreens/ui_view/body_measurement.dart';
 import 'package:macidp/macidp/newscreens/ui_view/glass_view.dart';
 import 'package:macidp/macidp/newscreens/ui_view/title_view.dart';
+import 'package:macidp/macidp/shared/colors.dart';
 import 'package:macidp/macidp/shared/components/applocale.dart';
 
 class IDPScreen extends StatefulWidget {
@@ -84,7 +84,7 @@ class _IDPScreenState extends State<IDPScreen> with TickerProviderStateMixin {
         listener: (context, state) {},
         builder: (context, state) {
           return Container(
-            color: AppTheme.background,
+            color: whiteColor,
             child: getMainListViewUI(),
           );
         });

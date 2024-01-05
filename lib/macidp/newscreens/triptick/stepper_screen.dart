@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:macidp/macidp/app_cubit/app_cubit.dart';
 import 'package:macidp/macidp/app_cubit/app_states.dart';
+import 'package:macidp/macidp/newscreens/license%20details/license_details_screen.dart';
 import 'package:macidp/macidp/shared/colors.dart';
 import 'package:macidp/macidp/shared/components/applocale.dart';
 import 'package:macidp/macidp/shared/components/components.dart';
+import 'package:string_validator/string_validator.dart';
 
 class StepperScreen extends StatelessWidget {
   int step = 0;
@@ -51,9 +53,15 @@ class StepperScreen extends StatelessWidget {
                   defaultTxtForm(
                       controller: nameController,
                       type: TextInputType.name,
+                      onChanged: (txt) {
+                        if (formKey.currentState!.validate()) {}
+                      },
                       validate: (value) {
                         if (value!.isEmpty) {
                           return "";
+                        }
+                        if (!isEnglish(value)) {
+                          return "Please enter only letters or spaces.";
                         }
                         return null;
                       },
@@ -139,9 +147,15 @@ class StepperScreen extends StatelessWidget {
                   defaultTxtForm(
                       controller: idController,
                       type: TextInputType.number,
+                      onChanged: (txt) {
+                        if (formKey.currentState!.validate()) {}
+                      },
                       validate: (value) {
                         if (value!.isEmpty) {
                           return "";
+                        }
+                        if (!isNumeric(value)) {
+                          return "Please enter only Numbers.";
                         }
                         return null;
                       },
@@ -153,9 +167,15 @@ class StepperScreen extends StatelessWidget {
                   defaultTxtForm(
                       controller: passportController,
                       type: TextInputType.text,
+                      onChanged: (txt) {
+                        if (formKey.currentState!.validate()) {}
+                      },
                       validate: (value) {
                         if (value!.isEmpty) {
                           return "";
+                        }
+                        if (!isAlphanumeric(value)) {
+                          return "Please enter only letters or Numbers.";
                         }
                         return null;
                       },
@@ -168,6 +188,9 @@ class StepperScreen extends StatelessWidget {
                   defaultTxtForm(
                       controller: inAdressController,
                       type: TextInputType.text,
+                      onChanged: (txt) {
+                        if (formKey.currentState!.validate()) {}
+                      },
                       validate: (value) {
                         if (value!.isEmpty) {
                           return "";
@@ -183,6 +206,9 @@ class StepperScreen extends StatelessWidget {
                   defaultTxtForm(
                       controller: outAdressController,
                       type: TextInputType.text,
+                      onChanged: (txt) {
+                        if (formKey.currentState!.validate()) {}
+                      },
                       validate: (value) {
                         if (value!.isEmpty) {
                           return "";
@@ -198,6 +224,9 @@ class StepperScreen extends StatelessWidget {
                   defaultTxtForm(
                       controller: inPhoneController,
                       type: TextInputType.phone,
+                      onChanged: (txt) {
+                        if (formKey.currentState!.validate()) {}
+                      },
                       validate: (value) {
                         if (value!.isEmpty) {
                           return "";
@@ -212,6 +241,9 @@ class StepperScreen extends StatelessWidget {
                   defaultTxtForm(
                       controller: outPhoneController,
                       type: TextInputType.phone,
+                      onChanged: (txt) {
+                        if (formKey.currentState!.validate()) {}
+                      },
                       validate: (value) {
                         if (value!.isEmpty) {
                           return "";
@@ -446,9 +478,15 @@ class StepperScreen extends StatelessWidget {
               defaultTxtForm(
                   controller: sitsNumberController,
                   type: TextInputType.number,
+                  onChanged: (txt) {
+                    if (formKey.currentState!.validate()) {}
+                  },
                   validate: (value) {
                     if (value!.isEmpty) {
                       return "";
+                    }
+                    if (!isNumeric(value)) {
+                      return "Please enter only letters or spaces.";
                     }
                     return null;
                   },

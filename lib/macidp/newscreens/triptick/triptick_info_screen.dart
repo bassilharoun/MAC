@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:macidp/macidp/app_cubit/app_cubit.dart';
 import 'package:macidp/macidp/app_cubit/app_states.dart';
 import 'package:macidp/macidp/models/products_model.dart';
-import 'package:macidp/macidp/newscreens/app_theme.dart';
 import 'package:macidp/macidp/newscreens/license%20details/license_app_theme.dart';
 import 'package:macidp/macidp/newscreens/license%20details/license_data.dart';
 import 'package:macidp/macidp/newscreens/triptick/stepper_screen.dart';
@@ -228,9 +227,9 @@ class _TriptickInfoScreenState extends State<TriptickInfoScreen> {
               child: Column(
                 children: [
                   Container(
-                    color: AppTheme.white,
+                    color: whiteColor,
                     child: AppBar(
-                      backgroundColor: AppTheme.background,
+                      backgroundColor: whiteColor,
                       leading: InkWell(
                         child: Icon(
                           Icons.arrow_back_ios,
@@ -324,7 +323,7 @@ class _TriptickInfoScreenState extends State<TriptickInfoScreen> {
                                         fontWeight: FontWeight.w200,
                                         fontSize: 18,
                                         letterSpacing: 0.27,
-                                        color: AppTheme.nearlyDarkBlue,
+                                        color: buttonsColor,
                                       ),
                                     ),
                                   ],
@@ -339,7 +338,7 @@ class _TriptickInfoScreenState extends State<TriptickInfoScreen> {
                   const SizedBox(height: 20),
                   Container(
                     decoration: BoxDecoration(
-                      color: AppTheme.background,
+                      color: whiteColor,
                       borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(32.0),
                           topRight: Radius.circular(32.0)),

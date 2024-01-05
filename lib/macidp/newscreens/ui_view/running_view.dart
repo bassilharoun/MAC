@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../app_theme.dart';
+import 'package:macidp/macidp/shared/colors.dart';
 
 class RunningView extends StatelessWidget {
 
@@ -17,7 +17,7 @@ class RunningView extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 16, bottom: 16),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: AppTheme.white,
+                    color: whiteColor,
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(8.0),
                         bottomLeft: Radius.circular(8.0),
@@ -25,7 +25,7 @@ class RunningView extends StatelessWidget {
                         topRight: Radius.circular(8.0)),
                     boxShadow: <BoxShadow>[
                       BoxShadow(
-                          color: AppTheme.grey.withOpacity(0.4),
+                          color: greyColor.withOpacity(0.4),
                           offset: Offset(1.1, 1.1),
                           blurRadius: 10.0),
                     ],
@@ -60,13 +60,11 @@ class RunningView extends StatelessWidget {
                                   "Triptik is valid for 1 year !",
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
-                                    fontFamily:
-                                        AppTheme.fontName,
                                     fontWeight: FontWeight.w500,
                                     fontSize: 14,
                                     letterSpacing: 0.0,
                                     color:
-                                        AppTheme.nearlyDarkBlue,
+                                        buttonsColor,
                                   ),
                                 ),
                               ),
@@ -83,11 +81,10 @@ class RunningView extends StatelessWidget {
                               "from the date of its issuance",
                               textAlign: TextAlign.left,
                               style: TextStyle(
-                                fontFamily: AppTheme.fontName,
                                 fontWeight: FontWeight.w500,
                                 fontSize: 10,
                                 letterSpacing: 0.0,
-                                color: AppTheme.grey
+                                color: greyColor
                                     .withOpacity(0.5),
                               ),
                             ),

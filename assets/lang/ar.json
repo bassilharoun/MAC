@@ -95,6 +95,9 @@
   "ERROR_SIGNUP": "البريد الالكتروني مستخدم مسبقا",
   "ERROR_UPLOAD_IMAGE": "خطأ في الصورة المرفقة",
   "ERROR_CREATE_USER": "خطأ في انشاء الحساب",
-  "YOU_WILL_PAY": "سوف تدفع"
+  "LICENSE_TYPE": "نوع الرخصة :   ",
+  "ONE_YEAR": "سنة واحدة",
+  "TWO_YEARS": "سنتين",
+  "THREE_YEARS": "3 سنوات"
 
 }

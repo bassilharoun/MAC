@@ -6,11 +6,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:macidp/macidp/app_cubit/app_cubit.dart';
 import 'package:macidp/macidp/app_cubit/app_states.dart';
 import 'package:macidp/macidp/models/products_model.dart';
-import 'package:macidp/macidp/newscreens/app_theme.dart';
 import 'package:macidp/macidp/shared/colors.dart';
 import 'package:macidp/macidp/shared/components/applocale.dart';
 import 'package:macidp/macidp/shared/components/components.dart';
+import 'package:macidp/macidp/shared/validators.dart';
 import 'package:macidp/main.dart';
+import 'package:string_validator/string_validator.dart';
+
 // import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'license_app_theme.dart';
 
@@ -167,8 +169,8 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                                         width: 60,
                                                         child: Card(
                                                             elevation: 5,
-                                                            shadowColor: AppTheme
-                                                                .nearlyDarkBlue,
+                                                            shadowColor:
+                                                                buttonsColor,
                                                             child: Center(
                                                               child: Text(
                                                                 "${getLang(context, "LICENCE_INFO_SHIPPING")}",
@@ -187,8 +189,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                                                             context)
                                                                         .initShipping ==
                                                                     0
-                                                                ? AppTheme
-                                                                    .nearlyDarkBlue
+                                                                ? buttonsColor
                                                                 : Colors.white),
                                                       ),
                                                     ),
@@ -203,8 +204,8 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                                         width: 60,
                                                         child: Card(
                                                             elevation: 5,
-                                                            shadowColor: AppTheme
-                                                                .nearlyDarkBlue,
+                                                            shadowColor:
+                                                                buttonsColor,
                                                             child: Center(
                                                               child: Text(
                                                                 "${getLang(context, "LICENCE_INFO_BRANCH")}",
@@ -223,8 +224,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                                                             context)
                                                                         .initShipping ==
                                                                     1
-                                                                ? AppTheme
-                                                                    .nearlyDarkBlue
+                                                                ? buttonsColor
                                                                 : Colors.white),
                                                       ),
                                                     ),
@@ -385,8 +385,8 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                                         },
                                                         label:
                                                             "${getLang(context, "LICENCE_INFO_STREET_NAME")}",
-                                                        prefix: Icons
-                                                            .person_outline),
+                                                        prefix: CupertinoIcons
+                                                            .home),
                                                     SizedBox(
                                                       height: 15,
                                                     ),
@@ -403,8 +403,8 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                                         },
                                                         label:
                                                             "${getLang(context, "LICENCE_INFO_NEIGHBORHOOD")}",
-                                                        prefix: Icons
-                                                            .person_outline),
+                                                        prefix: CupertinoIcons
+                                                            .person_2),
                                                     SizedBox(
                                                       height: 15,
                                                     ),
@@ -421,8 +421,8 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                                         },
                                                         label:
                                                             "${getLang(context, "LICENCE_INFO_BUILDING_NUMBER")}",
-                                                        prefix: Icons
-                                                            .person_outline),
+                                                        prefix: CupertinoIcons
+                                                            .building_2_fill),
                                                     SizedBox(
                                                       height: 15,
                                                     ),
@@ -440,7 +440,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                                         label:
                                                             "${getLang(context, "LICENCE_INFO_POSTAL_CODE")}",
                                                         prefix: Icons
-                                                            .person_outline),
+                                                            .inbox_outlined),
                                                     SizedBox(
                                                       height: 15,
                                                     ),
@@ -458,7 +458,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                                         label:
                                                             "${getLang(context, "LICENCE_INFO_CITY")}",
                                                         prefix: Icons
-                                                            .person_outline),
+                                                            .location_city),
                                                   ],
                                                 ),
                                               ],
@@ -598,7 +598,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                               }
                             },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: AppTheme.nearlyDarkBlue,
+                        backgroundColor: buttonsColor,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15)),
                       ),
@@ -618,7 +618,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
           ),
           body: SingleChildScrollView(
             child: Container(
-              color: AppTheme.nearlyDarkBlue,
+              color: buttonsColor,
               child: Column(
                 children: <Widget>[
                   Container(
@@ -689,7 +689,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                       fontWeight: FontWeight.w200,
                                       fontSize: 22,
                                       letterSpacing: 0.27,
-                                      color: AppTheme.nearlyDarkBlue,
+                                      color: buttonsColor,
                                     ),
                                   ),
                                   SizedBox(
@@ -713,7 +713,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                         ),
                                         Icon(
                                           Icons.star,
-                                          color: AppTheme.nearlyDarkBlue,
+                                          color: buttonsColor,
                                           size: 24,
                                         ),
                                       ],
@@ -735,9 +735,16 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                     defaultTxtForm(
                                         controller: nameController,
                                         type: TextInputType.name,
+                                        onChanged: (txt) {
+                                          if (formKey.currentState!
+                                              .validate()) {}
+                                        },
                                         validate: (value) {
                                           if (value!.isEmpty) {
                                             return "";
+                                          }
+                                          if (!isEnglish(value)) {
+                                            return "Please enter only letters or spaces.";
                                           }
                                           return null;
                                         },
@@ -860,9 +867,16 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                     defaultTxtForm(
                                         controller: passportController,
                                         type: TextInputType.text,
+                                        onChanged: (txt) {
+                                          if (formKey.currentState!
+                                              .validate()) {}
+                                        },
                                         validate: (value) {
                                           if (value!.isEmpty) {
                                             return "";
+                                          }
+                                          if (!isAlphanumeric(value)) {
+                                            return "Please enter only letters or spaces.";
                                           }
                                           return null;
                                         },
@@ -1006,8 +1020,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                       children: [
                                         Expanded(
                                           child: RadioListTile(
-                                              activeColor:
-                                                  AppTheme.nearlyDarkBlue,
+                                              activeColor: buttonsColor,
                                               title: Text(
                                                   "${getLang(context, "LICENCE_INFO_MALE")}"),
                                               value: "male",
@@ -1021,8 +1034,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                         ),
                                         Expanded(
                                           child: RadioListTile(
-                                              activeColor:
-                                                  AppTheme.nearlyDarkBlue,
+                                              activeColor: buttonsColor,
                                               title: Text(
                                                   "${getLang(context, "LICENCE_INFO_FEMALE")}"),
                                               value: "female",
@@ -1051,8 +1063,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                           },
                                           child: Card(
                                               elevation: 5,
-                                              shadowColor:
-                                                  AppTheme.nearlyDarkBlue,
+                                              shadowColor: buttonsColor,
                                               child: Center(
                                                 child: Column(
                                                   mainAxisAlignment:
@@ -1071,7 +1082,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                                 ),
                                               ),
                                               color: initCategory == index
-                                                  ? AppTheme.nearlyDarkBlue
+                                                  ? buttonsColor
                                                   : Colors.white),
                                         ),
                                         itemCount: 4,
@@ -1155,8 +1166,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                             CrossAxisAlignment.start,
                                         children: [
                                           Checkbox(
-                                              activeColor:
-                                                  AppTheme.nearlyDarkBlue,
+                                              activeColor: buttonsColor,
                                               value: agreeTerms,
                                               onChanged: (value) {
                                                 agreeTerms = !agreeTerms;
@@ -1192,4 +1202,12 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
       },
     );
   }
+}
+
+bool isEnglish(String text) {
+  // Regular expression to match only English alphabets
+  RegExp english = RegExp(r'^[a-zA-Z ]+$');
+
+  // Check if the string matches the English pattern
+  return english.hasMatch(text);
 }

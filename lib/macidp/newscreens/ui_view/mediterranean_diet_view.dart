@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:macidp/macidp/shared/colors.dart';
 import 'dart:math' as math;
 
-import 'package:macidp/macidp/newscreens/app_theme.dart';
 import 'package:macidp/main.dart';
 
 class MediterranesnDietView extends StatelessWidget {
@@ -15,7 +15,7 @@ class MediterranesnDietView extends StatelessWidget {
           left: 24, right: 24, top: 16, bottom: 18),
       child: Container(
         decoration: BoxDecoration(
-          color: AppTheme.white,
+          color: whiteColor,
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(8.0),
               bottomLeft: Radius.circular(8.0),
@@ -23,7 +23,7 @@ class MediterranesnDietView extends StatelessWidget {
               topRight: Radius.circular(68.0)),
           boxShadow: <BoxShadow>[
             BoxShadow(
-                color: AppTheme.grey.withOpacity(0.2),
+                color: greyColor.withOpacity(0.2),
                 offset: Offset(1.1, 1.1),
                 blurRadius: 10.0),
           ],
@@ -83,14 +83,13 @@ class MediterranesnDietView extends StatelessWidget {
                               width: 100,
                               height: 100,
                               decoration: BoxDecoration(
-                                color: AppTheme.white,
+                                color: whiteColor,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(100.0),
                                 ),
                                 border: new Border.all(
                                     width: 4,
-                                    color: AppTheme
-                                        .nearlyDarkBlue
+                                    color: buttonsColor
                                         .withOpacity(0.2)),
                               ),
                             ),
@@ -110,7 +109,7 @@ class MediterranesnDietView extends StatelessWidget {
               child: Container(
                 height: 2,
                 decoration: BoxDecoration(
-                  color: AppTheme.background,
+                  color: whiteColor,
                   borderRadius: BorderRadius.all(Radius.circular(4.0)),
                 ),
               ),
@@ -129,11 +128,10 @@ class MediterranesnDietView extends StatelessWidget {
                           'Accredited',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontFamily: AppTheme.fontName,
                             fontWeight: FontWeight.w500,
                             fontSize: 16,
                             letterSpacing: -0.2,
-                            color: AppTheme.darkText,
+                            color: buttonsColor,
                           ),
                         ),
                         Padding(
@@ -182,11 +180,10 @@ class MediterranesnDietView extends StatelessWidget {
                               'Trust',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                fontFamily: AppTheme.fontName,
                                 fontWeight: FontWeight.w500,
                                 fontSize: 16,
                                 letterSpacing: -0.2,
-                                color: AppTheme.darkText,
+                                color: buttonsColor,
                               ),
                             ),
                             Padding(
@@ -237,11 +234,10 @@ class MediterranesnDietView extends StatelessWidget {
                             Text(
                               'Best Price',
                               style: TextStyle(
-                                fontFamily: AppTheme.fontName,
                                 fontWeight: FontWeight.w500,
                                 fontSize: 16,
                                 letterSpacing: -0.2,
-                                color: AppTheme.darkText,
+                                color: buttonsColor,
                               ),
                             ),
                             Padding(

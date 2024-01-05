@@ -1,6 +1,6 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import 'package:macidp/macidp/newscreens/app_theme.dart';
+import 'package:macidp/macidp/shared/colors.dart';
 import 'package:vector_math/vector_math.dart' as vector;
 
 class WaveView extends StatefulWidget {
@@ -77,17 +77,17 @@ class _WaveViewState extends State<WaveView> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      child: new AnimatedBuilder(
-        animation: new CurvedAnimation(
+      child: AnimatedBuilder(
+        animation:  CurvedAnimation(
           parent: animationController!,
           curve: Curves.easeInOut,
         ),
-        builder: (context, child) => new Stack(
+        builder: (context, child) => Stack(
           children: <Widget>[
-            new ClipPath(
-              child: new Container(
+             ClipPath(
+              child: Container(
                 decoration: BoxDecoration(
-                  color: AppTheme.nearlyDarkBlue.withOpacity(0.5),
+                  color: buttonsColor.withOpacity(0.5),
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(80.0),
                       bottomLeft: Radius.circular(80.0),
@@ -95,24 +95,24 @@ class _WaveViewState extends State<WaveView> with TickerProviderStateMixin {
                       topRight: Radius.circular(80.0)),
                   gradient: LinearGradient(
                     colors: [
-                      AppTheme.nearlyDarkBlue.withOpacity(0.2),
-                      AppTheme.nearlyDarkBlue.withOpacity(0.5)
+                      buttonsColor.withOpacity(0.2),
+                      buttonsColor.withOpacity(0.5)
                     ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
                 ),
               ),
-              clipper: new WaveClipper(animationController!.value, animList1),
+              clipper:  WaveClipper(animationController!.value, animList1),
             ),
-            new ClipPath(
-              child: new Container(
+             ClipPath(
+              child:  Container(
                 decoration: BoxDecoration(
-                  color: AppTheme.nearlyDarkBlue,
+                  color: buttonsColor,
                   gradient: LinearGradient(
                     colors: [
-                      AppTheme.nearlyDarkBlue.withOpacity(0.4),
-                      AppTheme.nearlyDarkBlue
+                      buttonsColor.withOpacity(0.4),
+                      buttonsColor
                     ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
@@ -136,25 +136,23 @@ class _WaveViewState extends State<WaveView> with TickerProviderStateMixin {
                     Text(
                       widget.percentageValue.round().toString(),
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: AppTheme.fontName,
+                      style: const TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 24,
                         letterSpacing: 0.0,
-                        color: AppTheme.white,
+                        color: whiteColor,
                       ),
                     ),
-                    Padding(
+                    const Padding(
                       padding: const EdgeInsets.only(top: 3.0),
                       child: Text(
                         '%',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontFamily: AppTheme.fontName,
                           fontWeight: FontWeight.w500,
                           fontSize: 14,
                           letterSpacing: 0.0,
-                          color: AppTheme.white,
+                          color: whiteColor,
                         ),
                       ),
                     ),
@@ -175,7 +173,7 @@ class _WaveViewState extends State<WaveView> with TickerProviderStateMixin {
                   width: 2,
                   height: 2,
                   decoration: BoxDecoration(
-                    color: AppTheme.white.withOpacity(0.4),
+                    color: whiteColor.withOpacity(0.4),
                     shape: BoxShape.circle,
                   ),
                 ),
@@ -194,7 +192,7 @@ class _WaveViewState extends State<WaveView> with TickerProviderStateMixin {
                   width: 4,
                   height: 4,
                   decoration: BoxDecoration(
-                    color: AppTheme.white.withOpacity(0.4),
+                    color: whiteColor.withOpacity(0.4),
                     shape: BoxShape.circle,
                   ),
                 ),
@@ -213,7 +211,7 @@ class _WaveViewState extends State<WaveView> with TickerProviderStateMixin {
                   width: 3,
                   height: 3,
                   decoration: BoxDecoration(
-                    color: AppTheme.white.withOpacity(0.4),
+                    color: whiteColor.withOpacity(0.4),
                     shape: BoxShape.circle,
                   ),
                 ),
@@ -230,7 +228,7 @@ class _WaveViewState extends State<WaveView> with TickerProviderStateMixin {
                   width: 4,
                   height: 4,
                   decoration: BoxDecoration(
-                    color: AppTheme.white.withOpacity(
+                    color: whiteColor.withOpacity(
                         animationController!.status == AnimationStatus.reverse
                             ? 0.0
                             : 0.4),
