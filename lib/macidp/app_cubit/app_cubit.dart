@@ -1220,17 +1220,19 @@ class AppCubit extends Cubit<AppStates> {
           options: Options(
               headers: {HttpHeaders.contentTypeHeader: "application/json"}));
       if (response.statusCode == 200) {
-        emit(AppSuccessGetCart());
         print(response.data);
         myExternal = MyExternal.fromJson(response.data);
+        emit(AppSuccessGetCart());
+
         // print(cartItems[i].fullName);
         // Navigator.pop(context);
+      } else {
+        emit(AppErrorGetCart());
       }
-    } on DioError catch (e) {
-      print(e.response);
+    } catch (e) {
+      print(e.toString());
       emit(AppErrorGetCart());
     }
-    // getCartAmount();
   }
 
   // double totalPrice = 0;
