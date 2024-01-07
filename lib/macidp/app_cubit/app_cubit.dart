@@ -142,6 +142,7 @@ class AppCubit extends Cubit<AppStates> {
   }
 
   String? dropdNationality = "اختر الجنسية";
+  String? dropdNationalityEN = "Choose nationality";
 
   var nationality = [
     "اختر الجنسية",
@@ -197,7 +198,62 @@ class AppCubit extends Cubit<AppStates> {
     "فنلندا",
   ];
 
+  var nationalityEN = [
+    "Choose nationality",
+    "Algeria",
+    "Egypt",
+    "Morocco",
+    "Tunisia",
+    "Libya",
+    "Sudan",
+    "Iraq",
+    "Jordan",
+    "Lebanon",
+    "Palestine",
+    "Syria",
+    "Yemen",
+    "Saudi Arabia",
+    "United Arab Emirates",
+    "Qatar",
+    "Bahrain",
+    "Oman",
+    "Kuwait",
+    "Comoros",
+    "Djibouti",
+    "Mauritania",
+    "Somalia",
+    "Western Sahara",
+    "Oman",
+    "Balkans",
+    "Andalusia",
+    "China",
+    "India",
+    "Russia",
+    "Brazil",
+    "Canada",
+    "Australia",
+    "Japan",
+    "South Korea",
+    "North Korea",
+    "England",
+    "France",
+    "Germany",
+    "Italy",
+    "Spain",
+    "Portugal",
+    "Netherlands",
+    "Belgium",
+    "Austria",
+    "Switzerland",
+    "Sweden",
+    "Norway",
+    "Denmark",
+    "Finland",
+  ];
+
   String? dropdDriving = "اختر دولة مصدر القيادة المحلية";
+  String? dropdDrivingEN =
+      "Select the country of local driving license issuance";
 
   var driving = [
     "اختر دولة مصدر القيادة المحلية",
@@ -253,7 +309,61 @@ class AppCubit extends Cubit<AppStates> {
     "فنلندا",
   ];
 
+  var drivingEN = [
+    "Select the country of local driving license issuance",
+    "Algeria",
+    "Egypt",
+    "Morocco",
+    "Tunisia",
+    "Libya",
+    "Sudan",
+    "Iraq",
+    "Jordan",
+    "Lebanon",
+    "Palestine",
+    "Syria",
+    "Yemen",
+    "Saudi Arabia",
+    "United Arab Emirates",
+    "Qatar",
+    "Bahrain",
+    "Oman",
+    "Kuwait",
+    "Comoros",
+    "Djibouti",
+    "Mauritania",
+    "Somalia",
+    "Western Sahara",
+    "Oman",
+    "The Balkans",
+    "Andalusia",
+    "China",
+    "India",
+    "Russia",
+    "Brazil",
+    "Canada",
+    "Australia",
+    "Japan",
+    "South Korea",
+    "North Korea",
+    "England",
+    "France",
+    "Germany",
+    "Italy",
+    "Spain",
+    "Portugal",
+    "Netherlands",
+    "Belgium",
+    "Austria",
+    "Switzerland",
+    "Sweden",
+    "Norway",
+    "Denmark",
+    "Finland",
+  ];
+
   String? dropdCountry = "اختر دولة الاقامة";
+  String? dropdCountryEN = "Select Country of Residence";
 
   var country = [
     "اختر دولة الاقامة",
@@ -309,7 +419,61 @@ class AppCubit extends Cubit<AppStates> {
     "فنلندا",
   ];
 
+  var countryEN = [
+    "Select Country of Residence",
+    "Algeria",
+    "Egypt",
+    "Morocco",
+    "Tunisia",
+    "Libya",
+    "Sudan",
+    "Iraq",
+    "Jordan",
+    "Lebanon",
+    "Palestine",
+    "Syria",
+    "Yemen",
+    "Saudi Arabia",
+    "United Arab Emirates",
+    "Qatar",
+    "Bahrain",
+    "Oman",
+    "Kuwait",
+    "Comoros",
+    "Djibouti",
+    "Mauritania",
+    "Somalia",
+    "Western Sahara",
+    "Oman",
+    "Balkans",
+    "Andalusia",
+    "China",
+    "India",
+    "Russia",
+    "Brazil",
+    "Canada",
+    "Australia",
+    "Japan",
+    "South Korea",
+    "North Korea",
+    "England",
+    "France",
+    "Germany",
+    "Italy",
+    "Spain",
+    "Portugal",
+    "Netherlands",
+    "Belgium",
+    "Austria",
+    "Switzerland",
+    "Sweden",
+    "Norway",
+    "Denmark",
+    "Finland",
+  ];
+
   String? signCountryDrop = "بلد التسجيل";
+  String? signCountryDropEN = "Registration Country";
 
   var signCountry = [
     "بلد التسجيل",
@@ -365,7 +529,61 @@ class AppCubit extends Cubit<AppStates> {
     "فنلندا",
   ];
 
+  var signCountryEN = [
+    "Registration Country",
+    "Algeria",
+    "Egypt",
+    "Morocco",
+    "Tunisia",
+    "Libya",
+    "Sudan",
+    "Iraq",
+    "Jordan",
+    "Lebanon",
+    "Palestine",
+    "Syria",
+    "Yemen",
+    "Saudi Arabia",
+    "United Arab Emirates",
+    "Qatar",
+    "Bahrain",
+    "Oman",
+    "Kuwait",
+    "Comoros",
+    "Djibouti",
+    "Mauritania",
+    "Somalia",
+    "Western Sahara",
+    "Oman",
+    "Balkans",
+    "Andalusia",
+    "China",
+    "India",
+    "Russia",
+    "Brazil",
+    "Canada",
+    "Australia",
+    "Japan",
+    "South Korea",
+    "North Korea",
+    "England",
+    "France",
+    "Germany",
+    "Italy",
+    "Spain",
+    "Portugal",
+    "Netherlands",
+    "Belgium",
+    "Austria",
+    "Switzerland",
+    "Sweden",
+    "Norway",
+    "Denmark",
+    "Finland",
+  ];
+
   String? dropdYourCountry = "اختر الدولة";
+  String? dropdYourCountryEN = "Select Country";
 
   var yourCountry = [
     "اختر الدولة",
@@ -421,7 +639,61 @@ class AppCubit extends Cubit<AppStates> {
     "فنلندا",
   ];
 
+  var yourCountryEN = [
+    "Select Country",
+    "Algeria",
+    "Egypt",
+    "Morocco",
+    "Tunisia",
+    "Libya",
+    "Sudan",
+    "Iraq",
+    "Jordan",
+    "Lebanon",
+    "Palestine",
+    "Syria",
+    "Yemen",
+    "Saudi Arabia",
+    "United Arab Emirates",
+    "Qatar",
+    "Bahrain",
+    "Oman",
+    "Kuwait",
+    "Comoros",
+    "Djibouti",
+    "Mauritania",
+    "Somalia",
+    "Western Sahara",
+    "Oman",
+    "Balkans",
+    "Andalusia",
+    "China",
+    "India",
+    "Russia",
+    "Brazil",
+    "Canada",
+    "Australia",
+    "Japan",
+    "South Korea",
+    "North Korea",
+    "England",
+    "France",
+    "Germany",
+    "Italy",
+    "Spain",
+    "Portugal",
+    "Netherlands",
+    "Belgium",
+    "Austria",
+    "Switzerland",
+    "Sweden",
+    "Norway",
+    "Denmark",
+    "Finland",
+  ];
+
   String? dropBlood = "اختر فصيلة الدم";
+  String? dropBloodEN = "choose blood type";
 
   var bloods = [
     "اختر فصيلة الدم",
@@ -435,7 +707,20 @@ class AppCubit extends Cubit<AppStates> {
     "O+",
   ];
 
+  var bloodsEN = [
+    "choose blood type",
+    "A-",
+    "A+",
+    "B-",
+    "B+",
+    "AB-",
+    "AB+",
+    "O-",
+    "O+",
+  ];
+
   String? dropBranch = "فرع جدة";
+  String? dropBranchEN = "Jeddah Branch";
 
   var branch = [
     "فرع جدة",
@@ -444,15 +729,34 @@ class AppCubit extends Cubit<AppStates> {
     "فرع السليمانية",
   ];
 
+  var branchEN = [
+    "Jeddah Branch",
+    "Dammam Branch",
+    "Batha Branch",
+    "Sulaimaniyah Branch",
+  ];
+
   String? dropdPanelType = "اختر نوع اللوحة";
+  String? dropdPanelTypeEN = "Choose panel type";
 
   var panelTypes = [
     "اختر نوع اللوحة",
     "تجاري",
     "شخصي",
   ];
-  changeDropdownPanelType(String? newValue) {
-    dropdPanelType = newValue;
+
+  var panelTypesEN = [
+    "Choose panel type",
+    "Commercial",
+    "Personal",
+  ];
+
+  changeDropdownPanelType(String? newValue, String lang) {
+    if (lang == "ar") {
+      dropdPanelType = newValue;
+    } else {
+      dropdPanelTypeEN = newValue;
+    }
     emit(AppChangeDropdown());
   }
 
@@ -538,38 +842,66 @@ class AppCubit extends Cubit<AppStates> {
     emit(AppChangeDropdown());
   }
 
-  changeDropdownNationality(String? newValue) {
-    dropdNationality = newValue;
+  changeDropdownNationality(String? newValue, String lang) {
+    if (lang == "ar") {
+      dropdNationality = newValue;
+    } else {
+      dropdNationalityEN = newValue;
+    }
     emit(AppChangeDropdown());
   }
 
-  changeDropdownDriving(String? newValue) {
-    dropdDriving = newValue;
+  changeDropdownDriving(String? newValue, String lang) {
+    if (lang == "ar") {
+      dropdDriving = newValue;
+    } else {
+      dropdDrivingEN = newValue;
+    }
     emit(AppChangeDropdown());
   }
 
-  changeDropdownCountry(String? newValue) {
-    dropdCountry = newValue;
+  changeDropdownCountry(String? newValue, String lang) {
+    if (lang == "ar") {
+      dropdCountry = newValue;
+    } else {
+      dropdCountryEN = newValue;
+    }
     emit(AppChangeDropdown());
   }
 
-  changeDropdownSignCountry(String? newValue) {
-    signCountryDrop = newValue;
+  changeDropdownSignCountry(String? newValue, String lang) {
+    if (lang == "ar") {
+      signCountryDrop = newValue;
+    } else {
+      signCountryDropEN = newValue;
+    }
     emit(AppChangeDropdown());
   }
 
-  changeDropdownYourCountry(String? newValue) {
-    dropdYourCountry = newValue;
+  changeDropdownYourCountry(String? newValue, String lang) {
+    if (lang == "ar") {
+      dropdYourCountry = newValue;
+    } else {
+      dropdYourCountryEN = newValue;
+    }
     emit(AppChangeDropdown());
   }
 
-  changeDropdownBranch(String? newValue) {
-    dropBranch = newValue;
+  changeDropdownBranch(String? newValue, String lang) {
+    if (lang == "ar") {
+      dropBranch = newValue;
+    } else {
+      dropBranchEN = newValue;
+    }
     emit(AppChangeDropdown());
   }
 
-  changeDropdownBlood(String? newValue) {
-    dropBlood = newValue;
+  changeDropdownBlood(String? newValue, String lang) {
+    if (lang == "ar") {
+      dropBlood = newValue;
+    } else {
+      dropBloodEN = newValue;
+    }
     emit(AppChangeDropdown());
   }
 
@@ -1174,7 +1506,7 @@ class AppCubit extends Cubit<AppStates> {
   Future<void> addToCart(String productId) async {
     print(productId);
     cart!.add(productId);
-    showToast(text: "تمت الاضافة الى العربة", state: ToastStates.SUCCESS);
+    showToast(text: "طلبك قيد المراجعة", state: ToastStates.SUCCESS);
     emit(AppAddToCart());
   }
 

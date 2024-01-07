@@ -223,15 +223,19 @@ class _CartScreenState extends State<CartScreen> {
                           ),
                           Row(
                             children: [
-                              Text(
-                                "${getLang(context, "LICENSE_TYPE")}",
-                                style: TextStyle(
-                                    fontSize: 16, color: Colors.grey[600]),
+                              Expanded(
+                                child: Text(
+                                  "${getLang(context, "LICENSE_TYPE")}",
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.grey[600]),
+                                ),
                               ),
-                              Text(
-                                "${externalProduct.licenseType!.first == 3 ? "${getLang(context, "THREE_YEARS")}" : (externalProduct.licenseType!.first == 2 ? "${getLang(context, "TWO_YEARS")}" : "${getLang(context, "ONE_YEAR")}")}",
-                                style: TextStyle(
-                                    fontSize: 16, color: Colors.grey[600]),
+                              Expanded(
+                                child: Text(
+                                  "${externalProduct.licenseType!.first == 3 ? "${getLang(context, "THREE_YEARS")}" : (externalProduct.licenseType!.first == 2 ? "${getLang(context, "TWO_YEARS")}" : "${getLang(context, "ONE_YEAR")}")}",
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.grey[600]),
+                                ),
                               ),
                             ],
                           ),

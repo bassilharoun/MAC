@@ -1,7 +1,7 @@
 class MyExternal {
-  List<LicenseOrders>? licenseOrders;
+  List<LicenseOrders> licenseOrders = [];
 
-  MyExternal({this.licenseOrders});
+  MyExternal();
 
   MyExternal.fromJson(Map<String, dynamic> json) {
     if (json['licenseOrders'] != null) {

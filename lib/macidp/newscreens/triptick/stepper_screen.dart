@@ -7,6 +7,8 @@ import 'package:macidp/macidp/newscreens/license%20details/license_details_scree
 import 'package:macidp/macidp/shared/colors.dart';
 import 'package:macidp/macidp/shared/components/applocale.dart';
 import 'package:macidp/macidp/shared/components/components.dart';
+import 'package:macidp/main.dart';
+import 'package:searchable_paginated_dropdown/searchable_paginated_dropdown.dart';
 import 'package:string_validator/string_validator.dart';
 
 class StepperScreen extends StatelessWidget {
@@ -89,17 +91,33 @@ class StepperScreen extends StatelessWidget {
                                 blurRadius: 5) //blur radius of shadow
                           ]),
                       child: Center(
-                        child: DropdownButton(
-                            value: AppCubit.get(context).dropdCountry,
-                            items: AppCubit.get(context).country.map((e) {
-                              return DropdownMenuItem(
-                                value: e,
-                                child: Text(e),
-                              );
-                            }).toList(),
+                        child: SearchableDropdown(
+                            value:
+                                MyApp.of(context)!.getLocale().languageCode ==
+                                        "ar"
+                                    ? AppCubit.get(context).dropdCountry
+                                    : AppCubit.get(context).dropdCountryEN,
+                            items:
+                                MyApp.of(context)!.getLocale().languageCode ==
+                                        "ar"
+                                    ? AppCubit.get(context).country.map((e) {
+                                        return SearchableDropdownMenuItem(
+                                          label: e,
+                                          value: e,
+                                          child: Text(e),
+                                        );
+                                      }).toList()
+                                    : AppCubit.get(context).countryEN.map((e) {
+                                        return SearchableDropdownMenuItem(
+                                          label: e,
+                                          value: e,
+                                          child: Text(e),
+                                        );
+                                      }).toList(),
                             onChanged: (String? newValue) {
-                              AppCubit.get(context)
-                                  .changeDropdownCountry(newValue);
+                              AppCubit.get(context).changeDropdownCountry(
+                                  newValue,
+                                  MyApp.of(context)!.getLocale().languageCode);
                             }),
                       ),
                     ),
@@ -126,17 +144,34 @@ class StepperScreen extends StatelessWidget {
                                 blurRadius: 5) //blur radius of shadow
                           ]),
                       child: Center(
-                        child: DropdownButton(
-                            value: AppCubit.get(context).dropdNationality,
-                            items: AppCubit.get(context).nationality.map((e) {
-                              return DropdownMenuItem(
-                                value: e,
-                                child: Text(e),
-                              );
-                            }).toList(),
+                        child: SearchableDropdown(
+                            value:
+                                MyApp.of(context)!.getLocale().languageCode ==
+                                        "ar"
+                                    ? AppCubit.get(context).dropdNationality
+                                    : AppCubit.get(context).dropdNationalityEN,
+                            items: MyApp.of(context)!
+                                        .getLocale()
+                                        .languageCode ==
+                                    "ar"
+                                ? AppCubit.get(context).nationality.map((e) {
+                                    return SearchableDropdownMenuItem(
+                                      label: e,
+                                      value: e,
+                                      child: Text(e),
+                                    );
+                                  }).toList()
+                                : AppCubit.get(context).nationalityEN.map((e) {
+                                    return SearchableDropdownMenuItem(
+                                      label: e,
+                                      value: e,
+                                      child: Text(e),
+                                    );
+                                  }).toList(),
                             onChanged: (String? newValue) {
-                              AppCubit.get(context)
-                                  .changeDropdownNationality(newValue);
+                              AppCubit.get(context).changeDropdownNationality(
+                                  newValue,
+                                  MyApp.of(context)!.getLocale().languageCode);
                             }),
                       ),
                     ),
@@ -289,17 +324,31 @@ class StepperScreen extends StatelessWidget {
                             blurRadius: 5) //blur radius of shadow
                       ]),
                   child: Center(
-                    child: DropdownButton(
-                        value: AppCubit.get(context).signCountryDrop,
-                        items: AppCubit.get(context).signCountry.map((e) {
-                          return DropdownMenuItem(
-                            value: e,
-                            child: Text(e),
-                          );
-                        }).toList(),
+                    child: SearchableDropdown(
+                        value:
+                            MyApp.of(context)!.getLocale().languageCode == "ar"
+                                ? AppCubit.get(context).signCountryDrop
+                                : AppCubit.get(context).signCountryDropEN,
+                        items:
+                            MyApp.of(context)!.getLocale().languageCode == "ar"
+                                ? AppCubit.get(context).signCountry.map((e) {
+                                    return SearchableDropdownMenuItem(
+                                      label: e,
+                                      value: e,
+                                      child: Text(e),
+                                    );
+                                  }).toList()
+                                : AppCubit.get(context).signCountryEN.map((e) {
+                                    return SearchableDropdownMenuItem(
+                                      label: e,
+                                      value: e,
+                                      child: Text(e),
+                                    );
+                                  }).toList(),
                         onChanged: (String? newValue) {
-                          AppCubit.get(context)
-                              .changeDropdownSignCountry(newValue);
+                          AppCubit.get(context).changeDropdownSignCountry(
+                              newValue,
+                              MyApp.of(context)!.getLocale().languageCode);
                         }),
                   ),
                 ),
@@ -339,17 +388,31 @@ class StepperScreen extends StatelessWidget {
                             blurRadius: 5) //blur radius of shadow
                       ]),
                   child: Center(
-                    child: DropdownButton(
-                        value: AppCubit.get(context).dropdPanelType,
-                        items: AppCubit.get(context).panelTypes.map((e) {
-                          return DropdownMenuItem(
-                            value: e,
-                            child: Text(e),
-                          );
-                        }).toList(),
+                    child: SearchableDropdown(
+                        value:
+                            MyApp.of(context)!.getLocale().languageCode == "ar"
+                                ? AppCubit.get(context).dropdPanelType
+                                : AppCubit.get(context).dropdPanelTypeEN,
+                        items:
+                            MyApp.of(context)!.getLocale().languageCode == "ar"
+                                ? AppCubit.get(context).panelTypes.map((e) {
+                                    return SearchableDropdownMenuItem(
+                                      label: e,
+                                      value: e,
+                                      child: Text(e),
+                                    );
+                                  }).toList()
+                                : AppCubit.get(context).panelTypesEN.map((e) {
+                                    return SearchableDropdownMenuItem(
+                                      label: e,
+                                      value: e,
+                                      child: Text(e),
+                                    );
+                                  }).toList(),
                         onChanged: (String? newValue) {
-                          AppCubit.get(context)
-                              .changeDropdownPanelType(newValue);
+                          AppCubit.get(context).changeDropdownPanelType(
+                              newValue,
+                              MyApp.of(context)!.getLocale().languageCode);
                         }),
                   ),
                 ),
@@ -458,10 +521,11 @@ class StepperScreen extends StatelessWidget {
                             blurRadius: 5) //blur radius of shadow
                       ]),
                   child: Center(
-                    child: DropdownButton(
+                    child: SearchableDropdown(
                         value: AppCubit.get(context).dropdCarType,
                         items: AppCubit.get(context).carTypes.map((e) {
-                          return DropdownMenuItem(
+                          return SearchableDropdownMenuItem(
+                            label: e,
                             value: e,
                             child: Text(e),
                           );
@@ -610,10 +674,11 @@ class StepperScreen extends StatelessWidget {
                             blurRadius: 5) //blur radius of shadow
                       ]),
                   child: Center(
-                    child: DropdownButton(
+                    child: SearchableDropdown(
                         value: AppCubit.get(context).dropdCarColor,
                         items: AppCubit.get(context).CarColors.map((e) {
-                          return DropdownMenuItem(
+                          return SearchableDropdownMenuItem(
+                            label: e,
                             value: e,
                             child: Text(e),
                           );

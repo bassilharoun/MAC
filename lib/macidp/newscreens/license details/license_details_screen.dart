@@ -11,6 +11,7 @@ import 'package:macidp/macidp/shared/components/applocale.dart';
 import 'package:macidp/macidp/shared/components/components.dart';
 import 'package:macidp/macidp/shared/validators.dart';
 import 'package:macidp/main.dart';
+import 'package:searchable_paginated_dropdown/searchable_paginated_dropdown.dart';
 import 'package:string_validator/string_validator.dart';
 
 // import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -345,27 +346,56 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                                                       5) //blur radius of shadow
                                                             ]),
                                                         child: Center(
-                                                          child: DropdownButton(
-                                                              value: AppCubit.get(
-                                                                      context)
-                                                                  .dropdYourCountry,
-                                                              items: AppCubit.get(
-                                                                      context)
-                                                                  .yourCountry
-                                                                  .map((e) {
-                                                                return DropdownMenuItem(
-                                                                  value: e,
-                                                                  child:
-                                                                      Text(e),
-                                                                );
-                                                              }).toList(),
-                                                              onChanged: (String?
-                                                                  newValue) {
-                                                                AppCubit.get(
-                                                                        context)
-                                                                    .changeDropdownYourCountry(
-                                                                        newValue);
-                                                              }),
+                                                          child:
+                                                              SearchableDropdown(
+                                                                  value: MyApp.of(context)!
+                                                                              .getLocale()
+                                                                              .languageCode ==
+                                                                          "ar"
+                                                                      ? AppCubit.get(context)
+                                                                          .dropdYourCountry
+                                                                      : AppCubit.get(context)
+                                                                          .dropdYourCountryEN,
+                                                                  items: MyApp.of(context)!
+                                                                              .getLocale()
+                                                                              .languageCode ==
+                                                                          "ar"
+                                                                      ? AppCubit.get(context)
+                                                                          .yourCountry
+                                                                          .map(
+                                                                              (e) {
+                                                                          return SearchableDropdownMenuItem(
+                                                                            label:
+                                                                                e,
+                                                                            value:
+                                                                                e,
+                                                                            child:
+                                                                                Text(e),
+                                                                          );
+                                                                        }).toList()
+                                                                      : AppCubit.get(
+                                                                              context)
+                                                                          .yourCountryEN
+                                                                          .map(
+                                                                              (e) {
+                                                                          return SearchableDropdownMenuItem(
+                                                                            label:
+                                                                                e,
+                                                                            value:
+                                                                                e,
+                                                                            child:
+                                                                                Text(e),
+                                                                          );
+                                                                        }).toList(),
+                                                                  onChanged:
+                                                                      (String?
+                                                                          newValue) {
+                                                                    AppCubit.get(context).changeDropdownYourCountry(
+                                                                        newValue,
+                                                                        MyApp.of(context)!
+                                                                            .getLocale()
+                                                                            .languageCode);
+                                                                  }),
                                                         ),
                                                       ),
                                                     ),
@@ -491,24 +521,50 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                                         ]),
                                                     child: Center(
                                                       child: DropdownButton(
-                                                          value: AppCubit.get(
-                                                                  context)
-                                                              .dropBranch,
-                                                          items: AppCubit.get(
-                                                                  context)
-                                                              .branch
-                                                              .map((e) {
-                                                            return DropdownMenuItem(
-                                                              value: e,
-                                                              child: Text(e),
-                                                            );
-                                                          }).toList(),
+                                                          value: MyApp.of(context)!
+                                                                      .getLocale()
+                                                                      .languageCode ==
+                                                                  "ar"
+                                                              ? AppCubit.get(
+                                                                      context)
+                                                                  .dropBranch
+                                                              : AppCubit.get(
+                                                                      context)
+                                                                  .dropBranchEN,
+                                                          items: MyApp.of(context)!
+                                                                      .getLocale()
+                                                                      .languageCode ==
+                                                                  "ar"
+                                                              ? AppCubit.get(
+                                                                      context)
+                                                                  .branch
+                                                                  .map((e) {
+                                                                  return DropdownMenuItem(
+                                                                    value: e,
+                                                                    child:
+                                                                        Text(e),
+                                                                  );
+                                                                }).toList()
+                                                              : AppCubit.get(
+                                                                      context)
+                                                                  .branchEN
+                                                                  .map((e) {
+                                                                  return DropdownMenuItem(
+                                                                    value: e,
+                                                                    child:
+                                                                        Text(e),
+                                                                  );
+                                                                }).toList(),
                                                           onChanged: (String?
                                                               newValue) {
                                                             AppCubit.get(
                                                                     context)
                                                                 .changeDropdownBranch(
-                                                                    newValue);
+                                                                    newValue,
+                                                                    MyApp.of(
+                                                                            context)!
+                                                                        .getLocale()
+                                                                        .languageCode);
                                                           }),
                                                     ),
                                                   ),
@@ -526,43 +582,40 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                                     print(widget.product.name);
                                                     print(widget.product.price);
 
-                                                    AppCubit.get(context)
-                                                        .makeLicenseCheckoutsRequest(
-                                                            widget.product,
-                                                            context,
-                                                            nameController.text,
-                                                            gender == "male"
-                                                                ? 1
-                                                                : -1,
-                                                            AppCubit.get(
-                                                                    context)
-                                                                .birthDate,
-                                                            AppCubit.get(
-                                                                    context)
+                                                    AppCubit.get(context).makeLicenseCheckoutsRequest(
+                                                        widget.product,
+                                                        context,
+                                                        nameController.text,
+                                                        gender == "male"
+                                                            ? 1
+                                                            : -1,
+                                                        AppCubit.get(context)
+                                                            .birthDate,
+                                                        MyApp.of(context)!.getLocale().languageCode == "ar"
+                                                            ? AppCubit.get(context)
                                                                 .bloods
-                                                                .indexOf(AppCubit
-                                                                        .get(
-                                                                            context)
-                                                                    .dropBlood!),
-                                                            widget.index + 1,
-                                                            initCategory + 1,
-                                                            passportController
-                                                                .text,
-                                                            AppCubit.get(
-                                                                    context)
-                                                                .dropdNationality!,
-                                                            AppCubit.get(
-                                                                    context)
-                                                                .dropdDriving!,
-                                                            AppCubit.get(
-                                                                    context)
-                                                                .profileImage!,
-                                                            AppCubit.get(
-                                                                    context)
-                                                                .licenceImage!,
-                                                            AppCubit.get(
-                                                                    context)
-                                                                .passportImage!);
+                                                                .indexOf(AppCubit.get(context)
+                                                                    .dropBlood!)
+                                                            : AppCubit.get(context)
+                                                                .bloodsEN
+                                                                .indexOf(AppCubit.get(context)
+                                                                    .dropBloodEN!),
+                                                        widget.index + 1,
+                                                        initCategory + 1,
+                                                        passportController.text,
+                                                        MyApp.of(context)!.getLocale().languageCode == "ar"
+                                                            ? AppCubit.get(context)
+                                                                .dropdNationality!
+                                                            : AppCubit.get(context)
+                                                                .dropdNationalityEN!,
+                                                        MyApp.of(context)!.getLocale().languageCode == "ar"
+                                                            ? AppCubit.get(context)
+                                                                .dropdDriving!
+                                                            : AppCubit.get(context)
+                                                                .dropdDrivingEN!,
+                                                        AppCubit.get(context).profileImage!,
+                                                        AppCubit.get(context).licenceImage!,
+                                                        AppCubit.get(context).passportImage!);
                                                     // AppCubit.get(context).orderLicense(
                                                     //     context,
                                                     //     "باسل هارون",
@@ -841,21 +894,44 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                                       5) //blur radius of shadow
                                             ]),
                                         child: Center(
-                                          child: DropdownButton(
-                                              value: AppCubit.get(context)
-                                                  .dropBlood,
-                                              items: AppCubit.get(context)
-                                                  .bloods
-                                                  .map((e) {
-                                                return DropdownMenuItem(
-                                                  value: e,
-                                                  child: Text(e),
-                                                );
-                                              }).toList(),
+                                          child: SearchableDropdown(
+                                              value: MyApp.of(context)!
+                                                          .getLocale()
+                                                          .languageCode ==
+                                                      "ar"
+                                                  ? AppCubit.get(context)
+                                                      .dropBlood
+                                                  : AppCubit.get(context)
+                                                      .dropBloodEN,
+                                              items: MyApp.of(context)!
+                                                          .getLocale()
+                                                          .languageCode ==
+                                                      "ar"
+                                                  ? AppCubit.get(context)
+                                                      .bloods
+                                                      .map((e) {
+                                                      return SearchableDropdownMenuItem(
+                                                        label: e,
+                                                        value: e,
+                                                        child: Text(e),
+                                                      );
+                                                    }).toList()
+                                                  : AppCubit.get(context)
+                                                      .bloodsEN
+                                                      .map((e) {
+                                                      return SearchableDropdownMenuItem(
+                                                        label: e,
+                                                        value: e,
+                                                        child: Text(e),
+                                                      );
+                                                    }).toList(),
                                               onChanged: (String? newValue) {
                                                 AppCubit.get(context)
                                                     .changeDropdownBlood(
-                                                        newValue);
+                                                        newValue,
+                                                        MyApp.of(context)!
+                                                            .getLocale()
+                                                            .languageCode);
                                               }),
                                         ),
                                       ),
@@ -907,21 +983,44 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                                       5) //blur radius of shadow
                                             ]),
                                         child: Center(
-                                          child: DropdownButton(
-                                              value: AppCubit.get(context)
-                                                  .dropdNationality,
-                                              items: AppCubit.get(context)
-                                                  .nationality
-                                                  .map((e) {
-                                                return DropdownMenuItem(
-                                                  value: e,
-                                                  child: Text(e),
-                                                );
-                                              }).toList(),
+                                          child: SearchableDropdown(
+                                              value: MyApp.of(context)!
+                                                          .getLocale()
+                                                          .languageCode ==
+                                                      "ar"
+                                                  ? AppCubit.get(context)
+                                                      .dropdNationality
+                                                  : AppCubit.get(context)
+                                                      .dropdNationalityEN,
+                                              items: MyApp.of(context)!
+                                                          .getLocale()
+                                                          .languageCode ==
+                                                      "ar"
+                                                  ? AppCubit.get(context)
+                                                      .nationality
+                                                      .map((e) {
+                                                      return SearchableDropdownMenuItem(
+                                                        label: e,
+                                                        value: e,
+                                                        child: Text(e),
+                                                      );
+                                                    }).toList()
+                                                  : AppCubit.get(context)
+                                                      .nationalityEN
+                                                      .map((e) {
+                                                      return SearchableDropdownMenuItem(
+                                                        label: e,
+                                                        value: e,
+                                                        child: Text(e),
+                                                      );
+                                                    }).toList(),
                                               onChanged: (String? newValue) {
                                                 AppCubit.get(context)
                                                     .changeDropdownNationality(
-                                                        newValue);
+                                                        newValue,
+                                                        MyApp.of(context)!
+                                                            .getLocale()
+                                                            .languageCode);
                                               }),
                                         ),
                                       ),
@@ -950,21 +1049,44 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                                       5) //blur radius of shadow
                                             ]),
                                         child: Center(
-                                          child: DropdownButton(
-                                              value: AppCubit.get(context)
-                                                  .dropdDriving,
-                                              items: AppCubit.get(context)
-                                                  .driving
-                                                  .map((e) {
-                                                return DropdownMenuItem(
-                                                  value: e,
-                                                  child: Text(e),
-                                                );
-                                              }).toList(),
+                                          child: SearchableDropdown(
+                                              value: MyApp.of(context)!
+                                                          .getLocale()
+                                                          .languageCode ==
+                                                      "ar"
+                                                  ? AppCubit.get(context)
+                                                      .dropdDriving
+                                                  : AppCubit.get(context)
+                                                      .dropdDrivingEN,
+                                              items: MyApp.of(context)!
+                                                          .getLocale()
+                                                          .languageCode ==
+                                                      "ar"
+                                                  ? AppCubit.get(context)
+                                                      .driving
+                                                      .map((e) {
+                                                      return SearchableDropdownMenuItem(
+                                                        label: e,
+                                                        value: e,
+                                                        child: Text(e),
+                                                      );
+                                                    }).toList()
+                                                  : AppCubit.get(context)
+                                                      .drivingEN
+                                                      .map((e) {
+                                                      return SearchableDropdownMenuItem(
+                                                        label: e,
+                                                        value: e,
+                                                        child: Text(e),
+                                                      );
+                                                    }).toList(),
                                               onChanged: (String? newValue) {
                                                 AppCubit.get(context)
                                                     .changeDropdownDriving(
-                                                        newValue);
+                                                        newValue,
+                                                        MyApp.of(context)!
+                                                            .getLocale()
+                                                            .languageCode);
                                               }),
                                         ),
                                       ),
@@ -993,21 +1115,44 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                                       5) //blur radius of shadow
                                             ]),
                                         child: Center(
-                                          child: DropdownButton(
-                                              value: AppCubit.get(context)
-                                                  .dropdCountry,
-                                              items: AppCubit.get(context)
-                                                  .country
-                                                  .map((e) {
-                                                return DropdownMenuItem(
-                                                  value: e,
-                                                  child: Text(e),
-                                                );
-                                              }).toList(),
+                                          child: SearchableDropdown(
+                                              value: MyApp.of(context)!
+                                                          .getLocale()
+                                                          .languageCode ==
+                                                      "ar"
+                                                  ? AppCubit.get(context)
+                                                      .dropdCountry
+                                                  : AppCubit.get(context)
+                                                      .dropdCountryEN,
+                                              items: MyApp.of(context)!
+                                                          .getLocale()
+                                                          .languageCode ==
+                                                      "ar"
+                                                  ? AppCubit.get(context)
+                                                      .country
+                                                      .map((e) {
+                                                      return SearchableDropdownMenuItem(
+                                                        label: e,
+                                                        value: e,
+                                                        child: Text(e),
+                                                      );
+                                                    }).toList()
+                                                  : AppCubit.get(context)
+                                                      .countryEN
+                                                      .map((e) {
+                                                      return SearchableDropdownMenuItem(
+                                                        label: e,
+                                                        value: e,
+                                                        child: Text(e),
+                                                      );
+                                                    }).toList(),
                                               onChanged: (String? newValue) {
                                                 AppCubit.get(context)
                                                     .changeDropdownCountry(
-                                                        newValue);
+                                                        newValue,
+                                                        MyApp.of(context)!
+                                                            .getLocale()
+                                                            .languageCode);
                                               }),
                                         ),
                                       ),
