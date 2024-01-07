@@ -31,10 +31,16 @@ class _TriptickInfoScreenState extends State<TriptickInfoScreen> {
     var cubit = AppCubit.get(context);
     bool validateToOrder() {
       var cubit = AppCubit.get(context);
-      if (cubit.dropBlood != "اختر فصيلة الدم" &&
-          cubit.dropdCountry != "اختر دولة الاقامة" &&
-          cubit.dropdDriving != "اختر دولة مصدر القيادة المحلية" &&
-          cubit.dropdNationality != "اختر الجنسية" &&
+      if ((MyApp.of(context)!.getLocale().languageCode == "ar"
+              ? cubit.dropdCountry != "اختر دولة الاقامة"
+              : cubit.dropdCountryEN != "Select Country of Residence") &&
+          (MyApp.of(context)!.getLocale().languageCode == "ar"
+              ? cubit.dropdDriving != "اختر دولة مصدر القيادة المحلية"
+              : cubit.dropdDrivingEN !=
+                  "Select the country of local driving license issuance") &&
+          (MyApp.of(context)!.getLocale().languageCode == "ar"
+              ? cubit.dropdNationality != "اختر الجنسية"
+              : cubit.dropdNationalityEN != "Choose nationality") &&
           cubit.profileImage != null &&
           cubit.passportImage != null &&
           cubit.licenceImage != null) {
@@ -87,9 +93,22 @@ class _TriptickInfoScreenState extends State<TriptickInfoScreen> {
                             ),
                           )
                         : ElevatedButton(
-                            onPressed: (cubit.dropdCountry ==
-                                        "اختر دولة الاقامة" ||
-                                    cubit.dropdNationality == "اختر الجنسية" ||
+                            onPressed: ((MyApp.of(context)!
+                                                .getLocale()
+                                                .languageCode ==
+                                            "ar"
+                                        ? cubit.dropdCountry ==
+                                            "اختر دولة الاقامة"
+                                        : cubit.dropdCountryEN ==
+                                            "Select Country of Residence") ||
+                                    (MyApp.of(context)!
+                                                .getLocale()
+                                                .languageCode ==
+                                            "ar"
+                                        ? cubit.dropdNationality ==
+                                            "اختر الجنسية"
+                                        : cubit.dropdNationalityEN ==
+                                            "Choose nationality") ||
                                     cubit.localIdImage == null ||
                                     cubit.passportImage == null ||
                                     cubit.carCopyImage == null)

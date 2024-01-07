@@ -93,10 +93,26 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                     height: 50,
                     child: ElevatedButton(
                       onPressed: (agreeTerms == false ||
-                              cubit.dropdCountry == "اختر دولة الاقامة" ||
-                              cubit.dropdDriving ==
-                                  "اختر دولة مصدر القيادة المحلية" ||
-                              cubit.dropdNationality == "اختر الجنسية" ||
+                              (MyApp.of(context)!.getLocale().languageCode ==
+                                      "ar"
+                                  ? cubit.dropdCountry == "اختر دولة الاقامة"
+                                  : cubit.dropdCountryEN ==
+                                      "Select Country of Residence") ||
+                              (MyApp.of(context)!.getLocale().languageCode ==
+                                      "ar"
+                                  ? cubit.dropBlood == "اختر فصيلة الدم"
+                                  : cubit.dropBloodEN == "choose blood type") ||
+                              (MyApp.of(context)!.getLocale().languageCode ==
+                                      "ar"
+                                  ? cubit.dropdDriving ==
+                                      "اختر دولة مصدر القيادة المحلية"
+                                  : cubit.dropdDrivingEN ==
+                                      "Select the country of local driving license issuance") ||
+                              (MyApp.of(context)!.getLocale().languageCode ==
+                                      "ar"
+                                  ? cubit.dropdNationality == "اختر الجنسية"
+                                  : cubit.dropdNationalityEN ==
+                                      "Choose nationality") ||
                               cubit.profileImage == null ||
                               cubit.passportImage == null ||
                               cubit.licenceImage == null)
